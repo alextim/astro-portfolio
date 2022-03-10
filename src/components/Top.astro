@@ -10,12 +10,13 @@ import Image from '@/components/Image.astro';
 const { locale } = Astro.props as Props;
 
 const top = await fetchTop(locale);
-const { title, subtitle, items } = top;
-const image = top?.items?[0].image;
+
+const { title, subtitle, items } = top ? top[0] : {};
+const image = items ? items[0].image : null;
 ---
 <div class="grid">
   {image?.src && (
-    <Image src={getImagePath(image.src)} alt={image.alt} classes="image" caption={image.caption} />
+    <Image src={getImagePath(image.src)} alt={image.alt} classes="col-start-1 row-start-1" caption={image.caption} />
   )}
   <div class="title text-lg md:mb-9 md:text-xl lg:text-2xl">{title}</div>
 </div>
@@ -31,9 +32,5 @@ const image = top?.items?[0].image;
   text-align: center;
   text-transform: uppercase;
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-  z-index: 2;
-}
-.image {
-  grid-area: 1/1;
 }
 </style>
