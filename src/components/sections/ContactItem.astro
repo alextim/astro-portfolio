@@ -1,0 +1,18 @@
+---
+export interface Props extends Link {
+  icon: string;
+  text: string;
+}
+
+import { Icon } from 'astro-icon';
+
+// icon 'text-muted mb-2 fa-x3'
+const { icon, to, title, text } = Astro.props as Props;
+---
+<div class="flex flex-col items-center">
+  <Icon name={icon} class="h-12 w-12 mb-4 text-muted" />
+  <div>
+    {title && <span class="mr-1 text-muted">{title}:</span>}
+    <a href={to} target="_blank" rel="noindex noopener noreferrer">{text}</a>
+  </div>
+</div>

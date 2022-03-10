@@ -1,0 +1,31 @@
+---
+export interface Props {
+  contacts: Contacts;
+  socialLinks: SocialLinks;
+  address: Address;
+}
+
+import Container from '../Container.astro';
+import LegalInfo from './components/LegalInfo.astro';
+import SocialLinks from './components/SocialLinks.astro';
+
+const {
+  contacts: { foundingDate },
+  socialLinks,
+  address,
+} = Astro.props as Props;
+
+---
+
+<footer class="py-4 text-sm bg-light">
+  <Container>
+    {socialLinks && (
+      <div class="inline-flex items-center justify-center w-full my-12">
+        <SocialLinks socialLinks={socialLinks} />
+      </div>
+    )}
+    <div class="inline-flex items-center justify-center w-full lg:justify-start">
+      <LegalInfo foundingDate={foundingDate} name={address?.name} />
+    </div>
+  </Container>
+</footer>

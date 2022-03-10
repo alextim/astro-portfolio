@@ -1,0 +1,15 @@
+---
+export interface Props {
+  section: Section;
+}
+import getImagePath from '@/lib/getImagePath';
+
+import PageSection from '../PageSection.astro';
+import Image from '@/components/Image.astro';
+
+const { section: { id, title, subtitle, image, html, items } } = Astro.props as Props;
+---
+<PageSection id={id} title={title} subtitle={subtitle} classes="bg-light">
+  {image?.src && <Image src={getImagePath(image.src)} alt={image.alt} classes="mx-auto mb-3 w-68 h-68 border-4 rounded-full" caption={image.caption} />}
+  {html && <div set:html={html} class="text-justify text-muted" />}
+</PageSection>

@@ -1,0 +1,14 @@
+---
+export interface Props {
+  section: Section;
+}
+import PageSection from '../PageSection.astro';
+import TestimonialItem from './TestimonialItem.astro';
+
+const { section: { id, title, subtitle, html: content, items } } = Astro.props as Props;
+---
+<PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center bg-light">
+  <div class="grid gap-12 lg:grid-cols-3">
+    {items?.map((item) => <TestimonialItem item={item} />)}
+  </div>
+</PageSection>

@@ -1,0 +1,69 @@
+---
+export interface Props {
+  item: SectionItem;
+}
+
+import getImagePath from '@/lib/getImagePath';
+import Image from '@/components/Image.astro';
+
+const { item: { title, subtitle, image } } = Astro.props as Props;
+---
+<div className="gallery-item">
+  <a
+    role="button"
+    tabIndex={-1}
+    class="gallery-box"
+    href={'#'}
+  >
+     {image?.src && <Image src={getImagePath(image.src)} alt={image.alt} caption={image.caption} />}
+     <div class="gallery-box-caption">
+      <div class="project-category text-white-50">{subtitle}</div>
+      <div class="project-name">{title}</div>
+    </div>
+  </a>
+</div>
+
+<style>
+.gallery-box {
+  position: relative;
+  display: block;
+
+  .gallery-box-caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    bottom: 0;
+
+    text-align: center;
+    opacity: 0;
+
+    color: $white;
+    background: fade-out(blue, .1);
+    transition: opacity 0.25s ease;
+    text-align: center;
+
+    .project-category {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .project-name {
+      font-size: 1.2rem;
+    }
+  }
+
+  &:hover {
+    .gallery-box-caption {
+      opacity: 1;
+    }
+  }
+}
+</style>
+

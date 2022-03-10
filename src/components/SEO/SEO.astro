@@ -1,0 +1,39 @@
+---
+export interface Props {
+  seo: SEO;
+}
+
+import i18n from '@/config/i18n';
+import seoConfig from '@/config/seoConfig';
+import config from '@/config/website';
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
+import SeoBase from './SeoBase.astro';
+
+const { seo } = Astro.props as Props;
+
+const { siteUrl, siteLogo, themeColor } = config;
+
+if (themeColor) {
+  if (!seo.meta) {
+    seo.meta = [];
+  }
+  seo.meta.push({ name: 'theme-color', content: themeColor });
+}
+
+if (!seo.link) {
+  seo.link = [];
+}
+seo.link.push({ rel: 'author', type: 'text/plain', href: `${siteUrl}/humans.txt` });
+
+const pathname = Astro.request.url.pathname;
+const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+
+//   const homeUrl = `${siteUrl}${localizePath('/', locale)}`;
+
+let imgUrl;
+if (seo.cover?.src) {
+  imgUrl = `${siteUrl}${seo.cover?.src}`;
+}
+---
+
+<SeoBase {...{ siteUrl, siteLogo, i18n, pathname, locale, imgUrl, ...seo, ...seoConfig }} />

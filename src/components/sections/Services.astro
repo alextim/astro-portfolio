@@ -1,0 +1,14 @@
+---
+export interface Props {
+  section: Section;
+}
+import PageSection from '../PageSection.astro';
+import ServiceItem from './ServiceItem.astro';
+
+const { section: { id, title, subtitle, html: content, items } } = Astro.props as Props;
+---
+<PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center">
+  <div class="grid gap-12 grid-cols-[100%] lg:grid-cols-3">
+    {items?.map((item) => <ServiceItem item={item} />)}
+  </div>
+</PageSection>

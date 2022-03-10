@@ -1,0 +1,15 @@
+---
+export interface Props {
+  classes?: string;
+}
+/*
+    minWidth: '320px',
+  maxWidth: '1280px',
+  margin: '0 auto',
+  */
+const { classes = '' } = Astro.props as Props;
+---
+
+<div class={`min-w-xs max-w-screen-xl container ${classes}`}>
+  <slot />
+</div>

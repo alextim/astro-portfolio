@@ -1,0 +1,50 @@
+---
+import fetchAllSections from '@/api/fetchAllSections';
+import { fetchHome } from '@/api/pages';
+import PageSection from '@/components/PageSection.astro';
+
+import Layout from '@/components/Layout/BaseLayout.astro';
+
+import Top from './Top.astro';
+
+import Services from '@/components/sections/Services.astro';
+import About from '@/components/sections/About.astro';
+import Gallery from '@/components/sections/Gallery.astro';
+import Testimonials from '@/components/sections/Testimonials.astro';
+import Contacts from '@/components/sections/Contacts.astro';
+
+export interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props as Props;
+
+const sections = await fetchAllSections(locale);
+
+const services = sections.find(({ id }) => id === 'services');
+const about = sections.find(({ id }) => id === 'about');
+const gallery = sections.find(({ id }) => id === 'gallery');
+const testimonials = sections.find(({ id }) => id === 'testimonials');
+const contacts = sections.find(({ id }) => id === 'contacts');
+
+const page = await fetchHome(locale);
+const { title, headline, metaTitle, metaDescription, noindex, nofollow } = page;
+
+const seo = {
+  title: metaTitle,
+  description: metaDescription,
+  headline,
+  noindex,
+  nofollow,
+};
+
+---
+
+<Layout seo={seo}>
+  <Top locale={locale} />
+  <Services section={services} />
+  <About section={about} />
+  <Gallery section={gallery} />
+  <Testimonials section={testimonials} />
+  <Contacts section={contacts} />
+</Layout>

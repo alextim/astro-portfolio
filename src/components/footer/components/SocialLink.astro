@@ -1,0 +1,29 @@
+---
+import theme from '../theme';
+
+export interface Props extends Link {
+  name: string;
+}
+
+const { name, title, to } = Astro.props as Props;
+
+// Google Does Not Use rel=me Microformats
+// rel="me noreferrer"
+const style = `
+  at-a
+  flex justify-center items-center
+  w-16 h-16
+  mx-4
+
+  rounded-full
+  text-white
+  bg-black
+
+  hover:bg-primary
+  hover:transition-colors
+  hover:ease-in-out
+`;
+---
+<a class={style} href={to} target="_blank" rel="noreferrer" aria-label={name} title={title}>
+  <slot />
+</a>

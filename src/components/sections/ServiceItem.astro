@@ -1,0 +1,15 @@
+---
+export interface Props {
+  item: SectionItem;
+}
+
+import getImagePath from '@/lib/getImagePath';
+import Image from '@/components/Image.astro';
+
+const { item: { title, content, image } } = Astro.props as Props;
+---
+<div class="text-center">
+  {image?.src && <Image src={getImagePath(image.src)} alt={image.alt} classes="mb-4" caption={image.caption} />}
+  <h3 class="mb-4">{title}</h3>
+  <div class="text-muted">{content}</div>
+</div>

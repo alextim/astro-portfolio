@@ -1,0 +1,31 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
+
+/* purgecss start ignore */
+/* purgecss end ignore */
+
+@layer base {
+  /* https://google-webfonts-helper.herokuapp.com/fonts */
+  /* oswald-700 - cyrillic */
+  @font-face {
+    font-family: 'Oswald';
+    font-display: swap;
+    font-style: normal;
+    font-weight: 700;
+    src: local('Oswald Bold'), local('Oswald-Bold'), local('OswaldBold'), url('/assets/fonts/oswald-v36-cyrillic-700.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'fallback-heading-font';
+    advance-override: -0.0923828125; /* Letter spacing: -1.5px */
+    src: local('Arial');
+  }
+}
+
+@layer components {
+}
+
+

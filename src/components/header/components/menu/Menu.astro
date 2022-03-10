@@ -1,0 +1,27 @@
+---
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
+import fetchMainNav from '@/api/fetchMainNav';
+
+import LanguageSwitch from '../LanguageSwitch.astro';
+import NavItem from './NavItem.astro';
+
+const pathname = Astro.request.url.pathname;
+const locale = getLocaleFromUrlPathname(pathname);
+const navItems = await fetchMainNav(locale);
+---
+
+<nav id="main-menu" class="main-menu">
+  <div aria-label="Main menu" class="flex flex-col ml-auto lg:flex-row">
+    {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
+  </div>
+  <LanguageSwitch />
+</nav>
+
+<style>
+  .main-menu {
+    @apply hidden items-center basis-full grow py-4 lg:!flex lg:basis-auto lg:py-0;
+  }
+  .main-menu.open {
+    @apply !block;
+  }
+</style>

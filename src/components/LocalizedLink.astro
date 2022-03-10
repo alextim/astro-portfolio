@@ -1,0 +1,16 @@
+---
+import { localizePath } from '@/lib/i18n-utils';
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
+/*
+export interface Props {
+  to: string;
+}
+*/
+const { to, ...rest } = Astro.props;
+const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+const path = localizePath(to, locale);
+---
+
+<a href={path} {...rest}>
+  <slot />
+</a>

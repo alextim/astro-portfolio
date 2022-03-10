@@ -1,0 +1,18 @@
+---
+export interface Props {
+  title?: string;
+  headline?: string;
+  seo?: any;
+}
+
+
+import PageHeader from '../PageHeader.astro';
+import BaseLayout from './BaseLayout.astro';
+
+const { title, headline, seo } = Astro.props as Props;
+---
+
+<BaseLayout seo={seo}>
+  <PageHeader title={title} headline={headline} />
+  <slot />
+</BaseLayout>

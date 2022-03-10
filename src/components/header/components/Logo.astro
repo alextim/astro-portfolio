@@ -1,0 +1,14 @@
+---
+import i18n from '@/config/i18n';
+import { localizePath } from '@/lib/i18n-utils';
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
+
+const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+
+const { siteTitle } = i18n.locales[locale]!;
+const localizedRoot = localizePath('/', locale);
+const SITE_LOGO = '/assets/images/logo.svg';
+---
+<a href={localizedRoot} class="inline-block mr-4 at-a at-a-undecorated">
+  <img src={SITE_LOGO} alt={siteTitle} height="48" width="48" class="h-12 w-12 lg:h-14 lg:w-14" />
+</a>
