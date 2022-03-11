@@ -40,6 +40,7 @@ module.exports = {
       colors: {
         text: 'black',
         primary: '#f4623a',
+        'primary-light': '#F68A6C',
         light: '#f8f9fa',
         muted: '#868e96',
         brand: {
@@ -78,6 +79,12 @@ module.exports = {
   plugins: [
     plugin(({ addComponents, theme }) => {
       addComponents({
+        p: {
+          marginBottom: '1rem',
+        },
+        'p:last-of-type': {
+          marginBottom: 0,
+        },
         '.divider': {
           position: 'relative',
           '&:after': {
@@ -120,9 +127,6 @@ module.exports = {
           overflowWrap: 'break-word',
           wordWrap: 'break-word',
         },
-
-
-
       })
     }),
   ],

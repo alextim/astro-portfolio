@@ -1,8 +1,8 @@
-const escapeHTML = (s: any): string => {
+const escapeHTML = (s: string | undefined): string => {
   if (!s) {
     return '';
   }
-  return s.replace(/[&<>'"]/g, (tag) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  return s.replace(/[&<>'"]/g, (tag: string) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
 };
 
 export default escapeHTML;

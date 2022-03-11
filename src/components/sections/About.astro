@@ -10,6 +10,8 @@ import Image from '@/components/Image.astro';
 const { section: { id, title, subtitle, image, html, items } } = Astro.props as Props;
 ---
 <PageSection id={id} title={title} subtitle={subtitle} classes="bg-light">
-  {image?.src && <Image src={getImagePath(image.src)} alt={image.alt} classes="mx-auto mb-3 w-68 h-68 border-4 rounded-full" caption={image.caption} />}
-  {html && <div set:html={html} class="text-justify text-muted" />}
+  <div class="grid gap-12 lg:grid-cols-3">
+    {image?.src && <Image src={getImagePath(image.src)} alt={image.alt} classes="mx-auto mb-3" imgClasses="w-60 h-60 border-4 rounded-full" caption={image.caption} />}
+    {html && <div set:html={html} class="lg:col-span-2 text-justify text-muted" />}
+  </div>
 </PageSection>

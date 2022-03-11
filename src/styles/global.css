@@ -23,6 +23,9 @@
     advance-override: -0.0923828125; /* Letter spacing: -1.5px */
     src: local('Arial');
   }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {

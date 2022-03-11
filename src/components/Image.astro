@@ -12,36 +12,40 @@ interface Props {
   options?: ImageOptions;
   sizes?: string;
   classes?: string;
+  imgClasses?: string;
   quality?: number;
   placeholderOptions?: PlaceholderOptions;
 }
 
-const { src, alt = '', caption, options = {}, sizes = '', classes = '', quality = 90, placeholderOptions = {} } = Astro.props as Props;
+const { src, alt = '', caption, options = {}, sizes = '', classes = '', imgClasses = '', quality = 90, placeholderOptions = {} } = Astro.props as Props;
 
-const image = generateImage(src, {
+const opts = {
   ...options,
   widths: [null],
   formats: ['avif', 'webp', 'jpg'],
   sharpWebpOptions: {
-    quality: quality,
+    quality,
   },
   sharpAvifOptions: {
-    quality: quality,
+    quality,
   },
-});
+};
 
-const placeHolder = await generatePlaceholder(src, placeholderOptions);
+const metadata = generateImage(src, opts);
+
+// const placeHolder = await generatePlaceholder(src, placeholderOptions);
 
 const imageAttributes = {
   alt: escapeHTML(alt),
   sizes: sizes,
   loading: 'lazy',
   decoding: 'async',
-  style: `background-size: cover;background-image:url(${placeHolder.dataURI})`,
-  onload: `this.style.backgroundImage='none'`,
+  // style: `background-size: cover;background-image:url(${placeHolder.dataURI})`,
+  // onload: `this.style.backgroundImage='none'`,
+  class: imgClasses,
 };
 
-const html = Image.generateHTML(image, imageAttributes);
+const html = Image.generateHTML(metadata, imageAttributes);
 const props: Record<string, string> = {};
 props.class = classes;
 ---

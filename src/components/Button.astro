@@ -1,66 +1,40 @@
 ---
 import Link from './LocalizedLink.astro';
 
-const { to = '', target = '', overrideCSS = '', icon = '', as = 'button', secondary = false, variant = '', ...rest } = Astro.props;
+const { to = '', target = '', classes = '', as = 'button' } = Astro.props;
 
-let styles = `
-  shrink-0
-  inline-flex items-center
-  px-3
-  h-14
-  w-fit
-  border border-solid rounded
+const styles = `
+at-a
+mx-2 my-2
+px-6 py-2
+w-fit
+text-white
+text-xs
+uppercase
+bg-primary
+rounded-full
+transition duration-150 ease-in-out
+hover:bg-primary-light
+focus:ring-2
+focus:ring-offset-2
+focus:ring-primary-light
+${classes}`;
 
-  font-semibold
-  text-base
-
-  whitespace-nowrap
-  tracking-wider
-  uppercase
-
-  bg-[length:3.75rem_3.75rem]
-  transition
-
-  text-gray-900
-  bg-blue-300
-  border-blue-500
-
-  hover:bg-blue-500 focus:bg-blue-500
-  hover:border-blue-900 focus:border-blue-900
-
-  at-a at-a-undecorated
-
-  focus:shadow
-  `;
-/*
-if (secondary) {
-  styles += ' ' + buttonStyles.secondary;
-}
-if (variant && buttons[variant]) {
-  styles += ' ' + buttons[variant];
-}
-*/
-if (overrideCSS) {
-  styles = `${styles} ${overrideCSS}`;
-}
 ---
 {as === 'link' && (
-  <Link class={styles} to={to} {...rest}>
+  <Link class={styles} to={to}>
     <slot />
-    {icon}
   </Link>
 )}
 
 {as === 'a' && (
-  <a class={styles} href={to} target={target} {...rest}>
+  <a class={styles} href={to} target={target}>
     <slot />
-    {icon}
   </a>
 )}
 
 {as === 'button' && (
-  <button class={styles} {...rest}>
+  <button class={styles}>
     <slot />
-    {icon}
   </button>
 )}

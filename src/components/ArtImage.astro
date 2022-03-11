@@ -1,0 +1,51 @@
+---
+import Image from '@11ty/eleventy-img';
+import { generateImage, ImageOptions } from '../astro-eleventy-img';
+
+import escapeHTML from '@/lib/escapeHTML';
+
+interface Props {
+  sources: { src: string, media?: string }[];
+  options?: ImageOptions;
+  sizes?: string;
+  classes?: string;
+  imgClasses?: string;
+  quality?: number;
+}
+
+const { sources, alt = '', options = {}, sizes = '100vw', classes = '', imgClasses = 'w-full h-auto max-w-full', quality = 90 } = Astro.props as Props;
+
+const opts = {
+  ...options,
+  widths: [null],
+  formats: ['avif', 'webp', 'jpg'],
+  sharpWebpOptions: {
+    quality,
+  },
+  sharpAvifOptions: {
+    quality,
+  },
+};
+
+const metadataDefault = generateImage(sources.filter(({ media }) => !media)[0].src, opts);
+
+const metadataRest = sources.filter(({ media }) => media).map(({ src, media }) => ({
+  metadata: generateImage(src, opts),
+  media,
+}));
+
+const lowsrc = metadataDefault.jpeg[0];
+const highsrc = metadataDefault.jpeg[metadataDefault.jpeg.length - 1];
+
+const getSrcset = (imageFormat: any[]): string => imageFormat.map((entry) => entry.srcset).join(', ');
+---
+<picture class={classes}>
+  {metadataRest.map(({ metadata, media }) =>  Object.values(metadata).map((imageFormat) => (
+    <source type={imageFormat[0].sourceType} media={media} srcset={getSrcset(imageFormat)} sizes={sizes} />
+  )))}
+  {Object.values(metadataDefault).map((imageFormat) => (
+    <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />
+  ))}
+  <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(alt)} loading="lazy" decoding="async" class={imgClasses}/>
+</picture>
+
