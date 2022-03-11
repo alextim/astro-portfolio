@@ -18,7 +18,7 @@ const { src, alt = '', options = {}, sizes = '100vw', classes = '', quality = 90
 const metadata = generateImage(src, {
   ...options,
   widths: [null],
-  formats: ['avif', 'webp', 'jpg'],
+  formats: import.meta.env.IMAGE_FORMATS.split(','),
   sharpWebpOptions: {
     quality: quality,
   },

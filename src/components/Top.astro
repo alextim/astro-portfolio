@@ -19,20 +19,15 @@ const sources = items?.map(({ image: { src, caption }}) => ({ src: getImagePath(
   {sources && (
     <ArtImage sources={sources} alt={items[0].image.alt } classes="col-start-1 row-start-1" />
   )}
-  <div class="col-start-1 row-start-1 center flex flex-col-reverse justify-center items-center">
+  <div class="col-start-1 row-start-1 text-center flex flex-col-reverse justify-center items-center">
     <Button as="a" to="#services">hello</Button>
-    <h1 class="text uppercase font-bold text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>
-    {subtitle && <div class="text mb-8 text-2xl italic">{subtitle}</div>}
+    <h1 class="txt uppercase font-bold text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>
+    {subtitle && <div class="txt mb-8 text-2xl italic">{subtitle}</div>}
   </div>
 </div>
 
 <style>
-.center {
-  align-self: center;
-  justify-self: center;
-  text-align: center;
-}
-.text {
+.txt {
   color: white;
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
 }

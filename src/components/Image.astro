@@ -22,7 +22,7 @@ const { src, alt = '', caption, options = {}, sizes = '', classes = '', imgClass
 const opts = {
   ...options,
   widths: [null],
-  formats: ['avif', 'webp', 'jpg'],
+  formats: import.meta.env.IMAGE_FORMATS.split(','),
   sharpWebpOptions: {
     quality,
   },
