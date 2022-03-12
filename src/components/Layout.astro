@@ -1,12 +1,13 @@
 ---
 import i18n from '@/config/i18n';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
-
 import { fetchContacts, fetchSocialLinks, fetchAddress } from '@/api/yamls';
 
-import SEO from '../SEO/SEO.astro';
-import Header from '../header/Header.astro';
-import Footer from '../footer/Footer.astro';
+// import '../styles/global.css';
+
+import SEO from './SEO/SEO.astro';
+import Header from './header/Header.astro';
+import Footer from './footer/Footer.astro';
 
 const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
 
@@ -32,7 +33,7 @@ if (!currentLocale) {
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preload" href="/assets/fonts/oswald-v36-cyrillic-700.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
     <style global>
-      @import '../../styles/global.css';
+      @import "../styles/global.css";
     </style>
     <script defer src="/assets/scripts/main.js"></script>
   </head>
