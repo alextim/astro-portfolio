@@ -7,6 +7,6 @@ critical.generate({
   width: 1300,
   height: 900,
   inline: {
-    strategy: 'swap'
-  }
+    strategy: 'swap',
+  },
 });

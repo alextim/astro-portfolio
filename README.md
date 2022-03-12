@@ -2,7 +2,6 @@ https://www.defined.net/blog/internationalizing-docs-pages-with-astro/
 
 https://rodneylab.com/sveltekit-image-plugin/
 
-
 https://github.com/warpsio
 https://github.com/warpsio/astro-localization
 
@@ -18,12 +17,11 @@ https://github.com/Princesseuh/princesseuh.dev
 // Astro.request.params (slug, locale)
 
 <script define:vars={{ schema }} type="application/ld+json">{schema}</script>
-"let schema="
 
+"let schema="
 
 Ошибка Astro: Если в в Frontmatteк есть знак | перевода на новую сторку, то обрамляющие кавычки не удаляются
 и
-
 
 https://www.npmjs.com/~rafidmuhymin
 astro-spa

@@ -9,12 +9,18 @@ import ContactItem from './ContactItem.astro';
 import { fetchContacts } from '@/api/yamls';
 
 //       subClassName="text-center"
-const { section: { id, title, subtitle, html: content } } = Astro.props as Props;
+const {
+  section: { id, title, subtitle, html: content },
+} = Astro.props as Props;
 
 const contacts = fetchContacts();
-const { phones, voice: { whatsapp, telegram }, emails } = contacts;
-
+const {
+  phones,
+  voice: { whatsapp, telegram },
+  emails,
+} = contacts;
 ---
+
 <PageSection id={id} title={title} subtitle={subtitle} content={content}>
   <div class="grid gap-6 text-sm md:grid-cols-2 lg:grid-cols-4">
     <ContactItem icon="phone" to={utils.phoneUrl(phones[0])} title="Phone" text={utils.formatPhone(phones[0])} />

@@ -1,8 +1,18 @@
 // postcss.config.cjs
-const plugins = [require('tailwindcss'), require('postcss-nested')];
+const plugins = [
+  //'postcss-import': {},
+  //'postcss-flexbugs-fixes': {},
+  //'tailwindcss/nesting': {},
+  //tailwindcss: {},
+  require('postcss-import'),
+  require('postcss-flexbugs-fixes'),
+  require('tailwindcss/nesting'),
+  require('tailwindcss'),
+];
 
 if (process.env.NODE_ENV === 'production') {
-  plugins.push(require('cssnano'));
+  plugins.push(require('autoprefixer'));
+  // plugins.push(require('cssnano')({ preset: 'default' }));
 }
 
 module.exports = {

@@ -3,8 +3,11 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
-/*
+  content: [
+    './public/**/*.html',
+    './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}',
+  ],
+  /*
   corePlugins: {
 
     // preflight: false,
@@ -48,10 +51,6 @@ module.exports = {
           DEFAULT: '#0fa9e6',
           dark: '#0c87b8',
         },
-        action: {
-          primary: 'cyan',
-          highlite: 'white',
-        },
         brands: {
           skype: 'rgb(0, 175, 240)',
           viber: '#bcaec7',
@@ -68,7 +67,7 @@ module.exports = {
       },
       spacing: {
         18: '4.5rem',
-        'header': '3.5rem',
+        header: '3.5rem',
         'header-xl': '4.5rem',
       },
       content: {
@@ -77,9 +76,9 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(({ addComponents, theme }) => {
+    plugin(({ addComponents }) => {
       addComponents({
-        p: {
+        'p': {
           marginBottom: '1rem',
         },
         'p:last-of-type': {
@@ -109,9 +108,9 @@ module.exports = {
             textDecoration: 'none',
           },
         },
-      })
+      });
     }),
-    plugin(({ addBase, theme }) => {
+    plugin(({ addBase }) => {
       addBase({
         // Small reset, preflight include a lot of stuff we don't use so let's make our own
         '*, ::before, ::after': {
@@ -127,7 +126,10 @@ module.exports = {
           overflowWrap: 'break-word',
           wordWrap: 'break-word',
         },
-      })
+        'html': {
+          scrollBehavior: 'smooth',
+        },
+      });
     }),
   ],
 };

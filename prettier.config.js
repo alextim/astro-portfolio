@@ -1,5 +1,5 @@
+/** @type {import("@types/prettier").Options */
 module.exports = {
-
   // Trailing commas help with git merging and conflict resolution
   trailingComma: 'all',
   // Why include an unnecessary character at the end of every line? Break the habit (automatically)!
@@ -7,14 +7,12 @@ module.exports = {
   singleQuote: true,
   printWidth: 140,
   endOfLine: 'auto',
-  plugins: ['./node_modules/prettier-plugin-astro'],
+  plugins: [require.resolve('prettier-plugin-astro'), require('prettier-plugin-tailwindcss')],
   astroAllowShorthand: false,
   overrides: [
     {
-      files: '*.astro',
-      options: {
-        parser: 'astro',
-      },
+      files: '**/*.astro',
+      options: { parser: 'astro' },
     },
     {
       files: '.editorconfig',
@@ -24,7 +22,13 @@ module.exports = {
       files: 'LICENSE',
       options: { parser: 'markdown' },
     },
+    {
+      files: ['*.json', '*.md', '*.toml', '*.yml'],
+      options: {
+        useTabs: false,
+      },
+    },
   ],
 
-  tailwindConfig: './tailwind.config.js',
+  // tailwindConfig: './tailwind.config.js',
 };

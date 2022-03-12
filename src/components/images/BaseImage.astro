@@ -1,0 +1,34 @@
+---
+import escapeHTML from '@/lib/escapeHTML';
+import { ImageOptions } from '../../astro-eleventy-img';
+import { getMetadata, getSrcset } from './utils';
+
+interface Props {
+  src: string;
+  alt?: string;
+  options?: ImageOptions;
+  sizes?: string;
+  imgClasses?: string;
+  quality?: number;
+}
+
+const { src, alt = '', options = {}, sizes = '100vw', imgClasses = '', quality = 90 } = Astro.props as Props;
+
+const opts = {
+  ...options,
+  widths: [null],
+  formats: import.meta.env.IMAGE_FORMATS.split(','),
+  sharpWebpOptions: {
+    quality,
+  },
+  sharpAvifOptions: {
+    quality,
+  },
+};
+
+const { metadata, lowsrc, highsrc } = getMetadata(src, opts);
+---
+<picture>
+  {Object.values(metadata).map((imageFormat) => <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />)}
+  <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(alt)} loading="lazy" decoding="async" class={imgClasses} />
+</picture>

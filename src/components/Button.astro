@@ -1,7 +1,13 @@
 ---
+export interface Props {
+  to?: string;
+  target?: string;
+  classes?: string;
+  tag?: string;
+}
 import Link from './LocalizedLink.astro';
 
-const { to = '', target = '', classes = '', as = 'button' } = Astro.props;
+const { to = '', target = '', classes = '', tag = 'button' } = Astro.props as Props;
 
 const styles = `
 at-a
@@ -21,20 +27,8 @@ focus:ring-primary-light
 ${classes}`;
 
 ---
-{as === 'link' && (
-  <Link class={styles} to={to}>
-    <slot />
-  </Link>
-)}
+{tag === 'link' && <Link class={styles} to={to}><slot /></Link>}
 
-{as === 'a' && (
-  <a class={styles} href={to} target={target}>
-    <slot />
-  </a>
-)}
+{tag === 'a' && <a class={styles} href={to} target={target}><slot /></a>}
 
-{as === 'button' && (
-  <button class={styles}>
-    <slot />
-  </button>
-)}
+{tag === 'button' && <button class={styles}><slot /></button>}

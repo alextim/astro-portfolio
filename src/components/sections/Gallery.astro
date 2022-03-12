@@ -5,8 +5,11 @@ export interface Props {
 import PageSection from '../PageSection.astro';
 import GalleryItem from './GalleryItem.astro';
 
-const { section: { id, title, subtitle, html: content, items } } = Astro.props as Props;
+const {
+  section: { id, title, subtitle, html: content, items },
+} = Astro.props as Props;
 ---
+
 <PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center bg-light">
   <div class="grid gap-8 md:grid-cols-3 lg:grid-cols-6">
     {items?.map((item) => <GalleryItem item={item} />)}

@@ -7,8 +7,8 @@ const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
 
 const { siteTitle } = i18n.locales[locale]!;
 const localizedRoot = localizePath('/', locale);
-const SITE_LOGO = '/assets/images/logo.svg';
 ---
+
 <a href={localizedRoot} class="inline-block mr-4 at-a at-a-undecorated">
-  <img src={SITE_LOGO} alt={siteTitle} height="48" width="48" class="h-12 w-12 lg:h-14 lg:w-14" />
+  <img src="/assets/logo.svg" alt={siteTitle} height="48" width="48" class="h-12 w-12 lg:h-14 lg:w-14" />
 </a>

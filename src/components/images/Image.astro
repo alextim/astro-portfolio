@@ -1,9 +1,9 @@
 ---
-import Image from '@11ty/eleventy-img';
 import { Markdown } from 'astro/components';
-import { generateImage, ImageOptions, generatePlaceholder, PlaceholderOptions } from '../astro-eleventy-img';
-
 import escapeHTML from '@/lib/escapeHTML';
+import { ImageOptions, generatePlaceholder, PlaceholderOptions } from '../../astro-eleventy-img';
+
+import { getMetadata, getSrcset } from './utils';
 
 interface Props {
   src: string;
@@ -17,7 +17,17 @@ interface Props {
   placeholderOptions?: PlaceholderOptions;
 }
 
-const { src, alt = '', caption, options = {}, sizes = '', classes = '', imgClasses = '', quality = 90, placeholderOptions = {} } = Astro.props as Props;
+const {
+  src,
+  alt = '',
+  caption,
+  options = {},
+  sizes = '',
+  classes = '',
+  imgClasses = '',
+  quality = 90,
+  placeholderOptions = {},
+} = Astro.props as Props;
 
 const opts = {
   ...options,
@@ -31,12 +41,10 @@ const opts = {
   },
 };
 
-const metadata = generateImage(src, opts);
-
+/*
 // const placeHolder = await generatePlaceholder(src, placeholderOptions);
 
 const imageAttributes = {
-  alt: escapeHTML(alt),
   sizes: sizes,
   loading: 'lazy',
   decoding: 'async',
@@ -44,14 +52,15 @@ const imageAttributes = {
   // onload: `this.style.backgroundImage='none'`,
   class: imgClasses,
 };
-
-const html = Image.generateHTML(metadata, imageAttributes);
-const props: Record<string, string> = {};
-props.class = classes;
+*/
+const { metadata, lowsrc, highsrc } = getMetadata(src, opts);
 ---
 
-<figure {...props}>
-  <Fragment set:html={html} />
+<figure class={classes}>
+  <picture>
+    {Object.values(metadata).map((imageFormat) => <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />)}
+    <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(alt)} loading="lazy" decoding="async" class={imgClasses}/>
+  </picture>
   {caption && (
     <figcaption>
       <Markdown>{escapeHTML(caption)}</Markdown>

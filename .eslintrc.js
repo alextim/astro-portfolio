@@ -23,16 +23,16 @@ module.exports = {
       version: 'detect',
     },
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
       typescript: {
-        project: ['./tsconfig.json']
+        project: ['./tsconfig.json'],
       },
       node: {
-        project: ['./tsconfig.json']
-      }
-    }
+        project: ['./tsconfig.json'],
+      },
+    },
   },
   env: {
     node: true,
@@ -48,9 +48,13 @@ module.exports = {
     'plugin:import/errors',
     'prettier',
   ],
-  plugins: ['@typescript-eslint', 'import', 'jsx-a11y',
+  plugins: [
+    '@typescript-eslint',
+    'import',
+    'jsx-a11y',
     // 'react', 'react-hooks',
-    'prettier'],
+    'prettier',
+  ],
 
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
@@ -61,7 +65,7 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-plusplus': 'off',
     'no-restricted-exports': 'off',
-/*
+    /*
     'react/no-array-index-key': 'warn',
     'react/no-danger': 0,
     'react/jsx-props-no-spreading': 0,

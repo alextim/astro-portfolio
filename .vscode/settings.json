@@ -8,5 +8,12 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "cSpell.words": ["Astro", "tailwindcss", "eleventy", "viber"],
+  "cSpell.language": "en,ru",
+  "prettier.documentSelectors": ["**/*.astro", "**/*.ts"],
+  "css.customData": [".vscode/css_custom_data.json"]
 }

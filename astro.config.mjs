@@ -21,7 +21,7 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
       exclude: ['astro-eleventy-img'],
     },
 */
-      /**
+    /**
      * Due to an issue in the current version of Vite used by Astro, you need to add the following to your astro project config file:
      *
      */
@@ -31,4 +31,3 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
     plugins: [],
   },
 });
-
