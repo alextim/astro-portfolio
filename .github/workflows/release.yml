@@ -40,6 +40,8 @@ jobs:
 
       - name: "🚀 static app"
         run: pnpm build
+        env:
+          IMAGE_FORMATS: "avif,webp,jpg"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
