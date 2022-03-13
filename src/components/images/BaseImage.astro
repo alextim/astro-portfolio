@@ -18,7 +18,7 @@ const { src, alt = '', options = {}, sizes = '100vw', imgClasses = '', quality =
 const opts = {
   ...options,
   widths: [null],
-  formats: getImageFormats(),
+  formats: getImageFormats(import.meta.env.IMAGE_FORMATS),
   sharpWebpOptions: {
     quality,
   },

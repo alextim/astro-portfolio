@@ -27,7 +27,7 @@ const {
 const opts = {
   ...options,
   widths: [null],
-  formats: getImageFormats(),
+  formats: getImageFormats(import.meta.env.IMAGE_FORMATS),
   sharpWebpOptions: {
     quality,
   },
