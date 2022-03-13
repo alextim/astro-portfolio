@@ -1,5 +1,6 @@
 ---
 import escapeHTML from '@/lib/escapeHTML';
+import getImageFormats from '@/lib/getImageFormats';
 import { generateImage, ImageOptions } from '../../astro-eleventy-img';
 import { getMetadata, getSrcset } from './utils';
 
@@ -26,7 +27,7 @@ const {
 const opts = {
   ...options,
   widths: [null],
-  formats: process.env.IMAGE_FORMATS.split(','),
+  formats: getImageFormats(),
   sharpWebpOptions: {
     quality,
   },
