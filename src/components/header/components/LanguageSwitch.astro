@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon';
 import i18n from '@/config/i18n';
 import { localizePath, getPurePathname } from '@/lib/i18n-utils';
 
@@ -6,22 +7,147 @@ import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 const pathname = Astro.request.url.pathname;
 const locale = getLocaleFromUrlPathname(pathname);
-// TODO: onClick
----
 
-<div class="inline-flex items-center justify-center">
-  {Object.keys(i18n.locales).map((code) => {
-    const { shortName } = i18n.locales[code];
-    const isCurrentPage = locale === code;
-    return (
-      <div key={code} class="after:mx-2 after:content-['|'] last:after:m-0 last:after:content-empty">
-        <a
-          class={`${isCurrentPage ? ' text-blue-800' : ''}`}
-          href={isCurrentPage ? pathname : localizePath(getPurePathname(pathname), code)}
-        >
-          {shortName}
+const currentLocale = i18n.locales[locale];
+
+---
+<div class="relative">
+  <button id="language-selector" class="dropdown-toggle"><Icon class="w-4 h-4 mr-4" name="globe"/>{currentLocale.localName}</button>
+  <div id="language-dropdown" class="dropdown">
+    {Object.keys(i18n.locales).map((code) => {
+      let classes: string;
+      let to: string;
+      if (locale === code) {
+        classes = 'active';
+        to = pathname;
+      } else {
+        classes = '';
+        to = localizePath(getPurePathname(pathname), code);
+      }
+      return (
+        <a class={`at-a at-a-undecorated dropdown-item ${classes}`} href={to}>
+          {i18n.locales[code].localName}
         </a>
-      </div>
-    );
-  })}
+      );
+    })}
+  </div>
 </div>
+
+<style lang="scss">
+.dropdown-toggle {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      margin-left: 0.255em;
+      border-top: 0.3em solid;
+      border-bottom: 0;
+      border-left: 0.3em solid transparent;
+      border-right: 0.3em solid transparent;
+      vertical-align: 0.255em;
+    }
+
+    &:hover {
+      color: orangered;
+    }
+  }
+}
+
+.dropdown {
+  display: flex;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+
+  @media (min-width: 1024px) {
+    margin: 0.125rem 0 0;
+    padding: 0.5rem 0;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    display: none;
+
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
+
+    color: #212529;
+
+    float: left;
+
+    min-width: 10rem;
+    text-align: left;
+
+    z-index: 1000;
+
+    &.show {
+      display: block;
+    }
+  }
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.25rem 1.5rem;
+  color: white;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: #e9ecef;
+    color: #16181b;
+  }
+
+  &.active {
+    @apply text-primary;
+    @media (min-width: 1024px) {
+      @apply bg-primary text-white;
+    }
+  }
+
+  position: relative;
+  &::after {
+    position: absolute;
+    color: white;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    content: "|";
+  }
+
+  &:last-of-type::after {
+    content: "";
+  }
+
+  @media (min-width: 1024px) {
+    clear: both;
+    width: 100%;
+    color: #212529;
+    &::after {
+      content: "";
+    }
+  }
+}
+</style>
+
+<script>
+
+const toggle = document.getElementById('language-selector');
+const dropdown = document.getElementById('language-dropdown');
+
+const onClick = () => {
+  dropdown.classList.toggle('show');
+};
+toggle.addEventListener('click', onClick, false);
+
+</script>

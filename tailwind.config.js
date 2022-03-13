@@ -76,13 +76,18 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(({ addComponents }) => {
+    plugin(({ addComponents, theme }) => {
       addComponents({
         'p': {
           marginBottom: '1rem',
         },
         'p:last-of-type': {
           marginBottom: 0,
+        },
+        'a': {
+          backgroundColor: 'transparent',
+          color: theme('colors.primary'),
+          textDecoration: 'none',
         },
         '.divider': {
           position: 'relative',
@@ -94,7 +99,7 @@ module.exports = {
             left: '50%',
             height: '0.2rem',
             width: '3.25rem',
-            backgroundColor: '#f4623a',
+            backgroundColor: theme('colors.primary'),
             transform: 'translate(-50%)',
           },
         },
