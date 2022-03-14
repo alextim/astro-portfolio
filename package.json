@@ -12,7 +12,8 @@
     "lint": "eslint . --ext .ts,.js",
     "critical": "node critical.js",
     "prod": "astro build && pnpm run critical",
-    "ncu": "ncu -u --timeout 1500000"
+    "ncu": "ncu -u --timeout 1500000",
+    "push": "git add . && git commit -m 'auto' && git push"
   },
   "devDependencies": {
     "@11ty/eleventy-img": "^1.1.0",
@@ -41,7 +42,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "js-yaml": "^4.1.0",
     "postcss": "^8.4.8",

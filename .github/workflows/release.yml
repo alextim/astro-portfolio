@@ -43,9 +43,11 @@ jobs:
         env:
           IMAGE_FORMATS: "avif,webp,jpg"
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-
+      - name: Deploy to Netlify
+        if: success()
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ env.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ env.NETLIFY_SITE_ID }}
+        run: |
+          pnpm i -g netlify-cli
+          netlify deploy --prod --dir=public --telemetry-disable
