@@ -46,8 +46,8 @@ jobs:
       - name: Deploy to Netlify
         if: success()
         env:
-          NETLIFY_AUTH_TOKEN: ${{ env.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ env.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           pnpm i -g netlify-cli
           netlify deploy --prod --dir=public --telemetry-disable
