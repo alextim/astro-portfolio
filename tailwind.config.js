@@ -133,6 +133,7 @@ module.exports = {
         },
         'html': {
           scrollBehavior: 'smooth',
+          overflowY: 'auto',
         },
       });
     }),

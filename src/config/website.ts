@@ -1,4 +1,6 @@
-const siteUrl = 'https://climbing-in-turkey-astro.netlify.app';
+import astroConfig from '../../astro.config.js';
+
+const siteUrl = astroConfig?.buildOptions?.site;
 
 const config: Record<string, any> = {
   siteUrl,

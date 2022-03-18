@@ -6,13 +6,58 @@ import Hamburger from './components/Hamburger.astro';
 import Menu from './components/menu/Menu.astro';
 ---
 
-<header
-  role="navigation"
-  class="flex flex-wrap items-center justify-between fixed top-0 left-0 right-0 text-sm py-2 px-4 bg-blue-600 z-30 lg:flex-row lg:flex-nowrap lg:justify-start"
->
+<header id="header" role="navigation" class="header">
   <Containter classes="flex flex-wrap items-center justify-between lg:flex-nowrap">
     <Logo />
     <Hamburger />
     <Menu />
   </Containter>
 </header>
+
+<style lang="scss">
+.header {
+  @apply flex flex-wrap items-center justify-between
+  fixed
+  top-0 left-0 right-0
+  text-sm
+  py-2 px-4
+  bg-blue-600
+  z-30
+  lg:flex-row lg:flex-nowrap lg:justify-start
+  lg:bg-transparent
+  ;
+  &.shrink {
+    @apply lg:bg-blue-600;
+  }
+}
+</style>
+
+<script>
+  const OFFSET = 50;
+  const SHRINK_CLASS = 'shrink';
+
+  const header = document.getElementById('header');
+
+  const scrollHandler = () => {
+    const shrink = document.body.scrollTop > OFFSET || document.documentElement.scrollTop > OFFSET;
+    header.classList.toggle(SHRINK_CLASS, shrink);
+  };
+
+  window.addEventListener('scroll', scrollHandler, false);
+
+  const mainNav = document.getElementById('main-nav');
+
+  /**
+   * Hamburger Toggle
+   *
+   */
+  const menuToggle = document.getElementById('menu-toggle');
+
+  const menuToggleHandler = () => {
+    menuToggle.toggleAttribute('aria-expanded');
+    menuToggle.classList.toggle('open');
+    mainNav.classList.toggle('open');
+  };
+
+  menuToggle.addEventListener('click', menuToggleHandler, false);
+</script>
