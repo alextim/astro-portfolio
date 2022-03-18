@@ -7,20 +7,24 @@ const defaultOptions: ImageOptions = {
   urlPath: `/${commonPath}`,
 };
 
+const getPathWihSubfolders = (src: string) => {
+  const n = src.indexOf(commonPath);
+  if (n === -1) {
+    return null;
+  }
+  const s = src.substring(n + commonPath.length);
+  const a = s.split('/');
+  a.pop();
+
+  return {
+    outputDir: `${defaultOptions.outputDir}${a.join('/')}`,
+    urlPath: `${defaultOptions.urlPath}${a.join('/')}`,
+  };
+};
+
 export function generateImage(src: string, options: ImageOptions): Record<string, ImageFormat[]> {
   // Merge with default settings
-  const n = src.indexOf(commonPath);
-  let opts;
-  if (n !== -1) {
-    const s = src.substring(n + commonPath.length);
-    const a = s.split('/');
-    a.pop();
-    opts = {
-      outputDir: `${defaultOptions.outputDir}${a.join('/')}`,
-      urlPath: `${defaultOptions.urlPath}${a.join('/')}`,
-    };
-  }
-  const settings = { ...(opts || defaultOptions), ...options };
+  const settings = { ...defaultOptions, ...options };
 
   // Generate the image
   (async () => {
