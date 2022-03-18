@@ -1,4 +1,5 @@
 const critical = require('critical');
+
 critical.generate({
   inline: true,
   base: 'dist/',

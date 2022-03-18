@@ -14,17 +14,17 @@ const { name, title, to } = Astro.props as Props;
 </a>
 
 <style>
-.social-link {
-  @apply at-a
-  flex justify-center items-center
-  w-16 h-16
+  .social-link {
+    @apply at-a
+  flex h-16 w-16
+  items-center justify-center
 
   rounded-full
-  text-white
   bg-black
+  text-white
 
   hover:bg-primary
   hover:transition-colors
   hover:ease-in-out;
-}
+  }
 </style>

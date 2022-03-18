@@ -14,26 +14,10 @@ import Menu from './components/menu/Menu.astro';
   </Containter>
 </header>
 
-<style lang="scss">
-.header {
-  @apply flex flex-wrap items-center justify-between
-  fixed
-  top-0 left-0 right-0
-  text-sm
-  py-2 px-4
-  bg-blue-600
-  z-30
-  lg:flex-row lg:flex-nowrap lg:justify-start
-  lg:bg-transparent
-  ;
-  &.shrink {
-    @apply lg:bg-blue-600;
-  }
-}
-</style>
+
 
 <script hoist type="module">
-  import scrollSpy from '../../lib/gumshoe/gumshoe';
+  import scrollSpy from '../../lib/gumshoe/gumshoe.js';
 
   const OFFSET = 50;
   const SHRINK_CLASS = 'shrink';
@@ -62,11 +46,27 @@ import Menu from './components/menu/Menu.astro';
   };
   menuToggle.addEventListener('click', menuToggleHandler, false);
 
-
   scrollSpy('#menu-items a', {
     offset() {
-		  return header.getBoundingClientRect().height;
-	  },
+      return header.getBoundingClientRect().height;
+    },
     reflow: true,
   });
 </script>
+
+<style lang="scss">
+  .header {
+    @apply fixed top-0 left-0 right-0
+  z-30
+  flex flex-wrap items-center
+  justify-between
+  bg-blue-600 py-2
+  px-4
+  text-sm
+  lg:flex-row lg:flex-nowrap lg:justify-start
+  lg:bg-transparent;
+    &.shrink {
+      @apply lg:bg-blue-600;
+    }
+  }
+</style>

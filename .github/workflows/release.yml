@@ -20,29 +20,29 @@ jobs:
     name: Build application
     runs-on: ubuntu-latest
     steps:
-      - name: "☁️ checkout repository"
+      - name: '☁️ checkout repository'
         uses: actions/checkout@v2
 
-      - name: "🔧 setup node"
+      - name: '🔧 setup node'
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 16
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "🔧 install npm@latest"
+      - name: '🔧 install npm@latest'
         run: npm i -g pnpm@latest
 
-      - name: "📦 install dependencies"
+      - name: '📦 install dependencies'
         run: pnpm i
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "🚀 static app"
+      - name: '🚀 static app'
         run: |
           pnpm build
         env:
-          IMAGE_FORMATS: "avif,webp,jpg"
+          IMAGE_FORMATS: 'avif,webp,jpg'
 
       - name: Deploy to Netlify
         if: success()

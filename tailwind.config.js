@@ -3,10 +3,7 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: [
-    './public/**/*.html',
-    './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}',
-  ],
+  content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
   /*
   corePlugins: {
 
@@ -78,13 +75,13 @@ module.exports = {
   plugins: [
     plugin(({ addComponents, theme }) => {
       addComponents({
-        'p': {
+        p: {
           marginBottom: '1rem',
         },
         'p:last-of-type': {
           marginBottom: 0,
         },
-        'a': {
+        a: {
           backgroundColor: 'transparent',
           color: theme('colors.primary'),
           textDecoration: 'none',
@@ -131,7 +128,7 @@ module.exports = {
           overflowWrap: 'break-word',
           wordWrap: 'break-word',
         },
-        'html': {
+        html: {
           scrollBehavior: 'smooth',
           overflowY: 'auto',
         },
