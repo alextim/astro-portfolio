@@ -24,7 +24,7 @@ const getPathWihSubfolders = (src: string) => {
 
 export function generateImage(src: string, options: ImageOptions): Record<string, ImageFormat[]> {
   // Merge with default settings
-  const settings = { ...defaultOptions, ...options };
+  const settings = { ...(getPathWihSubfolders(src) || defaultOptions), ...options };
 
   // Generate the image
   (async () => {
