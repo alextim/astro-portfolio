@@ -13,11 +13,24 @@ const { locale } = Astro.props as Props;
 const top = await fetchTop(locale);
 
 const { title = '', subtitle = '', items = null } = top ? top[0] : {};
-const sources = items?.map(({ image: { src, caption } }) => ({ src: getImagePath(src), media: caption }));
+
+const sources = items?.map(({ image }) => {
+  if (!image) {
+    throw new Error('ArtImage: image required');
+  }
+  const { src, caption } = image;
+  if (!src) {
+    throw new Error('ArtImage: Image src required');
+  }
+
+  return { src: getImagePath(src), media: caption };
+});
+
+const alt = items && items[0] && items[0].image ? items[0].image.alt : '';
 ---
 
 <div class="grid">
-  {sources && <ArtImage sources={sources} alt={items[0].image.alt} classes="col-start-1 row-start-1" />}
+  {sources && <ArtImage sources={sources} alt={alt} loading="eager" classes="col-start-1 row-start-1" />}
   <div class="col-start-1 row-start-1 px-4 text-center flex flex-col-reverse justify-center items-center">
     <Button tag="a" to="#services">hello</Button>
     <h1 class="txt uppercase font-bold text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>

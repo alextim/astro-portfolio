@@ -5,7 +5,7 @@
  * MIT License
  * http://github.com/cferdinandi/gumshoe
  */
-
+/*
 (function (root, factory) {
 	if ( typeof define === 'function' && define.amd ) {
 		define([], (function () {
@@ -19,7 +19,7 @@
 })(typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : this, (function (window) {
 
 	'use strict';
-
+*/
 	//
 	// Defaults
 	//
@@ -481,6 +481,6 @@
 	// Return the Constructor
 	//
 
-	return Constructor;
+	export default Constructor;
 
-}));
+// }));

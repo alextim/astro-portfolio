@@ -32,7 +32,9 @@ import Menu from './components/menu/Menu.astro';
 }
 </style>
 
-<script>
+<script hoist type="module">
+  import scrollSpy from '../../lib/gumshoe/gumshoe';
+
   const OFFSET = 50;
   const SHRINK_CLASS = 'shrink';
 
@@ -58,6 +60,13 @@ import Menu from './components/menu/Menu.astro';
     menuToggle.classList.toggle('open');
     mainNav.classList.toggle('open');
   };
-
   menuToggle.addEventListener('click', menuToggleHandler, false);
+
+
+  scrollSpy('#menu-items a', {
+    offset() {
+		  return header.getBoundingClientRect().height;
+	  },
+    reflow: true,
+  });
 </script>

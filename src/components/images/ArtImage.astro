@@ -12,6 +12,7 @@ interface Props {
   classes?: string;
   imgClasses?: string;
   quality?: number;
+  loading?: 'lazy' | 'eager';
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   classes = '',
   imgClasses = 'w-full h-auto max-w-full',
   quality = 90,
+  loading = 'lazy',
 } = Astro.props as Props;
 
 const opts = {
@@ -61,7 +63,7 @@ const metadataRest = sources
     width={highsrc.width}
     height={highsrc.height}
     alt={escapeHTML(alt)}
-    loading="lazy"
+    loading={loading}
     decoding="async"
     class={imgClasses}
   />
