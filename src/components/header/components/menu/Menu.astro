@@ -11,7 +11,7 @@ const navItems = await fetchMainNav(locale);
 ---
 
 <nav id="main-nav" class="main-nav">
-  <ul id="menu-items" aria-label="Main menu" class="flex flex-col ml-auto m-0 p-0 list-none lg:flex-row">
+  <ul id="menu-items" aria-label="Main menu" class="flex flex-col ml-auto lg:flex-row">
     {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
   </ul>
   <LanguageSwitch />

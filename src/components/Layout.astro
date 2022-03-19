@@ -11,9 +11,9 @@ import Footer from './footer/Footer.astro';
 
 const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
 
-const contacts = fetchContacts();
-const socialLinks = fetchSocialLinks(locale);
-const address = fetchAddress(locale);
+const contacts = await fetchContacts();
+const socialLinks = await fetchSocialLinks(locale);
+const address = await fetchAddress(locale);
 
 const { seo } = Astro.props;
 

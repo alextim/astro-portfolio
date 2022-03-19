@@ -1,17 +1,17 @@
 import getYaml from './utils/getYaml';
 
-export function fetchContacts(): Contacts {
-  return getYaml('content/data/contacts.yaml');
+export async function fetchContacts(): Promise<Contacts> {
+  return await getYaml('content/data/contacts.yaml');
 }
 
-export function fetchSocialLinks(locale: string): SocialLinks {
-  return getYaml(`content/data/locales/social-links/social-links.${locale}.yaml`);
+export async function fetchSocialLinks(locale: string): Promise<SocialLinks> {
+  return await getYaml(`content/data/locales/social-links/social-links.${locale}.yaml`);
 }
 
-export function fetchTranslations(locale: string): Translations {
-  return getYaml(`content/data/locales/translations/translations.${locale}.yaml`);
+export async function fetchTranslations(locale: string): Promise<Translations> {
+  return await getYaml(`content/data/locales/translations/translations.${locale}.yaml`);
 }
 
-export function fetchAddress(locale: string): Address {
-  return getYaml(`content/data/locales/address/address.${locale}.yaml`);
+export async function fetchAddress(locale: string): Promise<Address> {
+  return await getYaml(`content/data/locales/address/address.${locale}.yaml`);
 }

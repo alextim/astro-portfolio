@@ -12,7 +12,7 @@ const { locale } = Astro.props as Props;
 
 const top = await fetchTop(locale);
 
-const { title = '', subtitle = '', items = null } = top ? top[0] : {};
+const { title = '', subtitle = '', items = null } = top || {};
 
 const sources = items?.map(({ image }) => {
   if (!image) {

@@ -51,6 +51,7 @@ interface SectionFrontmatter {
 interface Section extends SectionFrontmatter {
   id: string;
   sortOrder: number;
+  locale: string;
   html: string;
 }
 
