@@ -1,10 +1,10 @@
 ---
 import { Markdown } from 'astro/components';
+
 import escapeHTML from '@/lib/escapeHTML';
 import getImageFormats from '@/lib/getImageFormats';
-import { ImageOptions, generatePlaceholder, PlaceholderOptions } from '../../astro-eleventy-img';
-
-import { getMetadata, getSrcset } from './utils';
+import { ImageOptions, generatePlaceholder, PlaceholderOptions } from '@/lib/astro-eleventy-img';
+import { getMetadata, getSrcset } from '@/helpers/image-utils';
 
 interface Props {
   src: string;

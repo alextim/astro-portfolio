@@ -1,4 +1,4 @@
-import { generateImage, ImageOptions } from '../../astro-eleventy-img';
+import { generateImage, ImageOptions } from '@/lib/astro-eleventy-img';
 
 export const getSrcset = (imageFormat: any[]): string => imageFormat.map((entry) => entry.srcset).join(', ');
 

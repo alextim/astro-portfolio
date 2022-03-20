@@ -1,8 +1,8 @@
 ---
 import escapeHTML from '@/lib/escapeHTML';
 import getImageFormats from '@/lib/getImageFormats';
-import { ImageOptions } from '../../astro-eleventy-img';
-import { getMetadata, getSrcset } from './utils';
+import { generateImage, ImageOptions } from '@/lib/astro-eleventy-img';
+import { getMetadata, getSrcset } from '@/helpers/image-utils';
 
 interface Props {
   src: string;
