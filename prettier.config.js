@@ -1,3 +1,6 @@
+const prettierPluginAstro = require('prettier-plugin-astro');
+const prettierPluginTailwindcss = require('prettier-plugin-tailwindcss');
+
 /** @type {import("@types/prettier").Options */
 module.exports = {
   // Trailing commas help with git merging and conflict resolution
@@ -7,7 +10,7 @@ module.exports = {
   singleQuote: true,
   printWidth: 140,
   endOfLine: 'auto',
-  plugins: [require.resolve('prettier-plugin-astro'), require('prettier-plugin-tailwindcss')],
+  plugins: [prettierPluginAstro, prettierPluginTailwindcss],
   astroAllowShorthand: false,
   overrides: [
     {

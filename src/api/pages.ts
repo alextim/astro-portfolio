@@ -3,11 +3,14 @@ import { AstroFetchedContentPage, getPage } from '../cms/page';
 let allRawPages;
 async function load() {
   const fetchedPages = import.meta.glob('../../content/pages/*.??.md');
-  const mappedPages = await Promise.all(Object.entries(fetchedPages).map(([pathname, f]) =>
-    f().then((result) => ({
-      ...result.frontmatter,
-      file: { pathname },
-    }))));
+  const mappedPages = await Promise.all(
+    Object.entries(fetchedPages).map(([pathname, f]) =>
+      f().then((result) => ({
+        ...result.frontmatter,
+        file: { pathname },
+      })),
+    ),
+  );
   return mappedPages;
 }
 

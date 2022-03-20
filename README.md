@@ -1,5 +1,9 @@
 https://www.defined.net/blog/internationalizing-docs-pages-with-astro/
 
+
+,
+  "include": [".eslintrc.js", "critical.js", "tailwind.config.js", "postcss.config.js", "prettier.config.js", "./src/**/*"]
+  
 https://rodneylab.com/sveltekit-image-plugin/
 
 https://github.com/warpsio

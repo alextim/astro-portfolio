@@ -6,11 +6,18 @@ async function load() {
     return allSections;
   }
   const fetchedSections = import.meta.glob('../../content/sections/*.??.md');
-  allSections = await Promise.all(Object.entries(fetchedSections).map(([pathname, f]) =>
-    f().then((result) => getSection({
-      ...result.frontmatter,
-      file: { pathname },
-    }))).sort((a, b) => a.sortOrder - b.sortOrder));
+  allSections = await Promise.all(
+    Object.entries(fetchedSections)
+      .map(([pathname, f]) =>
+        f().then((result) =>
+          getSection({
+            ...result.frontmatter,
+            file: { pathname },
+          }),
+        ),
+      )
+      .sort((a, b) => a.sortOrder - b.sortOrder),
+  );
   return allSections;
 }
 
@@ -21,4 +28,3 @@ export async function fetchAllSections(locale: string): Promise<Section[]> {
 export async function fetchSection(id: string, locale: string): Promise<Section> {
   return (await load()).find((section: Section) => section.id === id && section.locale === locale);
 }
-

@@ -4,5 +4,9 @@
 .netlify
 .vscode
 node_modules
+
+dist
 public
-s-bars.content
+
+src/lib/gumshoe
+src/lib/photoswipe

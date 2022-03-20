@@ -94,9 +94,9 @@ async function getDataURI(src: string, hash: string, options: PlaceholderOptions
       console.error(err);
     }
 
-    writeFile(`${options.outputDir}${hash}.placeholder`, JSON.stringify(data), (err) => {
-      if (err) {
-        console.error(err);
+    writeFile(`${options.outputDir}${hash}.placeholder`, JSON.stringify(data), (err2) => {
+      if (err2) {
+        console.error(err2);
       }
     });
   });
@@ -105,25 +105,25 @@ async function getDataURI(src: string, hash: string, options: PlaceholderOptions
 }
 
 export async function generatePlaceholder(src: string, options: PlaceholderOptions = defaultOptions): Promise<PlaceholderResult> {
-  options = Object.assign(options, defaultOptions);
+  const opts = { ...defaultOptions, ...options };
 
   // Ensure the outputDir has an ending slash, otherwise files would get generated in the wrong folder
-  options.outputDir = options.outputDir.endsWith('/') ? options.outputDir : `${options.outputDir}/`;
+  opts.outputDir = opts.outputDir?.endsWith('/') ? opts.outputDir : `${opts.outputDir}/`;
 
   // Generate hash
   const hash = getHash({ path: src, options });
 
   // Check if we've generated this file before on disk
   try {
-    const existingFile = readFileSync(`${options.outputDir}${hash}.placeholder`, {
+    const existingFile = readFileSync(`${opts.outputDir}${hash}.placeholder`, {
       encoding: 'utf-8',
     });
 
     return JSON.parse(existingFile);
   } catch (err) {
     // Otherwise, the file doesn't exist, so let's generate it
-    if (err.code === 'ENOENT') {
-      return await getDataURI(src, hash, options);
+    if ((err as any).code === 'ENOENT') {
+      return await getDataURI(src, hash, opts);
     }
   }
 }

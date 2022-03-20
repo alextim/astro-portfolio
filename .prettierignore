@@ -4,8 +4,12 @@
 .netlify
 .vscode
 node_modules
+
+dist
 public
+
+src/lib/gumshoe
+src/lib/photoswipe
+
 package.json
 pnpm-lock.yaml
-dist
-
