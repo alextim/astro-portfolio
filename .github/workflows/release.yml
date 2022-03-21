@@ -4,9 +4,6 @@ on:
   - push
   - pull_request
 
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 concurrency:
   # Ensures that only one deploy task per branch/environment will run at a time.
   group: environment-${{ github.ref }}
@@ -33,6 +30,12 @@ jobs:
 
       - name: '🔧 install npm@latest'
         run: npm i -g pnpm@latest
+
+      - name: create .env
+        run: |
+          echo "shamefully-hoist = true" >> ~/.npmrc
+          echo "@alextim:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
 
       - name: '📦 install dependencies'
         run: pnpm i
