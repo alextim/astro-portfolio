@@ -4,6 +4,9 @@ on:
   - push
   - pull_request
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 concurrency:
   # Ensures that only one deploy task per branch/environment will run at a time.
   group: environment-${{ github.ref }}
@@ -27,16 +30,12 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 16
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: '🔧 install npm@latest'
         run: npm i -g pnpm@latest
 
       - name: '📦 install dependencies'
         run: pnpm i
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: '🚀 static app'
         run: |

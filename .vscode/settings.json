@@ -12,7 +12,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "cSpell.words": ["Astro", "tailwindcss", "eleventy", "viber", "vite", "flexbox", "flexbugs", "favicons"],
+  "cSpell.words": ["Astro", "tailwindcss", "eleventy", "viber", "vite", "flexbox", "flexbugs", "favicons", "webp", "avif", "pnpm"],
   "cSpell.language": "en,ru",
   "prettier.documentSelectors": ["**/*.astro", "**/*.ts"],
   "css.customData": [".vscode/css_custom_data.json"]
