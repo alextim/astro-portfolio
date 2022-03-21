@@ -31,7 +31,10 @@ jobs:
       - name: '🔧 install npm@latest'
         run: npm i -g pnpm@latest
 
-      - name: create .env
+      - name: remove current .env
+        run: rm .npmrc
+
+      - name: create new .env
         run: |
           echo "shamefully-hoist = true" >> ~/.npmrc
           echo "@alextim:registry=https://npm.pkg.github.com" >> ~/.npmrc
