@@ -1,5 +1,5 @@
 interface ImportMetaEnv {
-  readonly IMAGE_FORMATS: string;
+  readonly PUBLIC_IMAGE_FORMATS: string;
 }
 
 interface ImportMeta {

@@ -42,7 +42,7 @@ jobs:
         run: |
           pnpm build
         env:
-          IMAGE_FORMATS: 'avif,webp,jpg'
+          PUBLIC_IMAGE_FORMATS: 'avif,webp,jpg'
 
       - name: Deploy to Netlify
         if: success()
