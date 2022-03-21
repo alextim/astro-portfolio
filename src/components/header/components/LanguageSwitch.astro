@@ -2,14 +2,12 @@
 import { Icon } from 'astro-icon';
 import i18n from '@/config/i18n';
 import { localizePath, getPurePathname } from '@/lib/i18n-utils';
-
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 const pathname = Astro.request.url.pathname;
 const locale = getLocaleFromUrlPathname(pathname);
 
 const currentLocale = i18n.locales[locale];
-
 ---
 <div id="language-selector" class="nav-item language-selector">
   <div class="dropdown-toggle"><Icon class="w-4 h-4 mr-2" name="globe"/>{currentLocale.localName}</div>
@@ -25,7 +23,7 @@ const currentLocale = i18n.locales[locale];
         to = localizePath(getPurePathname(pathname), code);
       }
       return (
-        <a class={`at-a at-a-undecorated dropdown-item ${classes}`} href={to}>
+        <a class={`at-a at-a-undecorated dropdown-item ${classes}`} href={to} data-locale={code}>
           {i18n.locales[code].localName}
         </a>
       );
@@ -36,10 +34,14 @@ const currentLocale = i18n.locales[locale];
 <style lang="scss">
 .language-selector {
   position: relative;
-  &:hover .dropdown {
-    display: block;
+
+  @media (min-width: 1024px) {
+    &:hover .dropdown {
+      display: block;
+    }
   }
 }
+
 .dropdown-toggle {
   display: none;
 
@@ -68,9 +70,6 @@ const currentLocale = i18n.locales[locale];
 
 .dropdown {
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 
   @media (min-width: 1024px) {
     margin: 0.125rem 0 0;
@@ -139,6 +138,7 @@ const currentLocale = i18n.locales[locale];
     clear: both;
     width: 100%;
     color: #212529;
+
     &::after {
       content: "";
     }
@@ -146,3 +146,27 @@ const currentLocale = i18n.locales[locale];
 }
 </style>
 
+<script hoist type="module">
+  import i18n from '@/config/i18n';
+  import { getLocale, saveLocale } from '@/lib/locale-utils.js';
+
+  const { defaultLocale, locales } = i18n;
+
+  const localeCodes = Object.keys(locales);
+
+  const currentLocale = document.documentElement.lang;
+
+  const detectedLocale = getLocale(localeCodes);
+  const locale = detectedLocale || defaultLocale;
+  if (currentLocale === defaultLocale && locale !== currentLocale) {
+    window.location.href = window.location.href + locale;
+  }
+
+  const languageSelector = document.getElementById('language-selector');
+  const items = languageSelector.querySelectorAll('a');
+  const onClick = (e) => {
+    const itemLocale = e.target.getAttribute('data-locale');
+    saveLocale(itemLocale);
+  };
+  items.forEach((item) => item.addEventListener('click', onClick, false));
+</script>
