@@ -32,7 +32,7 @@
     "astro-icon": "0.6.0",
     "autoprefixer": "^10.4.4",
     "critical": "^4.0.1",
-    "cssnano": "^5.1.4",
+    "cssnano": "^5.1.5",
     "datauri": "^4.1.0",
     "eslint": "^8.11.0",
     "eslint-config-airbnb": "^19.0.4",
