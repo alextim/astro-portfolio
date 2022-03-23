@@ -31,7 +31,7 @@ const pagination = (currentPage: number, pageCount: number): Array<number | stri
       ? getRange(Math.min(range.start, pageCount - delta), Math.min(range.end, pageCount))
       : getRange(1, Math.min(pageCount, delta + 1));
 
-  const withDots = (value: number, pair: [any, any]) => (pages.length + 1 !== pageCount ? pair : [value]);
+  const withDots = (value: number, pair: [string | number, string | number]) => (pages.length + 1 !== pageCount ? pair : [value]);
 
   if (pages[0] !== 1) {
     pages = withDots(1, [1, '...']).concat(pages);

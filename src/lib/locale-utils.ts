@@ -17,7 +17,7 @@ function getSavedLocale() {
   return [locale];
 }
 
-export function saveLocale(locale) {
+export function saveLocale(locale: string) {
   const { localStorage } = window;
 
   // test browser support
@@ -41,7 +41,7 @@ function getLocaleByBrowser() {
     languages = navigator.languages.slice(0);
   } else if (navigator.language) {
     // navigator.language should be available in most browsers
-    // but only returns most prefered language
+    // but only returns most preferred language
     languages = [navigator.language];
   } else {
     return null;

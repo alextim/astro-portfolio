@@ -1,23 +1,12 @@
-import type { FetchContentResult } from 'astro';
-
 import i18n from '@/config/i18n';
 import { localize } from '@/lib/i18n-utils';
-
-export interface AstroFetchedContent extends FetchContentResult<FrontmatterBase> {
-  file?: {
-    pathname: string;
-  };
-  // only to strip Astro
-  content?: any;
-  Content?: any;
-}
 
 export function getBaseObject(
   {
     astro: { html },
     // only to strip Astro
-    content,
-    Content,
+    // content,
+    // Content,
     url,
 
     title,
@@ -33,6 +22,7 @@ export function getBaseObject(
   if (!slug || slug.length === 0) {
     throw new Error('Slug is required!');
   }
+
   return {
     ...rest,
     title,

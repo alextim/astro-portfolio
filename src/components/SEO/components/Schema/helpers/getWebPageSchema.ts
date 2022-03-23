@@ -1,4 +1,4 @@
-const getAuthor = (a: Array<Author> | undefined) => {
+const getAuthor = (a: Author[] | undefined) => {
   if (!a || !a.length) {
     return null;
   }

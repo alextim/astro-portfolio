@@ -1,9 +1,12 @@
 type OpeningHoursRow = [string, Time, Time];
-type OpeningHours = Array<OpeningHoursRow>;
+type OpeningHours = OpeningHoursRow[];
 type VoiceType = 'skype' | 'whatsapp' | 'telegram' | 'viber';
 type Voice = Record<VoiceType, string>;
-interface Contacts extends Record<string, any> {
-  organizationType: 'LocalBusiness' | 'ProfessionalService';
+type PriceRange = '$' | '$$' | '$$$' | '$$$$';
+type OrganizationType = 'LocalBusiness' | 'ProfessionalService';
+
+interface Contacts extends Record<string, geo | string | Phone[] | Voice | Email[] | OpeningHours | PriceRange | Date> {
+  organizationType: OrganizationType;
 
   geo?: {
     latitude: number;
@@ -33,7 +36,7 @@ interface Contacts extends Record<string, any> {
   */
   openingHours?: OpeningHours;
 
-  priceRange?: '$' | '$$' | '$$$' | '$$$$';
+  priceRange?: PriceRange;
   currenciesAccepted?: string;
   paymentAccepted?: string;
 

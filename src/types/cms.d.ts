@@ -1,8 +1,16 @@
+import type { FetchContentResult } from 'astro';
+
 type Image = {
   src: string;
   xl?: string;
   alt: string;
   caption?: string;
+};
+
+type Author = {
+  email: string;
+  lastName?: string;
+  firstName?: string;
 };
 
 type MainNav = Link[];
@@ -32,6 +40,15 @@ interface FrontmatterBase {
 
   draft?: boolean;
   sortOrder?: number;
+}
+
+interface AstroFetchedContent extends FetchContentResult<FrontmatterBase> {
+  file?: {
+    pathname: string;
+  };
+  // only to strip Astro
+  // content?: any;
+  // Content?: any;
 }
 
 interface SectionItem {

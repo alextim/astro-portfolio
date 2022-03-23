@@ -11,7 +11,7 @@ const {
 } = Astro.props as Props;
 ---
 <PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center bg-light">
-  <div id="gallery--simple" class="pswp-gallery grid gap-1 md:grid-cols-3 lg:grid-cols-6">
+  <div id="gallery--simple" class="pswp-gallery grid gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
     {items?.filter(({image}) => image?.src).map((item) => <GalleryItem item={item} />)}
   </div>
 </PageSection>

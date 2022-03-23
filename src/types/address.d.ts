@@ -1,6 +1,6 @@
 type CountryCode = 'UA' | 'RU' | 'EN';
 
-interface PostalAddress extends Record<string, any> {
+interface PostalAddress extends Record<string, string | string[] | CountryCode> {
   streetAddress?: string[];
   addressLocality?: string;
   addressRegion?: string;
@@ -11,21 +11,21 @@ interface PostalAddress extends Record<string, any> {
 
 type ContactType = 'sales';
 
-interface ContactPoint extends Record<string, any> {
+interface ContactPoint extends Record<string, string | ContactType | Phone[] | Email[]> {
   name: string;
   description?: string;
   contactType: ContactType;
   contactTypeName?: string;
-  phones?: Array<Phone>;
-  emails?: Array<Email>;
+  phones?: Phone[];
+  emails?: Email[];
 }
 
-interface Address extends Record<string, any> {
+interface Address extends Record<string, string | PostalAddress | ContactPoint[]> {
   name: string;
   alternateName?: string;
   legalName?: string;
   description?: string;
   postalAddress: PostalAddress;
 
-  contactPoint?: Array<ContactPoint>;
+  contactPoint?: ContactPoint[];
 }
