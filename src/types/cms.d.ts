@@ -9,7 +9,7 @@ type MainNav = Link[];
 
 type SocialNetwork = 'facebook' | 'instagram';
 
-interface SocialLinks extends Record<string, Link> {}
+type SocialLinks = Record<string, Link>;
 
 type TranslationItem = {
   key: string;

@@ -1,54 +1,24 @@
 const KEY_NAME = 'locale';
 
-export function getLocale(availableLocales){
-  let methods = [
-    getSavedLocale,
-    getLocaleByBrowser
-  ];
-  let locale;
-
-  methods.some((method) => {
-    const preferredLocales = method();
-
-    if (!preferredLocales) {
-      return false;
-    }
-
-    const match = preferredLocales.find((preferredLocale) => {
-      return availableLocales.indexOf(preferredLocale) !== -1;
-    });
-
-    if (!match) {
-      return false;
-    }
-
-    locale = match;
-    return true;
-  });
-
-  return locale;
-}
-
 function getSavedLocale() {
-  let { localStorage } = window;
-  let locale;
+  const { localStorage } = window;
 
   // test browser support
   if (!localStorage) {
-    return;
+    return null;
   }
 
-  locale = localStorage.getItem(KEY_NAME);
+  const locale = localStorage.getItem(KEY_NAME);
 
   if (!locale) {
-    return;
+    return null;
   }
 
   return [locale];
 }
 
 export function saveLocale(locale) {
-  let { localStorage } = window;
+  const { localStorage } = window;
 
   // test browser support
   if (!localStorage) {
@@ -58,10 +28,9 @@ export function saveLocale(locale) {
   localStorage.setItem(KEY_NAME, locale);
 }
 
-
 function getLocaleByBrowser() {
   let languages;
-  let { navigator } = window;
+  const { navigator } = window;
   let primaryLanguage;
 
   if (Array.isArray(navigator.languages)) {
@@ -75,21 +44,43 @@ function getLocaleByBrowser() {
     // but only returns most prefered language
     languages = [navigator.language];
   } else {
-    return;
+    return null;
   }
 
   if (languages.length === 1) {
     // add primary language if the only available one is a combined language code
-    primaryLanguage = languages[0].split('-')[0];
+    [primaryLanguage] = languages[0].split('-');
     if (primaryLanguage !== languages[0]) {
       languages.push(primaryLanguage);
     }
   }
 
   // normalize all language codes to lower case
-  languages = languages.map((language) => {
-    return language.toLowerCase();
-  });
+  languages = languages.map((language) => language.toLowerCase());
 
   return languages;
+}
+
+export function getLocale(availableLocales) {
+  const methods = [getSavedLocale, getLocaleByBrowser];
+  let locale;
+
+  methods.some((method) => {
+    const preferredLocales = method();
+
+    if (!preferredLocales) {
+      return false;
+    }
+
+    const match = preferredLocales.find((preferredLocale) => availableLocales.indexOf(preferredLocale) !== -1);
+
+    if (!match) {
+      return false;
+    }
+
+    locale = match;
+    return true;
+  });
+
+  return locale;
 }

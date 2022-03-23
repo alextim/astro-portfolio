@@ -1,6 +1,6 @@
-const crit = require('critical');
+const critical = require('critical');
 
-crit.generate({
+critical.generate({
   base: 'dist/',
   src: 'index.html',
   target: 'index.html',

@@ -14,8 +14,7 @@ const src = getImagePath(image?.src || '');
 const quality = 90;
 
 const sizes = '';
-const classes = '';
-const imgClasses = '';
+const imgClasses = 'block w-full h-full object-cover';
 
 const opts = {
   widths: [null],
@@ -30,66 +29,44 @@ const opts = {
 
 const { metadata, lowsrc, highsrc } = getMetadata(src, opts);
 ---
-<li class="gallery-item">
-  <a role="button" tabIndex={-1} class="gallery-box" href={highsrc.url}
-    data-pswp-width={highsrc.width}
-    data-pswp-height={highsrc.height}
-    target="_blank"
-  >
-    <picture>
-      {Object.values(metadata).map((imageFormat) => (
-        <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />
-      ))}
-      <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(image?.alt)} loading="lazy" decoding="async" class={imgClasses}/>
-    </picture>
+<a role="button" tabIndex={-1} class="gallery-box" href={highsrc.url}
+  data-pswp-width={highsrc.width}
+  data-pswp-height={highsrc.height}
+  target="_blank"
+>
+  <picture>
+    {Object.values(metadata).map((imageFormat) => (
+      <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />
+    ))}
+    <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(image?.alt)} loading="lazy" decoding="async" class={imgClasses}/>
+  </picture>
 
-    <div class="gallery-box-caption">
-      <div class="project-category text-white-50">{subtitle}</div>
-      <div class="project-name">{title}</div>
-    </div>
-  </a>
-</li>
+  <div class="gallery-box-caption">
+    <div class="project-category">{subtitle}</div>
+    <div class="project-name">{title}</div>
+  </div>
+</a>
 
 <style lang="scss">
 .gallery-box {
-  position: relative;
-  display: block;
-  background-color: transparent;
-  &:hover {
-    color: #d6370c;
-  }
+  @apply block relative bg-transparent hover:text-[#d6370c];
 }
+
 .gallery-box-caption {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  bottom: 0;
-
-  text-align: center;
-  opacity: 0;
-
-  color: white;
-  background: rgba(244,98,58,.9);
-
-  transition: opacity 0.25s ease;
-  text-align: center;
+  @apply flex flex-col items-center justify-center
+  w-full h-full
+  absolute bottom-0
+  text-center
+  text-white bg-[rgba(244,98,58,.9)]
+  opacity-0 transition-opacity
+  hover:opacity-100;
 }
-.gallery-box-caption:hover {
-  opacity: 1;
-}
+
 .project-category {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
+  @apply text-sm font-semibold uppercase text-gray-50;
 }
 
 .project-name {
-  font-size: 1.2rem;
+  @apply text-lg;
 }
 </style>

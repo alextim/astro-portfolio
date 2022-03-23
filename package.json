@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "format": "prettier -w  --plugin-search-dir=. .",
     "lint": "eslint . --ext .ts,.js",
-    "critical": "node critical.js",
+    "lint:fix": "eslint . --fix --ext .ts,.js",
+    "critical": "node scripts/generate-critical.js",
     "prod": "astro build && pnpm run critical",
     "ncu": "ncu -u --timeout 1500000",
     "push": "git add . && git commit -m 'auto' && git push"
@@ -38,7 +39,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^16.1.4",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-import-resolver-typescript": "^2.7.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",

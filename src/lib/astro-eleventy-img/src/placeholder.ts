@@ -125,5 +125,6 @@ export async function generatePlaceholder(src: string, options: PlaceholderOptio
     if ((err as any).code === 'ENOENT') {
       return await getDataURI(src, hash, opts);
     }
+    throw err;
   }
 }

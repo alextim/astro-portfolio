@@ -12,12 +12,12 @@ interface Contacts extends Record<string, any> {
 
   hasMap?: string;
   embedMap?: string;
-  phones?: Array<Phone>;
+  phones?: Phone[];
   voice?: Voice;
 
   fax?: string;
 
-  emails: Array<Email>;
+  emails: Email[];
 
   /*
   - ['mo-sa', '09:00', '18:00']
