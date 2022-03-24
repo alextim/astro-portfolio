@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon';
+
+const THEME_SWITCH_ID = 'theme-switch';
+---
+<label class="theme-switch-label">
+  <input id={THEME_SWITCH_ID} type="checkbox" />
+  <Icon name="sun-regular" class="sun" />
+  <Icon name="moon-regular" class="moon" />
+</label>
+
+<style lang="scss">
+  .theme-switch-label {
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+    color: white;
+  }
+
+  .sun, .moon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  #theme-switch {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked {
+      &+svg.sun {
+        display: none;
+      }
+    }
+
+    &:not(:checked) {
+      &+svg.moon {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<script define:vars={{ THEME_SWITCH_ID }}>
+  const DARK_THEME = 'dark';
+
+  const isDarkThemeSet = window.localStorage && window.localStorage.theme === DARK_THEME;
+  const isThemeStored = window.localStorage && 'theme' in window.localStorage;
+  const isDarkPrefered = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const themeSwitch = document.getElementById(THEME_SWITCH_ID);
+
+  const setToDark = isDarkThemeSet || (!isThemeStored && isDarkPrefered);
+  document.documentElement.classList.toggle(DARK_THEME, setToDark);
+  themeSwitch.checked = setToDark;
+  console.log('onload theme=', setToDark ? 'dark' : 'light');
+
+  const onClick = () => {
+    const setToDark = themeSwitch.checked;
+    document.documentElement.classList.toggle(DARK_THEME, setToDark);
+    console.log('onClick value=', setToDark);
+    if (window.localStorage) {
+      window.localStorage.theme = setToDark ? DARK_THEME : 'light';
+    }
+  };
+
+  themeSwitch.addEventListener('click', onClick);
+</script>

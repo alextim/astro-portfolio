@@ -2,6 +2,7 @@
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import fetchMainNav from '@/api/fetchMainNav';
 
+import ThemeSwitch from '../ThemeSwitch.astro';
 import LanguageSwitch from '../LanguageSwitch.astro';
 import NavItem from './NavItem.astro';
 
@@ -14,6 +15,7 @@ const navItems = await fetchMainNav(locale);
   <ul id="menu-items" aria-label="Main menu" class="flex flex-col ml-auto lg:flex-row">
     {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
   </ul>
+  <ThemeSwitch />
   <LanguageSwitch />
 </nav>
 
