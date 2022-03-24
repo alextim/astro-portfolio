@@ -14,7 +14,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.16.0
   '@typescript-eslint/parser': ^5.16.0
   astro: ^0.24.3
-  astro-icon: 0.6.0
+  astro-icon: 0.6.1
   autoprefixer: ^10.4.4
   critical: ^4.0.1
   cssnano: ^5.1.5
@@ -54,7 +54,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.16.0_3fed250b11519414a4c7d52468dd6bf5
   '@typescript-eslint/parser': 5.16.0_eslint@8.11.0+typescript@4.6.2
   astro: 0.24.3_sass@1.49.9+typescript@4.6.2
-  astro-icon: 0.6.0
+  astro-icon: 0.6.1
   autoprefixer: 10.4.4_postcss@8.4.12
   critical: 4.0.1
   cssnano: 5.1.5_postcss@8.4.12
@@ -1333,8 +1333,8 @@ packages:
     resolution: {integrity: sha1-9wtzXGvKGlycItmCw+Oef+ujva0=}
     dev: true
 
-  /astro-icon/0.6.0:
-    resolution: {integrity: sha512-1Ch1S+9d73DVl2erbyGRAXa8KYqXIRzJ681/nLgkSrdrBBkb9RgUV1Wrj0Tese2ukyfxFHFAYo/GdQHrWdcsDg==}
+  /astro-icon/0.6.1:
+    resolution: {integrity: sha512-U5Jos9oy5ZqFqGjY3g+urB6zuzrQZ2Jk5VlqK4o+yeWfg1bYAmeO3+73J7EZsUeWlxDFPGX3BWSAQXCsPnIECw==}
     dependencies:
       node-fetch: 3.2.3
       resolve-pkg: 2.0.0

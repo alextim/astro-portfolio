@@ -19,12 +19,12 @@ const { id, title, subtitle, content, contentToBottom = false, classes = '' } = 
   <Container>
     {(title || subtitle) && (
       <div class="flex flex-col-reverse">
-        {title && <h2 class="mb-18 text-lg text-muted">{subtitle}</h2>}
-        {subtitle && <div class="divider mb-8 text-center text-xl font-bold uppercase">{title}</div>}
+        {title && <h2 class="mb-18 text-lg italic">{subtitle}</h2>}
+        {subtitle && <div class="divider mb-8 text-4xl font-bold uppercase heading">{title}</div>}
       </div>
     )}
-    {content && !contentToBottom && <div class="mb-18 text-center text-muted" set:html={content} />}
+    {content && !contentToBottom && <div class="mb-18" set:html={content} />}
     <slot />
-    {content && contentToBottom && <div class="mt-18 text-center text-muted" set:html={content} />}
+    {content && contentToBottom && <div class="mt-18" set:html={content} />}
   </Container>
 </section>

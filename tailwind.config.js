@@ -1,14 +1,20 @@
 // tailwind.config.cjs
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const plugin = require('tailwindcss/plugin');
+const colors = require('tailwindcss/colors');
+
+delete colors['lightBlue'];
+delete colors['warmGray'];
+delete colors['trueGray'];
+delete colors['coolGray'];
+delete colors['blueGray'];
 
 module.exports = {
   darkMode: 'class',
   content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
-  /*
   corePlugins: {
 
-    // preflight: false,
+    preflight: false,
 
     // We disable those because they add stuff to the CSS file even when unused
     filter: false,
@@ -17,18 +23,18 @@ module.exports = {
     ringColor: false,
     ringOffsetWidth: false,
     ringOffsetColor: false,
-    // boxShadow: false,
+    boxShadow: false,
     // transform: false,
     touchAction: false,
     scrollSnapType: false,
     // borderColor: false, // If we don't disable this, Tailwind will apply a default border color to all the elements
-    // borderOpacity: false,
+    borderOpacity: false,
     // textOpacity: false,
 
     // Things we might need in the future but disable for now as they also add stuff
     fontVariantNumeric: false,
   },
-*/
+
   theme: {
     container: {
       center: true,
@@ -39,11 +45,16 @@ module.exports = {
     },
     extend: {
       colors: {
-        text: 'black',
+        ...colors,
+        transparent: 'transparent',
+        current: 'currentColor',
+        black: colors.black,
+        white: colors.white,
+        gray: colors.gray,
+        muted: colors.gray['700'],
         primary: '#f4623a',
         'primary-light': '#F68A6C',
         light: '#f8f9fa',
-        muted: '#868e96',
         brand: {
           light: '#3fbaeb',
           DEFAULT: '#0fa9e6',
@@ -55,13 +66,6 @@ module.exports = {
           whatsapp: '#25d366',
           telegram: '#0088cc',
         },
-      },
-      fontFamily: {
-        body: ['Helvetica', 'Arial', 'sans-serif'],
-        heading: ['Oswald', 'fallback-heading-font', 'sans-serif'],
-      },
-      rotate: {
-        225: '225deg',
       },
       spacing: {
         18: '4.5rem',
@@ -78,6 +82,7 @@ module.exports = {
       addComponents({
         p: {
           marginBottom: '1rem',
+          lineHeight: 1.75,
         },
         'p:last-of-type': {
           marginBottom: 0,
@@ -110,6 +115,11 @@ module.exports = {
             outline: 0,
             textDecoration: 'none',
           },
+        },
+        '.border-round': {
+          border: '0.5rem solid',
+          borderColor: theme('colors.gray.300'),
+          borderRadius: '100%',
         },
       });
     }),

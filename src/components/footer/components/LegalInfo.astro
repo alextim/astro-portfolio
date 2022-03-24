@@ -5,10 +5,9 @@ export interface Props {
   text?: string;
 }
 
-const { foundingDate, name, text } = Astro.props as Props;
+const { foundingDate, name, text = '' } = Astro.props as Props;
 
 const currentYear = new Date().getFullYear();
-
 let foundingYear = '';
 if (foundingDate) {
   const y = new Date(foundingDate).getFullYear();
@@ -16,6 +15,8 @@ if (foundingDate) {
     foundingYear = `${y}-`;
   }
 }
+
+const dot_text = text ? `. ${text}` : '';
 ---
 
-<div>{`© ${foundingYear}${currentYear} ${name}${text ? `. ${text}` : ''}`}</div>
+<div><span class="mr-3">© {foundingYear}{currentYear}</span><span>{name}{dot_text}</span></div>

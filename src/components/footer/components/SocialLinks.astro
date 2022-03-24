@@ -1,23 +1,13 @@
 ---
-import utils from '@alextim/utils';
-import { Icon } from 'astro-icon';
 import SocialLink from './SocialLink.astro';
 
 export interface Props {
   socialLinks: SocialLinks;
 }
 
-const icons: Record<string, string> = {
-  facebook: 'facebook-f',
-} as const;
-
-const getIconName = (key: string) => (icons[key] ? icons[key] : key);
-
 const { socialLinks } = Astro.props as Props;
 ---
 
-{Object.entries(socialLinks).map(([key, { to, title }]) => (
-  <SocialLink name={utils.upperFirst(key)} to={to} title={title}>
-    <Icon class="h-8 w-8" name={getIconName(key)} />
-  </SocialLink>
+{Object.entries(socialLinks).map(([name, { to, title }]) => (
+  <SocialLink name={name} to={to} title={title} />
 ))}

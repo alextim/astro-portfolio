@@ -3,28 +3,42 @@ export interface Props extends Link {
   name: string;
 }
 
+import { Icon } from 'astro-icon';
+import utils from '@alextim/utils';
+
+const icons: Record<string, string> = {
+  facebook: 'facebook-f',
+} as const;
+
+
 const { name, title, to } = Astro.props as Props;
 
 // Google does't use rel="me" Microformats
 // rel="me noreferrer"
+const ariaLabel = utils.upperFirst(name);
+const iconName = icons[name] ? icons[name] : name;
 ---
 
-<a class="social-link" href={to} target="_blank" rel="noreferrer" aria-label={name} title={title}>
-  <slot />
+<a class="social-link" href={to} target="_blank" rel="noreferrer" aria-label={ariaLabel} title={title}>
+  <Icon class="h-8 w-8 " name={iconName} />
 </a>
 
 <style>
   .social-link {
     @apply at-a
-  flex h-16 w-16
-  items-center justify-center
+    flex items-center justify-center
+    h-16 w-16
 
-  rounded-full
-  bg-black
-  text-white
+    rounded-full
 
-  hover:bg-primary
-  hover:transition-colors
-  hover:ease-in-out;
+    text-gray-50
+    bg-gray-900
+    dark:text-white
+    dark:bg-gray-400
+
+    hover:bg-primary
+
+    hover:transition-colors
+    hover:ease-in-out;
   }
 </style>

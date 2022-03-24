@@ -2,20 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/**
-  * https://google-webfonts-helper.herokuapp.com/fonts
-  */
-/* oswald-700 - cyrillic */
-@font-face {
-  font-family: Oswald;
-  font-display: swap;
-  font-style: normal;
-  font-weight: 700;
-  src: local('Oswald Bold'), local('Oswald-Bold'), local('OswaldBold'), url('/assets/fonts/oswald-v36-cyrillic-700.woff2') format('woff2');
+body {
+  @apply text-muted bg-white dark:text-gray-50 dark:bg-gray-800 font-serif;
+  overflow-x: hidden;
 }
 
-@font-face {
-  font-family: fallback-heading-font;
-  advance-override: -0.0923828125; /* Letter spacing: -1.5px */
-  src: local('Arial');
+h1, h3, .heading {
+  @apply font-sans font-bold;
+}
+
+h2 {
+  @apply text-muted dark:text-gray-50;
 }

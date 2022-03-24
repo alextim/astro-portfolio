@@ -10,8 +10,8 @@ const {
 } = Astro.props as Props;
 ---
 
-<PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center bg-light" contentToBottom={true}>
+<PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center bg-light dark:bg-gray-900" contentToBottom={true}>
   <ul class="grid gap-12 lg:grid-cols-3">
-    {items?.map((item) => <TestimonialItem item={item} />)}
+    {items?.map((item: SectionItem) => <TestimonialItem item={item} />)}
   </ul>
 </PageSection>

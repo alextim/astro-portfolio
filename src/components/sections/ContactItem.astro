@@ -6,14 +6,13 @@ export interface Props extends Link {
 
 import { Icon } from 'astro-icon';
 
-// icon 'text-muted mb-2 fa-x3'
 const { icon, to, title, text } = Astro.props as Props;
 ---
 
 <li class="flex flex-col items-center">
-  <Icon name={icon} class="h-12 w-12 mb-4 text-muted" />
+  <Icon name={icon} class="h-12 w-12 mb-4 text-muted dark:text-gray-50" />
   <div>
-    {title && <span class="mr-1 text-muted">{title}:</span>}
+    {title && <span class="mr-1">{title}:</span>}
     <a href={to} target="_blank" rel="noindex noopener noreferrer">{text}</a>
   </div>
 </li>

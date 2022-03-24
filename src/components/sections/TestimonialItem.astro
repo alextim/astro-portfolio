@@ -15,9 +15,10 @@ const alt = image?.alt || title || content;
 ---
 
 <li class="text-center mb-12">
-  {image?.src && <Image src={src} alt={alt} classes="mb-3" imgClasses="w-56 h-56 mx-auto border-4 rounded-full" caption={image.caption} />}
-  <div class="mb-4 text-muted">{content}</div>
-  <div class="text-sm text-muted before:content-['-']">
+  {image?.src && <Image src={src} alt={alt} classes="mb-3" imgClasses="w-56 h-56 mx-auto border-round" caption={image.caption} />}
+  <p>{content}</p>
+  <div class="mt-4 text-sm before:content-['-']">
     {title}{subtitle && <cite>{`, ${subtitle}`}</cite>}
   </div>
 </li>
+
