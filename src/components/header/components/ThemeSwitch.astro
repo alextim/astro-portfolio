@@ -11,16 +11,16 @@ const THEME_SWITCH_ID = 'theme-switch';
 
 <style lang="scss">
   .theme-switch {
-    cursor: pointer;
-    color: white;
+    @apply text-white cursor-pointer transition duration-300 opacity-50 hover:opacity-100;
   }
 
   .sun, .moon {
-    width: 1rem;
-    height: 1rem;
+    @apply w-4 h-4;
+    
+    fill: white;
   }
   .moon {
-    display: none;
+    @apply hidden;
   }
 
   #theme-switch {

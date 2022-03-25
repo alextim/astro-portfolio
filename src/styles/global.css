@@ -14,3 +14,7 @@ h1, h3, .heading {
 h2 {
   @apply text-muted dark:text-gray-50;
 }
+
+.body-text__color {
+  @apply text-muted dark:text-gray-50;
+}

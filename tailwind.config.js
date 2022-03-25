@@ -45,7 +45,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        ...colors,
         transparent: 'transparent',
         current: 'currentColor',
         black: colors.black,
@@ -117,7 +116,7 @@ module.exports = {
           },
         },
         '.border-round': {
-          border: '0.5rem solid',
+          border: 'solid 0.25rem',
           borderColor: theme('colors.gray.300'),
           borderRadius: '100%',
         },
@@ -128,8 +127,9 @@ module.exports = {
         // Small reset, preflight include a lot of stuff we don't use so let's make our own
         '*, ::before, ::after': {
           boxSizing: 'border-box',
+          borderWidth: 0,
+          borderStyle: 'solid',
         },
-
         'html,body': {
           '-moz-osx-font-smoothing': 'grayscale',
           '-webkit-font-smoothing': 'antialiased',
@@ -147,6 +147,17 @@ module.exports = {
           margin: 0,
           padding: 0,
           listStyle: 'none',
+        },
+        'img, svg, video, canvas, audio, iframe, embed, object': {
+          display: 'block',
+          verticalAlign: 'middle',
+        },
+        'img, video': {
+          maxWidth: '100%',
+          height: 'auto',
+        },
+        'blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre': {
+          margin: 0
         },
       });
     }),

@@ -55,10 +55,10 @@ const currentLocale = i18n.locales[locale];
       content: "";
       display: inline-block;
       margin-left: 0.255em;
-      border-top: 0.3em solid;
+      border-top: 0.3em;
       border-bottom: 0;
-      border-left: 0.3em solid transparent;
-      border-right: 0.3em solid transparent;
+      border-left: 0.3em transparent;
+      border-right: 0.3em transparent;
       vertical-align: 0.255em;
     }
 
@@ -70,6 +70,8 @@ const currentLocale = i18n.locales[locale];
 
 .dropdown {
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 1024px) {
     margin: 0.125rem 0 0;
@@ -124,8 +126,6 @@ const currentLocale = i18n.locales[locale];
   &::after {
     position: absolute;
     color: white;
-    top: 0;
-    bottom: 0;
     right: 0;
     content: "|";
   }

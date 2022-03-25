@@ -11,7 +11,7 @@ const {
 ---
 
 <PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center">
-  <div class="flex gap-12 flex-wrap">
+  <div class="grid gap-12 lg:grid-cols-3">
     {items?.map((item) => <ServiceItem item={item} />)}
   </div>
 </PageSection>

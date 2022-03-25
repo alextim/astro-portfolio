@@ -4,24 +4,41 @@
   <div class="toggle-line"></div>
 </button>
 
-<style>
+<style lang="scss">
   .menu-toggle {
-    @apply relative m-0 flex h-12 w-12 flex-col items-center justify-center border-none bg-transparent lg:pointer-events-none lg:hidden;
+    @apply
+    flex  flex-col items-center justify-center
+    relative m-0
+    h-12 w-12
+    cursor-pointer
+    border-none bg-transparent
+    lg:hidden lg:pointer-events-none;
+    .toggle-line {
+      @apply h-1 w-6 my-1
+      rounded-full
+      bg-white
+      transform transition duration-300
+      opacity-50;
+    }
+    &:hover .toggle-line {
+      @apply opacity-100;
+    }
+
+    &.open {
+      .toggle-line {
+        &:nth-child(1) {
+          transform: translateY(0.75rem) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-0.75rem) rotate(-45deg);
+        }
+      }
+    }
   }
 
-  .menu-toggle .toggle-line {
-    @apply my-1 h-1 w-6 transform rounded-full bg-black opacity-50 transition duration-300 group-hover:opacity-100;
-  }
-
-  .menu-toggle.open .toggle-line:nth-child(1) {
-    transform: translateY(0.75rem) rotate(45deg);
-  }
-
-  .menu-toggle.open .toggle-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.open .toggle-line:nth-child(3) {
-    transform: translateY(-0.75rem) rotate(-45deg);
-  }
 </style>
