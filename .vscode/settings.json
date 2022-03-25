@@ -14,6 +14,18 @@
   },
   "cSpell.words": ["Astro", "tailwindcss", "eleventy", "viber", "vite", "flexbox", "flexbugs", "favicons", "webp", "avif", "pnpm"],
   "cSpell.language": "en,ru",
-  "prettier.documentSelectors": ["**/*.astro", "**/*.ts"],
+  "prettier.documentSelectors": ["**/*.astro", "**/*.ts", "**/*.js"],
+  "eslint.nodePath": "C:\\Program Files\\nodejs",
+  "eslint.validate": [
+    "vue",
+    "html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "markdown"
+  ],
+  "eslint.packageManager": "pnpm",
+  "eslint.options": { "overrideConfigFile": "C:\\Users\\alex\\Documents\\Projects\\astro-portfolio\\.eslintrc.js" },
   "css.customData": [".vscode/css_custom_data.json"]
 }

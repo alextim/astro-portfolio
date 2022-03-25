@@ -3,17 +3,16 @@
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
-delete colors['lightBlue'];
-delete colors['warmGray'];
-delete colors['trueGray'];
-delete colors['coolGray'];
-delete colors['blueGray'];
+delete colors.lightBlue;
+delete colors.warmGray;
+delete colors.trueGray;
+delete colors.coolGray;
+delete colors.blueGray;
 
 module.exports = {
   darkMode: 'class',
   content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
   corePlugins: {
-
     preflight: false,
 
     // We disable those because they add stuff to the CSS file even when unused
@@ -157,7 +156,7 @@ module.exports = {
           height: 'auto',
         },
         'blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre': {
-          margin: 0
+          margin: 0,
         },
       });
     }),

@@ -2,6 +2,7 @@
 export interface Props extends Link {}
 const { to, title } = Astro.props as Props;
 ---
+
 <a href={to} data-scroll data-id={to} class="nav-item nav-item-link" role="menuitem">
   {title}
 </a>

@@ -6,19 +6,18 @@
 
 <style lang="scss">
   .menu-toggle {
-    @apply
-    flex  flex-col items-center justify-center
-    relative m-0
-    h-12 w-12
-    cursor-pointer
+    @apply relative  m-0 flex h-12
+    w-12 cursor-pointer
+    flex-col items-center
+    justify-center
     border-none bg-transparent
-    lg:hidden lg:pointer-events-none;
+    lg:pointer-events-none lg:hidden;
     .toggle-line {
-      @apply h-1 w-6 my-1
+      @apply my-1 h-1 w-6
+      transform
       rounded-full
-      bg-white
-      transform transition duration-300
-      opacity-50;
+      bg-white opacity-50 transition
+      duration-300;
     }
     &:hover .toggle-line {
       @apply opacity-100;
@@ -40,5 +39,4 @@
       }
     }
   }
-
 </style>

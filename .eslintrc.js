@@ -38,16 +38,28 @@ module.exports = {
     node: true,
     browser: true,
   },
+
   extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
+    // 'plugin:@typescript-eslint/recommended',
+    // "eslint-config-airbnb-base",
+    /**
+     * react
+     */
+    // 'airbnb',
+    // 'airbnb-typescript',
+    // 'airbnb/hooks',
+    /**
+     * no react
+     */
+    'airbnb-base',
+
+    // 'eslint:recommended',
+
     // 'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/errors',
-    'prettier',
+    // 'prettier',
+    'plugin:prettier/recommended',
   ],
   plugins: [
     '@typescript-eslint',
@@ -88,9 +100,8 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     'prettier/prettier': 'error',
   },
-  /*
   overrides: [
-   {
+    {
       files: ['*.ts', '*.tsx'], // Your TypeScript files extension
 
       // As mentioned in the comments, you should extend TypeScript plugins here,
@@ -98,7 +109,16 @@ module.exports = {
       // If you don't want to extend any rules, you don't need an `extends` attribute.
       extends: [
         'plugin:@typescript-eslint/recommended',
-        // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+
+        'airbnb-typescript/base',
+
+        // 'eslint:recommended',
+
+        // 'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:import/errors',
+        // 'prettier',
+        'plugin:prettier/recommended',
       ],
 
       parserOptions: {
@@ -106,5 +126,4 @@ module.exports = {
       },
     },
   ],
-  */
 };

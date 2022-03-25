@@ -10,7 +10,6 @@ const icons: Record<string, string> = {
   facebook: 'facebook-f',
 } as const;
 
-
 const { name, title, to } = Astro.props as Props;
 
 // Google does't use rel="me" Microformats
@@ -26,19 +25,19 @@ const iconName = icons[name] ? icons[name] : name;
 <style>
   .social-link {
     @apply at-a
-    flex items-center justify-center
-    h-16 w-16
+    flex h-16 w-16
+    items-center justify-center
 
     rounded-full
 
-    text-gray-50
     bg-gray-900
-    dark:text-white
-    dark:bg-gray-400
-
+    text-gray-50
     hover:bg-primary
-
     hover:transition-colors
-    hover:ease-in-out;
+
+    hover:ease-in-out
+
+    dark:bg-gray-400
+    dark:text-white;
   }
 </style>

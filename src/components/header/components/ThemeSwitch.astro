@@ -3,38 +3,12 @@ import { Icon } from 'astro-icon';
 
 const THEME_SWITCH_ID = 'theme-switch';
 ---
+
 <label class="theme-switch">
   <input id={THEME_SWITCH_ID} type="checkbox" />
   <Icon name="sun-regular" class="sun" />
   <Icon name="moon-regular" class="moon" />
 </label>
-
-<style lang="scss">
-  .theme-switch {
-    @apply text-white cursor-pointer transition duration-300 opacity-50 hover:opacity-100;
-  }
-
-  .sun, .moon {
-    @apply w-4 h-4;
-    
-    fill: white;
-  }
-  .moon {
-    @apply hidden;
-  }
-
-  #theme-switch {
-    display: none;
-    &:checked {
-      & + .sun {
-        display: none;
-      }
-      & ~ .moon {
-        display: block;
-      }
-    }
-  }
-</style>
 
 <script define:vars={{ THEME_SWITCH_ID }}>
   const DARK_THEME = 'dark';
@@ -59,3 +33,31 @@ const THEME_SWITCH_ID = 'theme-switch';
 
   themeSwitch.addEventListener('click', onClick);
 </script>
+
+<style lang="scss">
+  .theme-switch {
+    @apply cursor-pointer text-white opacity-50 transition duration-300 hover:opacity-100;
+  }
+
+  .sun,
+  .moon {
+    @apply h-4 w-4;
+
+    fill: white;
+  }
+  .moon {
+    @apply hidden;
+  }
+
+  #theme-switch {
+    display: none;
+    &:checked {
+      & + .sun {
+        display: none;
+      }
+      & ~ .moon {
+        display: block;
+      }
+    }
+  }
+</style>

@@ -1,4 +1,4 @@
-const prettierPluginAstro = require('prettier-plugin-astro');
+const prettierPluginAstro = require.resolve('prettier-plugin-astro');
 const prettierPluginTailwindcss = require('prettier-plugin-tailwindcss');
 
 /** @type {import("@types/prettier").Options */

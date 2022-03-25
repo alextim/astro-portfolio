@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply text-muted bg-white dark:text-gray-50 dark:bg-gray-800 font-serif;
+  @apply bg-white font-serif text-muted dark:bg-gray-800 dark:text-gray-50;
   overflow-x: hidden;
 }
 
-h1, h3, .heading {
+h1,
+h3,
+.heading {
   @apply font-sans font-bold;
 }
 
