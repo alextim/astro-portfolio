@@ -1,5 +1,6 @@
 // tailwind.config.cjs
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+/*
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
@@ -8,10 +9,11 @@ delete colors.warmGray;
 delete colors.trueGray;
 delete colors.coolGray;
 delete colors.blueGray;
-
+*/
 module.exports = {
   darkMode: 'class',
   content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
+  /*
   corePlugins: {
     preflight: false,
 
@@ -161,4 +163,5 @@ module.exports = {
       });
     }),
   ],
+  */
 };

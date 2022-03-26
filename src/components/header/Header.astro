@@ -52,19 +52,19 @@ import Menu from './components/menu/Menu.astro';
   });
 </script>
 
-<style lang="scss">
+<style>
   .header {
     @apply fixed top-0 left-0 right-0
-  z-30
-  flex flex-wrap items-center
-  justify-between
-  bg-blue-600 py-2
-  px-4
-  text-sm
-  lg:flex-row lg:flex-nowrap lg:justify-start
-  lg:bg-transparent;
+      flex flex-wrap items-center justify-between
+      px-4 py-2
+      text-sm
+      bg-blue-600
+      z-30
+      lg:flex-row lg:flex-nowrap lg:justify-start
+      lg:bg-transparent;
+
     &.shrink {
-      @apply lg:bg-blue-600 lg:py-1;
+      @apply lg:py-1 lg:bg-blue-600;
     }
   }
 </style>
