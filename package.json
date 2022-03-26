@@ -19,6 +19,7 @@
   "devDependencies": {
     "@11ty/eleventy-img": "^2.0.0",
     "@alextim/utils": "^0.1.24",
+    "@astrojs/tailwind": "^0.0.2",
     "@astrojs/ts-plugin": "^0.2.1",
     "@babel/core": "^7.17.8",
     "@babel/eslint-parser": "^7.17.0",
@@ -31,13 +32,13 @@
     "@types/tailwindcss": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "astro": "^0.24.3",
+    "astro": "^0.25.2",
     "astro-icon": "0.6.1",
     "autoprefixer": "^10.4.4",
     "critical": "^4.0.1",
     "cssnano": "^5.1.5",
     "datauri": "^4.1.0",
-    "eslint": "^8.11.0",
+    "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^16.1.4",
     "eslint-config-prettier": "^8.5.0",
@@ -54,7 +55,6 @@
     "prettier": "^2.6.1",
     "prettier-plugin-astro": "^0.0.12",
     "prettier-plugin-tailwindcss": "^0.1.8",
-    "sass": "^1.49.9",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.3"
   }

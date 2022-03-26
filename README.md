@@ -1,7 +1,7 @@
 https://www.defined.net/blog/internationalizing-docs-pages-with-astro/
 
 ,
-"include": [".eslintrc.js", "critical.js", "tailwind.config.js", "postcss.config.js", ".prettierrc.js", "./src/**/*"]
+"include": [".eslintrc.js", "critical.js", "tailwind.config.cjs", "postcss.config.cjs", ".prettierrc.js", "./src/**/*"]
 
 https://rodneylab.com/sveltekit-image-plugin/
 
@@ -23,7 +23,7 @@ https://github.com/Princesseuh/princesseuh.dev
 
 "let schema="
 
-Ошибка Astro: Если в в Frontmatteк есть знак | перевода на новую сторку, то обрамляющие кавычки не удаляются
+Ошибка Astro: Если в в Frontmatter есть знак | перевода на новую сторку, то обрамляющие кавычки не удаляются
 и
 
 https://www.npmjs.com/~rafidmuhymin

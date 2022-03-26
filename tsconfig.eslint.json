@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": [".eslintrc.js", "scripts/generate-critical.js", "tailwind.config.js", "postcss.config.js", ".prettierrc.js", "./src/**/*"]
+  "include": [".eslintrc.js", "scripts/generate-critical.js", "tailwind.config.cjs", "postcss.config.cjs", ".prettierrc.js", "./src/**/*"]
 }
