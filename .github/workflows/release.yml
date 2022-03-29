@@ -39,9 +39,12 @@ jobs:
 
       - name: Solve BigInt in Tailwind
         run: |
-          cd
-          dir
+          pwd
+          echo '-----------'
           ls
+                    echo '-----------'
+          ls -R
+                    echo '-----------'
           cp tw/lib/util/bigSign.js node_modules/.pnpm/tailwindcss@3.0.23_autoprefixer@10.4.4/node_modules/tailwindcss/lib/util
           cp tw/lib/lib/setupContextUtils.js node_modules/.pnpm/tailwindcss@3.0.23_autoprefixer@10.4.4/node_modules/tailwindcss/lib/lib
 
