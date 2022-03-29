@@ -1,74 +1,48 @@
-/** @type {import("@types/eslint").Linter.Config */
 module.exports = {
   root: true,
+  env: {
+    node: true,
+    browser: true,
+    es2021: true,
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2021,
-    requireConfigFile: false,
-    experimentalObjectRestSpread: true,
+    ecmaVersion: 12,
+    // requireConfigFile: false,
+    // experimentalObjectRestSpread: true,
     sourceType: 'module',
+    /*
     ecmaFeatures: {
       globalReturn: false,
       jsx: true,
     },
-    /*
-    babelOptions: {
-      presets: ['@babel/preset-react'],
-    },
     */
-    project: './tsconfig.eslint.json',
+    // tsconfigRootDir: './',
+    project: './tsconfig.json',
   },
   settings: {
-    react: {
-      version: 'detect',
-    },
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
-      typescript: {
-        project: ['./tsconfig.json'],
-      },
+      typescript: {},
       node: {
-        project: ['./tsconfig.json'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
-  env: {
-    node: true,
-    browser: true,
-  },
-
+  plugins: ['@typescript-eslint', 'import', 'prettier'],
   extends: [
-    // 'plugin:@typescript-eslint/recommended',
-    // "eslint-config-airbnb-base",
-    /**
-     * react
-     */
-    // 'airbnb',
-    // 'airbnb-typescript',
-    // 'airbnb/hooks',
-    /**
-     * no react
-     */
-    'airbnb-base',
-
     // 'eslint:recommended',
-
-    // 'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:import/errors',
-    // 'prettier',
-    'plugin:prettier/recommended',
-  ],
-  plugins: [
-    '@typescript-eslint',
-    'import',
-    'jsx-a11y',
-    // 'react', 'react-hooks',
+    'plugin:@typescript-eslint/eslint-recommended',
+    // 'plugin:@typescript-eslint/recommended',
+    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'airbnb-base',
+    'airbnb-typescript/base',
+    // 'plugin:import/recommended',
     'prettier',
   ],
-
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
     quotes: [2, 'single', { avoidEscape: true }],
@@ -78,19 +52,11 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-plusplus': 'off',
     'no-restricted-exports': 'off',
-    /*
-    'react/no-array-index-key': 'warn',
-    'react/no-danger': 0,
-    'react/jsx-props-no-spreading': 0,
-    'react/prop-types': 'off',
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
-    'react/jsx-fragments': 0,
-    // No React import
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
-*/
+
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-unresolved': 'error',
+    'import/prefer-default-export': 0,
+
     '@typescript-eslint/no-empty-interface': [
       'warn',
       {
@@ -100,30 +66,4 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     'prettier/prettier': 'error',
   },
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
-
-      // As mentioned in the comments, you should extend TypeScript plugins here,
-      // instead of extending them outside the `overrides`.
-      // If you don't want to extend any rules, you don't need an `extends` attribute.
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-
-        'airbnb-typescript/base',
-
-        // 'eslint:recommended',
-
-        // 'plugin:react/recommended',
-        'plugin:jsx-a11y/recommended',
-        'plugin:import/errors',
-        // 'prettier',
-        'plugin:prettier/recommended',
-      ],
-
-      parserOptions: {
-        project: ['./tsconfig.json'], // Specify it only for TypeScript files
-      },
-    },
-  ],
 };
