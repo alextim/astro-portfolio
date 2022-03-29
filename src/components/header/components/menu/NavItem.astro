@@ -3,18 +3,22 @@ export interface Props extends Link {}
 const { to, title } = Astro.props as Props;
 ---
 
-<a href={to} data-scroll data-id={to} class="nav-item nav-item-link" role="menuitem">
-  {title}
-</a>
+<li class="nav-item">
+  <a href={to} data-scroll data-id={to} class="nav-item-link" role="menuitem">
+    {title}
+  </a>
+</li>
 
 <style global>
   .nav-item {
-    @apply py-2 px-4 lg:py-5 lg:px-4;
+    @apply py-2 px-4;
+
+    &.active a {
+      @apply text-primary;
+    }
   }
+
   .nav-item-link {
     @apply at-a cursor-pointer text-sm font-normal uppercase tracking-wide text-white hover:text-primary;
-  }
-  .nav-item.active {
-    @apply text-primary;
   }
 </style>

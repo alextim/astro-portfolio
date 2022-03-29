@@ -1,7 +1,7 @@
 ---
 import escapeHTML from '@/lib/escapeHTML';
-import getImageFormats from '@/lib/getImageFormats';
-import { generateImage, ImageOptions } from '@/lib/astro-eleventy-img';
+import getImageFormats from '@/helpers/getImageFormats';
+import type { /* generateImage, */ ImageOptions } from '@/astro-eleventy-img';
 import { getMetadata, getSrcset } from '@/helpers/image-utils';
 
 interface Props {

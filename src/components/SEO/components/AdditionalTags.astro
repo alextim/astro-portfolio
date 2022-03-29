@@ -3,7 +3,8 @@ export interface Props {
   meta: Partial<SeoMeta>[];
   link: Partial<SeoLink>[];
 }
-const { link, meta } = Astro.props;
+
+const { link, meta } = Astro.props as Props;
 ---
 
 {link?.map((l) => <link {...l} />)}

@@ -3,19 +3,15 @@
     "moduleResolution": "node",
     "target": "es2020",
     "module": "es2020",
-    "lib": ["es2020"],
-    "importsNotUsedAsValues": "error",
-    "isolatedModules": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "checkJs": true,
-
     "baseUrl": ".",
-    "paths": {
+     "paths": {
       "@/components/*": ["src/components/*"],
       "@/config/*": ["src/config/*"],
       "@/api/*": ["src/api/*"],
@@ -23,10 +19,7 @@
       "@/lib/*": ["src/lib/*"],
       "@/helpers/*": ["src/helpers/*"],
       "@/layouts/*": ["src/layouts/*"],
-      "@/vendor/*": ["src/vendor/*"],
-      "@/astro-eleventy-img": ["src/astro-eleventy-img/index.ts"]
+      "@/astro-eleventy-img/*": ["src/lib/astro-eleventy-img/index.ts"]
     }
-  },
-  "include": ["src/**/*.ts", "test/**/*.ts", "typings/**/*.ts", "src/**/*.js"],
-  "exclude": ["**/dist", "**/node_modules", "**/src/__tests__", "**/tw"]
+  }
 }

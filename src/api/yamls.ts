@@ -10,11 +10,6 @@ export async function fetchSocialLinks(locale: string): Promise<SocialLinks> {
   return result as Promise<SocialLinks>;
 }
 
-export async function fetchTranslations(locale: string): Promise<Translations> {
-  const result = await getYaml(`content/data/locales/translations/translations.${locale}.yaml`);
-  return result as Promise<Translations>;
-}
-
 export async function fetchAddress(locale: string): Promise<Address> {
   const result = await getYaml(`content/data/locales/address/address.${locale}.yaml`);
   return result as Promise<Address>;

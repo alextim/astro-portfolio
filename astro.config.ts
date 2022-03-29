@@ -3,11 +3,13 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
-  // projectRoot: '.',     // Where to resolve all URLs relative to. Useful if you have a monorepo project.
-  // pages: './src/pages', // Path to Astro components, pages, and data
-  // dist: './dist',       // When running `astro build`, path to final static output
-  // public: './static',   // A folder of static files Astro will copy to the root. Useful for favicons, images, and other files that don’t need processing.
+  integrations: [
+    tailwind({
+      config: {
+        path: './tailwind.config.cjs',
+      },
+    }),
+  ],
   buildOptions: {
     site: 'https://climbing-in-turkey-astro.netlify.app',
     // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
@@ -19,6 +21,9 @@ export default defineConfig({
   //  trailingSlash: 'always',
   // },
   vite: {
+    optimizeDeps: {
+      exclude: ['path', 'fs', 'os', 'perf_hooks', 'util', 'url', 'module'],
+    },
     /*
     optimizeDeps: {
       exclude: ['astro-eleventy-img'],

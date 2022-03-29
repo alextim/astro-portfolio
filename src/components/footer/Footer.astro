@@ -7,7 +7,7 @@ export interface Props {
 
 import Container from '../Container.astro';
 import LegalInfo from './components/LegalInfo.astro';
-import SocialLinks from './components/SocialLinks.astro';
+import Social from './components/Social.astro';
 
 const {
   contacts: { foundingDate },
@@ -20,7 +20,7 @@ const {
   <Container>
     {socialLinks && (
       <div class="flex flex-wrap justify-center gap-4 my-12 w-full">
-        <SocialLinks socialLinks={socialLinks} />
+        <Social socialLinks={socialLinks} />
       </div>
     )}
     <div class="inline-flex items-center justify-center w-full lg:justify-start">

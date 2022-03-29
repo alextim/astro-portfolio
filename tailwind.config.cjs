@@ -1,6 +1,6 @@
 // tailwind.config.cjs
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-/*
+
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
@@ -9,21 +9,21 @@ delete colors.warmGray;
 delete colors.trueGray;
 delete colors.coolGray;
 delete colors.blueGray;
-*/
+
 module.exports = {
   darkMode: 'class',
   content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
-  /*
+
   corePlugins: {
     preflight: false,
 
     // We disable those because they add stuff to the CSS file even when unused
     filter: false,
     backdropFilter: false,
-    ringWidth: false,
-    ringColor: false,
-    ringOffsetWidth: false,
-    ringOffsetColor: false,
+    // ringWidth: false,
+    // ringColor: false,
+    // ringOffsetWidth: false,
+    // ringOffsetColor: false,
     boxShadow: false,
     // transform: false,
     touchAction: false,
@@ -163,5 +163,4 @@ module.exports = {
       });
     }),
   ],
-  */
 };

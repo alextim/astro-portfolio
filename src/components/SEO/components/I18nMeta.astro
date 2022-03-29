@@ -1,7 +1,12 @@
 ---
-import { localizePath, getPurePathname } from '@/lib/i18n-utils';
+export interface Props {
+  siteUrl: string;
+  i18n: I18n;
+}
 
-const { siteUrl, i18n } = Astro.props;
+import { localizePath, getPurePathname } from '@/helpers/i18n-utils';
+
+const { siteUrl, i18n } = Astro.props as Props;
 
 const pathname = Astro.request.url.pathname;
 
@@ -9,7 +14,7 @@ const purePath = getPurePathname(pathname);
 ---
 
 {Object.keys(i18n.locales).map((code) => (
-  <link rel="alternate" hrefLang={i18n.locales[code]!.htmlLang} href={`${siteUrl}${localizePath(purePath, code)}`} />
+  <link rel="alternate" hreflang={i18n.locales[code]!.htmlLang} href={`${siteUrl}${localizePath(purePath, code)}`} />
 ))}
 
-<link rel="alternate" hrefLang="x-default" href={`${siteUrl}${purePath}`} />
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}${purePath}`} />

@@ -1,8 +1,12 @@
-import astroConfig from '../../astro.config.mjs';
+import astroConfig from '../../astro.config';
 
 const siteUrl = astroConfig?.buildOptions?.site;
 
-const config: Record<string, any> = {
+if (!siteUrl) {
+  throw new Error('siteUrl is required');
+}
+
+const config: Record<string, string> = {
   siteUrl,
   siteLogo: `${siteUrl}/assets/logo.svg`,
 

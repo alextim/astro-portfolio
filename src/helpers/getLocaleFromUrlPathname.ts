@@ -1,9 +1,9 @@
 import i18n from '@/config/i18n';
-import { isValidLocale } from '../lib/i18n-utils';
+import { isValidLocale } from './i18n-utils';
 
 const getLocaleFromUrlPathname = (pathname: string): string => {
   if (!pathname) {
-    throw new Error('pathname reqired!');
+    throw new Error('pathname required!');
   }
   if (pathname === '/') {
     return i18n.defaultLocale;

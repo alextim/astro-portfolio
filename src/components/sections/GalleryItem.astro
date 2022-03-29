@@ -3,9 +3,9 @@ export interface Props {
   item: SectionItem;
 }
 
-import getImagePath from '@/lib/getImagePath';
+import getImagePath from '@/helpers/getImagePath';
 import escapeHTML from '@/lib/escapeHTML';
-import getImageFormats from '@/lib/getImageFormats';
+import getImageFormats from '@/helpers/getImageFormats';
 import { getMetadata, getSrcset } from '@/helpers/image-utils';
 
 const { item: { title, subtitle, image } } = Astro.props as Props;

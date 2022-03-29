@@ -1,11 +1,11 @@
 ---
-// import '../styles/global.css';
+import '../styles/global.css';
 
 import i18n from '@/config/i18n';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import { fetchContacts, fetchSocialLinks, fetchAddress } from '@/api/yamls';
 
-import SEO from './SEO/SEO.astro';
+// import SEO from './SEO/SEO.astro';
 import Header from './header/Header.astro';
 import Footer from './footer/Footer.astro';
 
@@ -22,6 +22,7 @@ const currentLocale = i18n.locales[locale];
 if (!currentLocale) {
   throw new Error(`Unknown locale ${locale}`);
 }
+//     <!--SEO seo={{ ...seo, contacts, socialLinks, address }} /-->
 ---
 
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ if (!currentLocale) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <SEO seo={{ ...seo, contacts, socialLinks, address }} />
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body>

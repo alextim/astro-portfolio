@@ -14,9 +14,7 @@ import Menu from './components/menu/Menu.astro';
   </Containter>
 </header>
 
-<script hoist type="module">
-  import scrollSpy from '@/lib/gumshoe/gumshoe.js';
-
+<script>
   const OFFSET = 50;
   const SHRINK_CLASS = 'shrink';
 
@@ -43,28 +41,21 @@ import Menu from './components/menu/Menu.astro';
     mainNav.classList.toggle('open');
   };
   menuToggle.addEventListener('click', menuToggleHandler, false);
-
-  scrollSpy('#main-menu > a', {
-    offset() {
-      return header.getBoundingClientRect().height;
-    },
-    reflow: true,
-  });
 </script>
 
-<style>
+<style global>
   .header {
     @apply fixed top-0 left-0 right-0
-      flex flex-wrap items-center justify-between
-      px-4 py-2
+      z-30 flex flex-wrap items-center
+      justify-between bg-blue-600
+      py-3
+      px-4
       text-sm
-      bg-blue-600
-      z-30
-      lg:flex-row lg:flex-nowrap lg:justify-start
-      lg:bg-transparent;
+      lg:flex-nowrap lg:justify-start
+      lg:bg-transparent lg:py-4;
 
     &.shrink {
-      @apply lg:py-1 lg:bg-blue-600;
+      @apply lg:bg-blue-600 lg:py-1;
     }
   }
 </style>

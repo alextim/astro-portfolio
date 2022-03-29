@@ -12,9 +12,9 @@ const navItems = await fetchMainNav(locale);
 ---
 
 <nav id="main-nav" class="main-nav">
-  <menu id="main-menu" aria-label="Main menu" class="main-menu">
+  <ul id="main-menu" aria-label="Main menu" class="main-menu">
     {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
-  </menu>
+  </ul>
   <div class="flex justify-center items-center">
     <LanguageSwitch />
     <div class="ml-4 lg:ml-0">
@@ -23,13 +23,26 @@ const navItems = await fetchMainNav(locale);
   </div>
 </nav>
 
-<style>
+<script hoist type="module">
+  import scrollSpy from '@/vendor/gumshoe/gumshoe.js';
+
+  scrollSpy('#main-menu a', {
+    offset() {
+      return header.getBoundingClientRect().height;
+    },
+    reflow: true,
+  });
+</script>
+
+<style global>
   .main-nav {
     @apply hidden grow basis-full items-center py-4 lg:!flex lg:!flex-row lg:basis-auto lg:py-0;
+
+    &.open {
+      @apply !flex flex-col;
+    }
   }
-  .main-nav.open {
-    @apply !flex flex-col;
-  }
+
   .main-menu {
     @apply flex flex-col self-start lg:flex-row lg:self-auto lg:ml-auto;
   }

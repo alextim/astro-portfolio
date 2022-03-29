@@ -1,19 +1,19 @@
 ---
+export interface Props {
+  locale: string;
+}
+
 import { fetchSection } from '@/api/sections';
 import { fetchHome } from '@/api/pages';
 
 import Layout from '@/components/Layout.astro';
 
-import Top from '@/components/Top.astro';
+import Hero from '@/components/Hero.astro';
 import Services from '@/components/sections/Services.astro';
 import About from '@/components/sections/About.astro';
 import Gallery from '@/components/sections/Gallery.astro';
 import Testimonials from '@/components/sections/Testimonials.astro';
 import Contacts from '@/components/sections/Contacts.astro';
-
-export interface Props {
-  locale: string;
-}
 
 const { locale } = Astro.props as Props;
 
@@ -33,10 +33,11 @@ const seo = {
   noindex,
   nofollow,
 };
+//   <Hero locale={locale} />
 ---
 
 <Layout seo={seo}>
-  <Top locale={locale} />
+  <Hero locale={locale} />
   <Services section={services} />
   <About section={about} />
   <Gallery section={gallery} />

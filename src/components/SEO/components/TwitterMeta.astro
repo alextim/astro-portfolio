@@ -4,6 +4,7 @@ export interface Props {
   description: string;
   imgUrl?: string;
   twitter: {
+    card?: string;
     image?: SeoImage;
     creator?: string;
     site?: string;
@@ -15,7 +16,7 @@ const {
   description,
   imgUrl,
   twitter: { card, image, creator, site },
-} = Astro.props;
+} = Astro.props as Props;
 
 const hasImage = imgUrl || image?.src;
 
@@ -41,7 +42,7 @@ if (hasImage) {
   <meta name="twitter:image" content={url!} />
   <meta name="twitter:image:alt" content={alt!} />
 )}
-{hasImage && image?.src && (
+{image?.src && (
   <meta name="twitter:image:width" content={image.width.toString()} />
   <meta name="twitter:image:height" content={image.height.toString()} />
 )}

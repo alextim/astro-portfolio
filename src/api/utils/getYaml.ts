@@ -8,6 +8,7 @@ const __dirname = dirname(__filename);
 */
 
 import path from 'path';
+// import fs from 'node:fs/promises';
 import { promises as fs } from 'fs';
 
 async function getYaml(fileName: string) {

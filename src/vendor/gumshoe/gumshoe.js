@@ -1,3 +1,4 @@
+/* cSpell:disable */
 /*!
  * gumshoejs v5.1.2
  * A simple, framework-agnostic scrollspy script.

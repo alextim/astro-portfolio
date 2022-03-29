@@ -2,7 +2,8 @@
 export interface Props {
   section: Section;
 }
-import '@/lib/photoswipe/photoswipe.css';
+
+import '@/vendor/photoswipe/photoswipe.css';
 import PageSection from '../PageSection.astro';
 import GalleryItem from './GalleryItem.astro';
 
@@ -17,12 +18,12 @@ const {
 </PageSection>
 
 <script hoist type="module">
-  import PhotoSwipeLightbox from '@/lib/photoswipe/photoswipe-lightbox.esm.js';
+  import PhotoSwipeLightbox from '@/vendor/photoswipe/photoswipe-lightbox.esm.js';
 
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery--simple',
     children: 'a',
-    pswpModule: () => import('@/lib/photoswipe/photoswipe.esm.js'),
+    pswpModule: () => import('@/vendor/photoswipe/photoswipe.esm.js'),
   });
   lightbox.init();
 </script>

@@ -1,45 +1,11 @@
-https://www.defined.net/blog/internationalizing-docs-pages-with-astro/
+# Astro with Tailwind
 
-,
-"include": [".eslintrc.js", "critical.js", "tailwind.config.cjs", "postcss.config.cjs", ".prettierrc.js", "./src/**/*"]
+```
+npm init astro -- --template with-tailwindcss
+```
 
-https://rodneylab.com/sveltekit-image-plugin/
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
 
-https://github.com/warpsio
-https://github.com/warpsio/astro-localization
+Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
 
-best!!!
-https://github.com/Princesseuh/princesseuh.dev
-
-// Astro.site.href
-// Astro.site.hostname
-
-// Astro.request.canonicalURL.href
-// Astro.request.canonicalURL.hostname
-// Astro.request.pathname
-// Astro.request.params (slug, locale)
-
-<script define:vars={{ schema }} type="application/ld+json">{schema}</script>
-
-"let schema="
-
-Ошибка Astro: Если в в Frontmatter есть знак | перевода на новую сторку, то обрамляющие кавычки не удаляются
-и
-
-https://www.npmjs.com/~rafidmuhymin
-astro-spa
-A component for Astro JS that turns a website into an SPA
-
-rafidmuhymin
-published 1.3.8 • a month ago
-published 1.3.8 a month ago
-astro-script
-A simple script management component for Astro
-
-rafidmuhymin
-published 0.1.1 • 3 months ago
-published 0.1.1 3 months ago
-astro-imagetools
-Image Optimization tools for the As
-
-https://github.com/open-sauced
+For complete setup instructions, please see our [Styling Guide](https://docs.astro.build/guides/styling#-tailwind).

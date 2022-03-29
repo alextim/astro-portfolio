@@ -15,9 +15,9 @@ type Author = {
 
 type MainNav = Link[];
 
-type SocialNetwork = 'facebook' | 'instagram';
+type SocialNetwork = 'facebook' | 'instagram' | 'vk';
 
-type SocialLinks = Record<string, Link>;
+type SocialLinks = Record<SocialNetwork, Link>;
 
 type TranslationItem = {
   key: string;
@@ -50,6 +50,8 @@ interface AstroFetchedContent extends FetchContentResult<FrontmatterBase> {
   // content?: any;
   // Content?: any;
 }
+
+type AstroFetchedContentPage = AstroFetchedContent;
 
 interface SectionItem {
   title: string;

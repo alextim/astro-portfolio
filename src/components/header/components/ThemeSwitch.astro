@@ -5,7 +5,12 @@ const THEME_SWITCH_ID = 'theme-switch';
 ---
 
 <label class="theme-switch">
-  <input id={THEME_SWITCH_ID} type="checkbox" />
+  <input
+    id={THEME_SWITCH_ID}
+    type="checkbox"
+    title="Switch between dark and light mode (currently light mode)"
+    aria-label="Switch between dark and light mode (currently light mode)"
+  />
   <Icon name="sun-regular" class="sun" />
   <Icon name="moon-regular" class="moon" />
 </label>

@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 import i18n from '@/config/i18n';
-import { localizePath, getPurePathname } from '@/lib/i18n-utils';
+import { localizePath, getPurePathname } from '@/helpers/i18n-utils';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 const pathname = Astro.request.url.pathname;
@@ -9,12 +9,15 @@ const locale = getLocaleFromUrlPathname(pathname);
 
 const currentLocale = i18n.locales[locale];
 ---
+
 <div id="language-selector" class="nav-item language-selector">
-  <div class="dropdown-toggle"><Icon class="w-4 h-4 mr-2" name="globe"/>{currentLocale.localName}</div>
+  <div class="dropdown-toggle">
+    <Icon class="w-4 h-4 mr-2" name="globe"/>{currentLocale.localName}
+  </div>
   <div id="language-dropdown" class="dropdown">
-    {Object.keys(i18n.locales).map((code) => {
-      let classes: string;
-      let to: string;
+    {Object.entries(i18n.locales).map(([code, { localName }]) => {
+      let classes;
+      let to;
       if (locale === code) {
         classes = 'active';
         to = pathname;
@@ -24,7 +27,7 @@ const currentLocale = i18n.locales[locale];
       }
       return (
         <a class={`at-a at-a-undecorated dropdown-item ${classes}`} href={to} data-locale={code}>
-          {i18n.locales[code].localName}
+          {localName}
         </a>
       );
     })}
@@ -69,26 +72,22 @@ const currentLocale = i18n.locales[locale];
 }
 
 .dropdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @apply flex items-center justify-center;
 
   @media (min-width: 1024px) {
-    margin: 0.125rem 0 0;
-    padding: 0.5rem 0;
-
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
 
-    display: none;
-
-    background-clip: padding-box;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 0.25rem;
+    margin: 0.125rem 0 0;
+    padding: 0.5rem 0;
 
     color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0 , 0, .15);
+    border-radius: 0.25rem;
 
     float: left;
 
@@ -105,24 +104,25 @@ const currentLocale = i18n.locales[locale];
 
 .dropdown-item {
   display: block;
+  position: relative;
   padding: 0.25rem 1.5rem;
   color: white;
   background-color: transparent;
 
   &:hover,
   &:focus {
-    background-color: #e9ecef;
     color: #16181b;
+    background-color: #e9ecef;
   }
 
   &.active {
     @apply text-primary;
+
     @media (min-width: 1024px) {
       @apply bg-primary text-white;
     }
   }
 
-  position: relative;
   &::after {
     position: absolute;
     color: white;
@@ -158,15 +158,18 @@ const currentLocale = i18n.locales[locale];
 
   const detectedLocale = getLocale(localeCodes);
   const locale = detectedLocale || defaultLocale;
+
   if (currentLocale === defaultLocale && locale !== currentLocale) {
     window.location.href = window.location.href + locale;
   }
 
   const languageSelector = document.getElementById('language-selector');
   const items = languageSelector.querySelectorAll('a');
+
   const onClick = (e) => {
     const itemLocale = e.target.getAttribute('data-locale');
     saveLocale(itemLocale);
   };
+
   items.forEach((item) => item.addEventListener('click', onClick, false));
 </script>

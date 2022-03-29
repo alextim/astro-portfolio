@@ -1,5 +1,5 @@
 import i18n from '@/config/i18n';
-import { localize } from '@/lib/i18n-utils';
+import { localize } from '@/helpers/i18n-utils';
 
 export function getBaseObject(
   {

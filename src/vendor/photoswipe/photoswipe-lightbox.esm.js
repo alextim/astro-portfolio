@@ -1,3 +1,4 @@
+/* cSpell:disable */
 /*!
   * PhotoSwipe Lightbox 5.2.0-beta.2 - https://photoswipe.com
   * (c) 2022 Dmitry Semenov

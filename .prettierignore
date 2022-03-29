@@ -8,8 +8,9 @@ node_modules
 dist
 public
 
-src/lib/gumshoe
-src/lib/photoswipe
+src/vendor/gumshoe
+src/vendor/photoswipe
+tw/
 
 package.json
 pnpm-lock.yaml
