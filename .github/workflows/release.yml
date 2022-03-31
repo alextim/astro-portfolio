@@ -61,6 +61,10 @@ jobs:
         env:
           PUBLIC_IMAGE_FORMATS: avif,webp,jpg
 
+      - name: "Patch: copy images"
+        run: |
+          cp public/assets/*.* dist/assets
+
       - name: Deploy to Netlify
         if: success()
         env:
