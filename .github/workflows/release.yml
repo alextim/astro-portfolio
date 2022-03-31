@@ -63,7 +63,8 @@ jobs:
 
       - name: "Patch: copy images"
         run: |
-          cp public/assets/*.* dist/assets
+          cp public/assets/images/*.avif dist/assets
+          cp public/assets/images/*.webp dist/assets
 
       - name: Deploy to Netlify
         if: success()
