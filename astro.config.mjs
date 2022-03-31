@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import astroImagePlugin from 'astro-imagetools/plugin';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,7 +23,7 @@ export default defineConfig({
   // },
   vite: {
     optimizeDeps: {
-      exclude: ['path', 'fs', 'os', 'perf_hooks', 'util', 'url', 'module'],
+      exclude: ['path', 'fs', 'os', 'perf_hooks', 'util', 'url', 'module', 'astro-imagetools'],
     },
     /*
     optimizeDeps: {
@@ -36,5 +37,6 @@ export default defineConfig({
     ssr: {
       external: ['svgo', '@11ty/eleventy-img'],
     },
+    plugins: [astroImagePlugin],
   },
 });

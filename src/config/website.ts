@@ -1,4 +1,4 @@
-import astroConfig from '../../astro.config';
+import astroConfig from '../../astro.config.mjs';
 
 const siteUrl = astroConfig?.buildOptions?.site;
 

@@ -3,11 +3,28 @@ export interface Props {
   locale: string;
 }
 
+import Image from 'astro-imagetools';
 import fetchTop from '@/api/fetchTop';
 import getImagePath from '@/helpers/getImagePath';
-import ArtImage from '@/components/images/ArtImage.astro';
+// import ArtImage from '@/components/images/ArtImage.astro';
 import Button from './Button.astro';
 
+//   {sources && <ArtImage sources={sources} alt={alt} loading="eager" classes="col-start-1 row-start-1" />}
+
+/*
+  {sources && (
+    <Image
+      src={sources[0].src}
+      alt={alt}
+      artDirectives={[
+        {
+          src: sources[1].src,
+          media: sources[1].media,
+        },
+      ]}
+    />
+  )}
+*/
 const { locale } = Astro.props as Props;
 
 const top = await fetchTop(locale);
@@ -25,9 +42,24 @@ const sources = items?.filter(({ image }) => image).map(({ image: { src, caption
 });
 
 const alt = items?.find(({ image }) => image).image?.alt || '';
+
 ---
-<div class="grid">
-  {sources && <ArtImage sources={sources} alt={alt} loading="eager" classes="col-start-1 row-start-1" />}
+<div class="hero">
+  {sources && (
+    <Image
+      src={'/' + sources[0].src}
+      alt={alt}
+      placeholder="none"
+      layout="fullWidth"
+      loading="eager"
+      artDirectives={[
+        {
+          src: '/' + sources[1].src,
+          media: sources[1].media,
+        },
+      ]}
+    />
+  )}
   <div class="col-start-1 row-start-1 px-4 text-center flex flex-col-reverse justify-center items-center">
     <Button tag="a" to="#services">{buttonCaption}</Button>
     <h1 class="txt uppercase font-bold text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>
@@ -35,7 +67,13 @@ const alt = items?.find(({ image }) => image).image?.alt || '';
   </div>
 </div>
 
-<style>
+<style global>
+  .hero {
+    @apply grid;
+    & > .astro-imagetools-picture {
+      @apply col-start-1 row-start-1;
+    }
+  }
   .txt {
     color: white;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);

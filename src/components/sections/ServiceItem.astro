@@ -4,15 +4,23 @@ export interface Props {
 }
 
 import getImagePath from '@/helpers/getImagePath';
-import Image from '@/components/images/Image.astro';
+// import Image from '@/components/images/Image.astro';
+import Image from 'astro-imagetools';
 
 const { item: { title, content, image } } = Astro.props as Props;
+//    <Image src={getImagePath(image.src)} alt={image.alt} classes="mb-4" imgClasses="w-full h-full max-w-full object-cover" caption={image.caption} />
+
 ---
 
 <div class="text-center">
   {image?.src && (
-    <Image src={getImagePath(image.src)} alt={image.alt} classes="mb-4" imgClasses="w-full h-full max-w-full object-cover" caption={image.caption} />
-  )}
+    <Image
+      src={'/' + getImagePath(image.src)}
+      alt={image.alt}
+      layout="fullWidth"
+      loading="lazy"
+    />
+   )}
   <h3 class="mb-4">{title}</h3>
   <p>{content}</p>
 </div>
