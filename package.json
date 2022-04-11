@@ -18,7 +18,7 @@
   "devDependencies": {
     "@11ty/eleventy-img": "^2.0.0",
     "@alextim/utils": "^0.1.24",
-    "@astrojs/tailwind": "^0.0.2",
+    "@astrojs/tailwind": "^0.1.2",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
