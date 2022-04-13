@@ -14,7 +14,7 @@ specifiers:
   animate.css: ^4.1.1
   astro: ^1.0.0-beta.9
   astro-icon: ^0.7.1
-  astro-imagetools: ^0.4.2
+  astro-imagetools: ^0.5.1
   autoprefixer: ^10.4.4
   cssnano: ^5.1.7
   datauri: ^4.1.0
@@ -48,7 +48,7 @@ devDependencies:
   animate.css: 4.1.1
   astro: 1.0.0-beta.9
   astro-icon: 0.7.1
-  astro-imagetools: 0.4.2_astro@1.0.0-beta.9
+  astro-imagetools: 0.5.1_astro@1.0.0-beta.9
   autoprefixer: 10.4.4_postcss@8.4.12
   cssnano: 5.1.7_postcss@8.4.12
   datauri: 4.1.0
@@ -1356,10 +1356,10 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /astro-imagetools/0.4.2_astro@1.0.0-beta.9:
-    resolution: {integrity: sha512-a6dk5iEBa9ao14iI4GdSJuk7aGqoNR1FcnF7c48zLpulOH4LTAV776+PuEJvzyxVZEriyk4ncNqrSN2TIs2B4w==}
+  /astro-imagetools/0.5.1_astro@1.0.0-beta.9:
+    resolution: {integrity: sha512-Cgq5yVdmOLr1sz+iI0+RaBQRiSQHIQ65OnfL335ovaPIbmbU83c8bqOgvCfFG+23w+4eJTWhWuLXg4aeCpBR8Q==}
     peerDependencies:
-      astro: '>=0.23.0'
+      astro: '>=0.26 || >=1.0.0-beta'
     dependencies:
       '@astropub/codecs': 0.4.4
       astro: 1.0.0-beta.9
