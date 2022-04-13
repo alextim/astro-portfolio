@@ -65,4 +65,5 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     'prettier/prettier': 'error',
   },
+  ignorePatterns: ['tailwind.config.cjs', 'postcss.config.cjs', '.prettierrc.cjs', '.eslintrc.cjs', 'astro.config.mjs'],
 };
