@@ -20,6 +20,12 @@ const {
 <script>
   import PhotoSwipeLightbox from '@/vendor/photoswipe/photoswipe-lightbox.esm.js';
 
+  if (window.trustedTypes && window.trustedTypes.createPolicy) {
+    window.trustedTypes.createPolicy('default', {
+      createHTML: (string) => string
+    });
+  }
+
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery--simple',
     children: 'a',

@@ -10,7 +10,6 @@ public
 
 src/vendor/gumshoe
 src/vendor/photoswipe
-tw/
 
 package.json
 pnpm-lock.yaml
