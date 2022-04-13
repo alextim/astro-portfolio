@@ -1,5 +1,6 @@
 const path = require('path');
 
+const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   plugins: {
     // 'postcss-import': {},
@@ -9,6 +10,17 @@ module.exports = {
       config: path.join(__dirname, 'tailwind.config.cjs'), // update this if your path differs!
     },
     autoprefixer: { flexbox: false }, // flexbox: 'no-2009'
-    ...(process.env.NODE_ENV === 'production' ? { cssnano: { preset: 'default' } } : {}),
+    ...(isProduction ? { cssnano: { preset: 'default' } } : {}),
+    /*
+    ...(isProduction
+      ? {
+          purgecss: {
+            content: ['./src/** /*.astro'],
+            // function used to extract class names from the templates
+            defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+          },
+        }
+      : { }),
+    */
   },
 };

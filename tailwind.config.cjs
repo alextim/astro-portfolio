@@ -10,6 +10,7 @@ delete colors.trueGray;
 delete colors.coolGray;
 delete colors.blueGray;
 
+/** @type {import('tailwindcss/types').Config} */
 module.exports = {
   darkMode: 'class',
   content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}'],
@@ -68,7 +69,6 @@ module.exports = {
         },
       },
       spacing: {
-        18: '4.5rem',
         header: '3.5rem',
         'header-xl': '4.5rem',
       },

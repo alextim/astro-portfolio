@@ -1,5 +1,7 @@
 import config from './website';
 
+const { siteUrl } = config;
+
 const seoConfig: Record<string, any> = {
   organization: {
     /**
@@ -8,9 +10,9 @@ const seoConfig: Record<string, any> = {
      * folder: /static/assets
      *  */
     siteBusinessPhoto: [
-      `${config.siteUrl}/assets/images/organization/1x1/business-photo.jpg`,
-      `${config.siteUrl}/assets/images/organization/4x3/business-photo.jpg`,
-      `${config.siteUrl}/assets/images/organization/16x9/business-photo.jpg`,
+      `${siteUrl}/assets/images/organization/1x1/business-photo.jpg`,
+      `${siteUrl}/assets/images/organization/4x3/business-photo.jpg`,
+      `${siteUrl}/assets/images/organization/16x9/business-photo.jpg`,
     ],
   },
 
@@ -26,7 +28,7 @@ const seoConfig: Record<string, any> = {
      * folder: /static/assets/images
      * */
     image: {
-      src: `${config.siteUrl}/assets/images/og/banner-`,
+      src: `${siteUrl}/assets/images/og/banner-`,
       width: 1200,
       height: 630,
     } as SeoImage,
@@ -53,7 +55,7 @@ const seoConfig: Record<string, any> = {
      * folder: /static/assets/images
      *  */
     image: {
-      src: `${config.siteUrl}/assets/images/twitter/2x1/banner-`,
+      src: `${siteUrl}/assets/images/twitter/2x1/banner-`,
       width: 600,
       height: 300,
     } as SeoImage,

@@ -1,13 +1,14 @@
 ---
 export interface Props {
-  locale: string;
+  page: Page;
 }
 
 import Image from 'astro-imagetools';
-import fetchTop from '@/api/fetchTop';
 import getImagePath from '@/helpers/getImagePath';
 // import ArtImage from '@/components/images/ArtImage.astro';
 import Button from './Button.astro';
+
+const { page } = Astro.props as Props;
 
 //   {sources && <ArtImage sources={sources} alt={alt} loading="eager" classes="col-start-1 row-start-1" />}
 
@@ -25,15 +26,18 @@ import Button from './Button.astro';
     />
   )}
 */
-const { locale } = Astro.props as Props;
 
-const top = await fetchTop(locale);
+const { title = '', headline = '' } = page;
 
-const { title = '', subtitle = '', items = null } = top || {};
+const { items } = page as unknown as Section;
+if (!items) {
+  throw new Error('items not found in frontmatter');
+}
 
-const { title: buttonCaption } = items?.find(({ image }) => !image) || {};
+const { title: buttonCaption } = items.find(({ image }) => !image) || {};
 
-const sources = items?.filter(({ image }) => image).map(({ image: { src, caption: media } }) => {
+const images = items.filter(({ image }) => image).map(({image}) => image);
+const sources = images.map(({ src, media }) => {
   if (!src) {
     throw new Error('ArtImage: Image src required');
   }
@@ -41,7 +45,7 @@ const sources = items?.filter(({ image }) => image).map(({ image: { src, caption
   return { src: getImagePath(src), media };
 });
 
-const alt = items?.find(({ image }) => image).image?.alt || '';
+const alt = images[0]?.src || '';
 
 ---
 <div class="hero">
@@ -63,16 +67,16 @@ const alt = items?.find(({ image }) => image).image?.alt || '';
   <div class="col-start-1 row-start-1 px-4 text-center flex flex-col-reverse justify-center items-center">
     <Button tag="a" to="#services">{buttonCaption}</Button>
     <h1 class="txt uppercase font-bold text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>
-    {subtitle && <div class="txt mb-8 text-2xl italic">{subtitle}</div>}
+    {headline && <div class="txt mb-8 text-2xl italic">{headline}</div>}
   </div>
 </div>
 
-<style global>
-  .hero {
+<style>
+  :global(.hero) {
     @apply grid;
-    & > .astro-imagetools-picture {
-      @apply col-start-1 row-start-1;
-    }
+  }
+  :global(.hero > .astro-imagetools-picture) {
+    @apply col-start-1 row-start-1;
   }
   .txt {
     color: white;

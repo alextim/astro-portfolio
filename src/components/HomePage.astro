@@ -3,8 +3,7 @@ export interface Props {
   locale: string;
 }
 
-import { fetchSection } from '@/api/sections';
-import { fetchHome } from '@/api/pages';
+import { getPage } from '@/cms/page';
 
 import Layout from '@/components/Layout.astro';
 
@@ -14,21 +13,37 @@ import About from '@/components/sections/About.astro';
 import Gallery from '@/components/sections/Gallery.astro';
 import Testimonials from '@/components/sections/Testimonials.astro';
 import Contacts from '@/components/sections/Contacts.astro';
+import { getSection } from '@/cms/section';
 
 const { locale } = Astro.props as Props;
 
-const services = await fetchSection('services', locale);
-const about = await fetchSection('about', locale);
-const gallery = await fetchSection('gallery', locale);
-const testimonials = await fetchSection('testimonials', locale);
-const contacts = await fetchSection('contacts', locale);
+const fetchedSections = await Astro.glob('/content/sections/*.??.md');
+const sections = fetchedSections.map(getSection).filter((section) => section.locale === locale);
 
-const page = await fetchHome(locale);
-const { title, headline, metaTitle, metaDescription, noindex, nofollow } = page || {};
+const findSectionById = (id: string) => {
+  const section = sections.find((item) => item.id === id);
+  if (!section) {
+    throw new Error(`Section with id=${id} not found`);
+  }
+  return section;
+};
+
+const services = findSectionById('services');
+const about = await findSectionById('about');
+const gallery = await findSectionById('gallery');
+const testimonials = await findSectionById('testimonials');
+const contacts = await findSectionById('contacts');
+
+const fetchedPages = await Astro.glob('/content/pages/home.??.md');
+const mappedPages = fetchedPages.map(getPage);
+const pages = mappedPages.filter((page) => page.locale === locale);
+const home = pages.find(({ slug }) => slug === '/');
+
+const { title, headline, metaTitle, metaDescription, noindex, nofollow } = home || {};
 
 const seo = {
-  title: metaTitle,
-  description: metaDescription,
+  title: metaTitle || title,
+  description: metaDescription || headline,
   headline,
   noindex,
   nofollow,
@@ -37,7 +52,7 @@ const seo = {
 ---
 
 <Layout seo={seo}>
-  <Hero locale={locale} />
+  <Hero page={home} />
   <Services section={services} />
   <About section={about} />
   <Gallery section={gallery} />

@@ -9,10 +9,10 @@ import PageSection from '../PageSection.astro';
 import Image from '@/components/images/Image.astro';
 
 const {
-  section: { id, title, subtitle, image, html, items },
+  section: { id, title, subtitle, image, Content },
 } = Astro.props as Props;
----
 
+---
 <PageSection id={id} title={title} subtitle={subtitle} classes="bg-light dark:bg-gray-900">
   <div class="grid gap-12 lg:grid-cols-3">
     {image?.src && (
@@ -24,6 +24,10 @@ const {
         caption={image.caption}
       />
     )}
-    {html && <div set:html={html} class="text-justify lg:col-span-2" />}
+    {Content && (
+      <div class="text-justify lg:col-span-2">
+        <Content />
+      </div>
+    )}
   </div>
 </PageSection>

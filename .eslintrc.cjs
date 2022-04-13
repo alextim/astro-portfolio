@@ -1,34 +1,32 @@
+/** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
   root: true,
   env: {
     node: true,
     browser: true,
-    es2021: true,
+    es2022: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 12,
-    // requireConfigFile: false,
+    requireConfigFile: false,
     // experimentalObjectRestSpread: true,
     sourceType: 'module',
-    /*
     ecmaFeatures: {
-      globalReturn: false,
-      jsx: true,
+      // globalReturn: false,
+      // jsx: true,
     },
-    */
     // tsconfigRootDir: './',
     project: './tsconfig.json',
   },
   settings: {
-    'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.mjs'],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.mjs'],
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
       typescript: {},
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', , '.mjs'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
@@ -41,6 +39,7 @@ module.exports = {
     'airbnb-base',
     'airbnb-typescript/base',
     // 'plugin:import/recommended',
+    'plugin:prettier/recommended',
     'prettier',
   ],
   rules: {

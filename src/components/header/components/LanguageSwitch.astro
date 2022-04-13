@@ -1,19 +1,24 @@
 ---
+export interface Props {
+  classes?: string;
+  locale: string;
+}
+
 import { Icon } from 'astro-icon';
 import i18n from '@/config/i18n';
 import { localizePath, getPurePathname } from '@/helpers/i18n-utils';
-import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
-const pathname = Astro.request.url.pathname;
-const locale = getLocaleFromUrlPathname(pathname);
+const pathname = new URL(Astro.request.url).pathname;
 
-const currentLocale = i18n.locales[locale];
+const { classes = '', locale } = Astro.props as Props;
+const currentLocaleEntry = i18n.locales[locale];
 ---
 
-<div id="language-selector" class="nav-item language-selector">
+<div id="language-selector" class={`language-selector ${classes}`}>
   <div class="dropdown-toggle">
-    <Icon class="w-4 h-4 mr-2" name="globe"/>{currentLocale.localName}
+    <Icon class="w-4 h-4 mr-2" name="globe"/>{currentLocaleEntry.localName}
   </div>
+
   <div id="language-dropdown" class="dropdown">
     {Object.entries(i18n.locales).map(([code, { localName }]) => {
       let classes;
@@ -35,118 +40,120 @@ const currentLocale = i18n.locales[locale];
 </div>
 
 <style>
-.language-selector {
-  position: relative;
-
-  @media (min-width: 1024px) {
-    &:hover .dropdown {
-      display: block;
-    }
-  }
-}
-
-.dropdown-toggle {
-  display: none;
-
-  @media (min-width: 1024px) {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-
-    &:after {
-      content: "";
-      display: inline-block;
-      margin-left: 0.255em;
-      border-top: 0.3em;
-      border-bottom: 0;
-      border-left: 0.3em transparent;
-      border-right: 0.3em transparent;
-      vertical-align: 0.255em;
-    }
-
-    &:hover {
-      color: orangered;
-    }
-  }
-}
-
-.dropdown {
-  @apply flex items-center justify-center;
-
-  @media (min-width: 1024px) {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-
-    margin: 0.125rem 0 0;
-    padding: 0.5rem 0;
-
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0 , 0, .15);
-    border-radius: 0.25rem;
-
-    float: left;
-
-    min-width: 10rem;
-    text-align: left;
-
-    z-index: 1000;
-
-    &.show {
-      display: block;
-    }
-  }
-}
-
-.dropdown-item {
-  display: block;
-  position: relative;
-  padding: 0.25rem 1.5rem;
-  color: white;
-  background-color: transparent;
-
-  &:hover,
-  &:focus {
-    color: #16181b;
-    background-color: #e9ecef;
-  }
-
-  &.active {
-    @apply text-primary;
+  .language-selector {
+    position: relative;
 
     @media (min-width: 1024px) {
-      @apply bg-primary text-white;
+      &:hover .dropdown {
+        display: block;
+      }
     }
   }
 
-  &::after {
-    position: absolute;
+  .dropdown-toggle {
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+
+      &:after {
+        content: "";
+        display: inline-block;
+        margin-left: 0.255em;
+        border-top: 0.3em;
+        border-bottom: 0;
+        border-left: 0.3em transparent;
+        border-right: 0.3em transparent;
+        vertical-align: 0.255em;
+      }
+
+      &:hover {
+        color: theme('colors.primary');
+      }
+    }
+  }
+
+  .dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: 1024px) {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+      margin: 0.125rem 0 0;
+      padding: 0.5rem 0;
+
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid rgba(0, 0 , 0, .15);
+      border-radius: 0.25rem;
+
+      float: left;
+
+      min-width: 10rem;
+      text-align: left;
+
+      z-index: 1000;
+
+      &.show {
+        display: block;
+      }
+    }
+  }
+
+  .dropdown-item {
+    display: block;
+    position: relative;
+    padding: 0.25rem 1.5rem;
     color: white;
-    right: 0;
-    content: "|";
-  }
+    background-color: transparent;
 
-  &:last-of-type::after {
-    content: "";
-  }
-
-  @media (min-width: 1024px) {
-    clear: both;
-    width: 100%;
-    color: #212529;
+    &:hover,
+    &:focus {
+      color: #16181b;
+      background-color: #e9ecef;
+    }
 
     &::after {
+      position: absolute;
+      color: white;
+      right: 0;
+      content: "|";
+    }
+
+    &:last-of-type::after {
       content: "";
     }
+
+    &.active {
+      color: theme('colors.primary');
+    }
+    @media (min-width: 1024px) {
+      clear: both;
+      width: 100%;
+      color: #212529;
+
+      &::after {
+        content: "";
+      }
+      &.active {
+        color: theme('colors.white');
+        background: theme('colors.primary');
+      }
+    }
   }
-}
+
 </style>
 
-<script hoist type="module">
+<script>
   import i18n from '@/config/i18n';
   import { getLocale, saveLocale } from '@/lib/locale-utils';
 

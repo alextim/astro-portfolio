@@ -7,6 +7,7 @@ const defaultOptions: ImageOptions = {
   urlPath: `/${commonPath}`,
 };
 
+/*
 const getPathWihSubfolders = (src: string) => {
   const n = src.indexOf(commonPath);
   if (n === -1) {
@@ -21,7 +22,7 @@ const getPathWihSubfolders = (src: string) => {
     urlPath: `${defaultOptions.urlPath}${a.join('/')}`,
   };
 };
-
+*/
 export function generateImage(src: string, options: ImageOptions): Record<string, ImageFormat[]> {
   // Merge with default settings
   // const settings = { ...(getPathWihSubfolders(src) || defaultOptions), ...options };

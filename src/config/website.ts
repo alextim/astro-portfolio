@@ -1,6 +1,4 @@
-import astroConfig from '../../astro.config.mjs';
-
-const siteUrl = astroConfig?.buildOptions?.site;
+const siteUrl = 'https://climbing-in-turkey-astro.netlify.app';
 
 if (!siteUrl) {
   throw new Error('siteUrl is required');

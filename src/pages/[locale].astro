@@ -10,7 +10,11 @@ export async function getStaticPaths() {
     }));
 }
 
-const { locale } = Astro.request.params;
+const { locale } = Astro.params;
+
+if (!locale) {
+  throw new Error('emptry locale in Astro.params');
+}
 ---
 
 <HomePage locale={locale} />

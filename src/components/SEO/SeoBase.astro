@@ -7,16 +7,14 @@ import I18nMeta from './components/I18nMeta.astro';
 import AdditionalTags from './components/AdditionalTags.astro';
 import Schema from './components/Schema/Schema.astro';
 
-const { props } = Astro;
+const { title, description, keywords, canonical, noindex, nofollow, pageType, i18n, twitter, facebook } = Astro.props;
 
-const { title, description, keywords, canonical, noindex, nofollow, pageType, i18n, twitter, facebook } = props;
-
-const pageUrl = canonical || Astro.request.canonicalURL.href;
+const pageUrl = canonical || Astro.canonicalURL.href;
 
 const has_i18n = Object.keys(i18n.locales).length > 1;
 
 const propsBase: BaseSEO = {
-  ...props,
+  ...(Astro.props as Props),
   pageUrl,
   isArticle: pageType === 'Article' || pageType === 'BlogPosting',
 };

@@ -8,16 +8,16 @@ import PageSection from '../PageSection.astro';
 import GalleryItem from './GalleryItem.astro';
 
 const {
-  section: { id, title, subtitle, html: content, items },
+  section: { id, title, subtitle, Content, items },
 } = Astro.props as Props;
 ---
-<PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center">
+<PageSection id={id} title={title} subtitle={subtitle} Content={Content} classes="text-center">
   <div id="gallery--simple" class="pswp-gallery grid gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
     {items?.filter(({image}) => image?.src).map((item) => <GalleryItem item={item} />)}
   </div>
 </PageSection>
 
-<script hoist type="module">
+<script>
   import PhotoSwipeLightbox from '@/vendor/photoswipe/photoswipe-lightbox.esm.js';
 
   const lightbox = new PhotoSwipeLightbox({

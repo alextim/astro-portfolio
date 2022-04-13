@@ -1,10 +1,8 @@
-import type { FetchContentResult } from 'astro';
-
 type Image = {
   src: string;
-  xl?: string;
   alt: string;
   caption?: string;
+  media?: string;
 };
 
 type Author = {
@@ -42,17 +40,6 @@ interface FrontmatterBase {
   sortOrder?: number;
 }
 
-interface AstroFetchedContent extends FetchContentResult<FrontmatterBase> {
-  file?: {
-    pathname: string;
-  };
-  // only to strip Astro
-  // content?: any;
-  // Content?: any;
-}
-
-type AstroFetchedContentPage = AstroFetchedContent;
-
 interface SectionItem {
   title: string;
   subtitle?: string;
@@ -71,11 +58,11 @@ interface Section extends SectionFrontmatter {
   id: string;
   sortOrder: number;
   locale: string;
-  html: string;
+  Content: any;
 }
 
 interface BaseObject extends FrontmatterBase {
-  html: string;
+  Content: any;
 
   slug: string;
   to: string;

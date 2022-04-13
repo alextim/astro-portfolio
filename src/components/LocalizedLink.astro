@@ -3,7 +3,8 @@ import { localizePath } from '@/helpers/i18n-utils';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 const { to, ...rest } = Astro.props;
-const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+const pathname = new URL(Astro.request.url).pathname;
+const locale = getLocaleFromUrlPathname(pathname);
 const path = localizePath(to, locale);
 ---
 

@@ -1,6 +1,7 @@
-import { getSection } from '../cms/section';
+import { getSection } from '@/cms/section';
 
-let allSections;
+let allSections: Section[] | undefined;
+
 async function load() {
   if (allSections) {
     return allSections;

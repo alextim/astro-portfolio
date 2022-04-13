@@ -10,7 +10,6 @@ import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import SeoBase from './SeoBase.astro';
 
 const { seo } = Astro.props as Props;
-
 const { siteUrl, siteLogo, themeColor } = config;
 
 if (themeColor) {
@@ -25,8 +24,8 @@ if (!seo.link) {
 }
 seo.link.push({ rel: 'author', type: 'text/plain', href: `${siteUrl}/humans.txt` });
 
-const pathname = Astro.request.url.pathname;
-const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+const pathname = new URL(Astro.request.url).pathname;
+const locale = getLocaleFromUrlPathname(pathname);
 
 //   const homeUrl = `${siteUrl}${localizePath('/', locale)}`;
 

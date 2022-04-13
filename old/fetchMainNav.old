@@ -1,4 +1,4 @@
-import { fetchAllSections } from './sections';
+import { fetchAllSections } from './sections.old';
 
 async function fetchMainNav(locale: string): Promise<Link[]> {
   const result = await fetchAllSections(locale);

@@ -14,6 +14,14 @@ export const isDefaultLocale = (locale: string): boolean => i18n.defaultLocale =
 
 export const localize = (s: string | string[], locale: string): string => {
   const a = Array.isArray(s) ? s : [s];
+  const isRoot = a.length === 1 && a[0] === '/';
+
+  if (isRoot) {
+    if (isDefaultLocale(locale)) {
+      return '/';
+    }
+    return ['', locale, ''].join('/');
+  }
   if (isDefaultLocale(locale)) {
     return ['', ...a, ''].join('/');
   }

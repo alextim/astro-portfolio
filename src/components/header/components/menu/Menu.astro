@@ -1,49 +1,56 @@
 ---
-import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
-import fetchMainNav from '@/api/fetchMainNav';
+export interface Props {
+  locale: string;
+}
 
+import { getSection } from '@/cms/section';
 import ThemeSwitch from '../ThemeSwitch.astro';
 import LanguageSwitch from '../LanguageSwitch.astro';
 import NavItem from './NavItem.astro';
 
-const pathname = Astro.request.url.pathname;
-const locale = getLocaleFromUrlPathname(pathname);
-const navItems = await fetchMainNav(locale);
+const { locale } = Astro.props as Props;
+
+const fetchedSections = await Astro.glob('/content/sections/*.??.md');
+const navItems = fetchedSections.map(getSection)
+  .filter((section) => section.locale === locale)
+  .sort((a, b) => a.sortOrder - b.sortOrder)
+  .map(({ id, title }) => ({ to: `#${id}`, title }));
 ---
 
 <nav id="main-nav" class="main-nav">
-  <ul id="main-menu" aria-label="Main menu" class="main-menu">
+  <ul id="main-menu" class="main-menu" aria-label="Main menu">
     {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
   </ul>
+
   <div class="flex justify-center items-center">
-    <LanguageSwitch />
-    <div class="ml-4 lg:ml-0">
-      <ThemeSwitch />
-    </div>
+    <LanguageSwitch locale={locale} classes="nav-item" />
+    <ThemeSwitch classes="nav-item" />
   </div>
 </nav>
 
-<script hoist type="module">
+<script>
   import scrollSpy from '@/vendor/gumshoe/gumshoe.js';
 
   scrollSpy('#main-menu a', {
     offset() {
-      return header.getBoundingClientRect().height;
+      const rect = header.getBoundingClientRect();
+      const h = rect.height;
+      return h;
     },
     reflow: true,
   });
 </script>
 
-<style global>
+<style>
   .main-nav {
     @apply hidden grow basis-full items-center py-4 lg:!flex lg:!flex-row lg:basis-auto lg:py-0;
-
-    &.open {
-      @apply !flex flex-col;
-    }
   }
 
-  .main-menu {
+  :global(.main-nav.open) {
+    @apply !flex flex-col;
+  }
+
+  :global(.main-menu) {
     @apply flex flex-col self-start lg:flex-row lg:self-auto lg:ml-auto;
   }
 </style>

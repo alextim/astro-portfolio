@@ -9,13 +9,12 @@ const { to, title } = Astro.props as Props;
   </a>
 </li>
 
-<style global>
-  .nav-item {
+<style>
+  :global(.nav-item) {
     @apply py-2 px-4;
-
-    &.active a {
-      @apply text-primary;
-    }
+  }
+  :global(.nav-item.active a) {
+    @apply text-primary;
   }
 
   .nav-item-link {

@@ -1,15 +1,17 @@
 ---
 import '../styles/global.css';
+// import 'animate.css';
 
 import i18n from '@/config/i18n';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import { fetchContacts, fetchSocialLinks, fetchAddress } from '@/api/yamls';
 
-// import SEO from './SEO/SEO.astro';
+import SEO from './SEO/SEO.astro';
 import Header from './header/Header.astro';
 import Footer from './footer/Footer.astro';
 
-const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+const pathname = new URL(Astro.request.url).pathname;
+const locale = getLocaleFromUrlPathname(pathname);
 
 const contacts = await fetchContacts();
 const socialLinks = await fetchSocialLinks(locale);
@@ -22,7 +24,6 @@ const currentLocale = i18n.locales[locale];
 if (!currentLocale) {
   throw new Error(`Unknown locale ${locale}`);
 }
-//     <!--SEO seo={{ ...seo, contacts, socialLinks, address }} /-->
 ---
 
 <!DOCTYPE html>
@@ -30,12 +31,12 @@ if (!currentLocale) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-
+    <SEO seo={{ ...seo, contacts, socialLinks, address }} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body>
     <div class="flex flex-col min-h-screen">
-      <Header />
+      <Header locale={locale} />
       <main class="w-full flex-auto mt-header pb-header lg:mt-0 lg:pb-header-xl">
         <slot />
       </main>
@@ -43,3 +44,8 @@ if (!currentLocale) {
     </div>
   </body>
 </html>
+
+<script>
+  // import WOW from 'wow.js';
+  // new WOW().init();
+</script>

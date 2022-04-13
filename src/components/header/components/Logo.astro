@@ -3,7 +3,8 @@ import i18n from '@/config/i18n';
 import { localizePath } from '@/helpers/i18n-utils';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
-const locale = getLocaleFromUrlPathname(Astro.request.url.pathname);
+const pathname = new URL(Astro.request.url).pathname;
+const locale = getLocaleFromUrlPathname(pathname);
 
 const { siteTitle } = i18n.locales[locale]!;
 const localizedRoot = localizePath('/', locale);

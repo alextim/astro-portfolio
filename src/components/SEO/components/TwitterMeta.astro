@@ -28,8 +28,8 @@ if (hasImage) {
     alt = description;
     url = imgUrl;
   } else {
-    alt = image.alt || description;
-    url = image.src;
+    alt = image?.alt || description;
+    url = image?.src || '';
   }
 }
 ---
@@ -42,6 +42,7 @@ if (hasImage) {
   <meta name="twitter:image" content={url!} />
   <meta name="twitter:image:alt" content={alt!} />
 )}
+
 {image?.src && (
   <meta name="twitter:image:width" content={image.width.toString()} />
   <meta name="twitter:image:height" content={image.height.toString()} />

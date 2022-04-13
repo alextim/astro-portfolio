@@ -7,11 +7,11 @@ import PageSection from '../PageSection.astro';
 import ServiceItem from './ServiceItem.astro';
 
 const {
-  section: { id, title, subtitle, html: content, items },
+  section: { id, title, subtitle, Content, items },
 } = Astro.props as Props;
 ---
 
-<PageSection id={id} title={title} subtitle={subtitle} content={content} classes="text-center">
+<PageSection id={id} title={title} subtitle={subtitle} Content={Content} classes="text-center">
   <div class="grid gap-12 lg:grid-cols-3">
     {items?.map((item) => <ServiceItem item={item} />)}
   </div>

@@ -1,8 +1,24 @@
-import getSlugFromFilePathname from './utils/getSlugFromFilePathname';
+import path from 'path';
+import { localize } from '@/helpers/i18n-utils';
 
-import { getBaseObject } from './base';
+export function getPage({ Content, /* url, */ file, frontmatter }: Record<string, any>): Page {
+  const { title, headline, metaTitle, metaDescription } = frontmatter;
 
-export function getPage({ file, ...rest }: AstroFetchedContentPage, locale?: string): Page {
-  const slug = getSlugFromFilePathname(file?.pathname);
-  return getBaseObject({ ...rest }, slug, locale);
+  const { name } = path.parse(file);
+  const [fileName, locale] = name.split('.');
+
+  const slug = fileName === 'home' ? '/' : fileName;
+
+  return {
+    ...frontmatter,
+    title,
+    headline,
+    metaTitle: metaTitle || title,
+    metaDescription: metaDescription || headline,
+    Content,
+
+    slug,
+    to: localize(slug, locale),
+    locale,
+  };
 }

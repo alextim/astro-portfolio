@@ -1,9 +1,9 @@
 import path from 'path';
 
-export function getSection({ file, astro: { html }, ...rest }: AstroFetchedContent): Section {
-  const { name } = path.parse(file.pathname);
+export function getSection({ frontmatter, file, Content }: Record<string, any>): Section {
+  const { name } = path.parse(file);
   const [fileName, locale] = name.split('.');
   const [sortOrder, id] = fileName.split('-');
 
-  return { id, sortOrder: parseInt(sortOrder, 10), html, locale, ...rest };
+  return { id, ...frontmatter, sortOrder: parseInt(sortOrder, 10), locale, Content };
 }

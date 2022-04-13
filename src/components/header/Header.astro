@@ -1,16 +1,22 @@
 ---
+export interface Props {
+  locale: string;
+}
+
 import Containter from '../Container.astro';
 
 import Logo from './components/Logo.astro';
 import Hamburger from './components/Hamburger.astro';
 import Menu from './components/menu/Menu.astro';
+
+const { locale } = Astro.props as Props;
 ---
 
 <header id="header" role="navigation" class="header">
   <Containter classes="flex flex-wrap items-center justify-between font-sans lg:flex-nowrap">
     <Logo />
     <Hamburger />
-    <Menu />
+    <Menu locale={locale} />
   </Containter>
 </header>
 
@@ -43,7 +49,7 @@ import Menu from './components/menu/Menu.astro';
   menuToggle.addEventListener('click', menuToggleHandler, false);
 </script>
 
-<style global>
+<style>
   .header {
     @apply fixed top-0 left-0 right-0
       z-30 flex flex-wrap items-center

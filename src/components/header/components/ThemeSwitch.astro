@@ -1,10 +1,15 @@
 ---
+export interface Props {
+  classes?: string;
+}
+
 import { Icon } from 'astro-icon';
 
 const THEME_SWITCH_ID = 'theme-switch';
+const { classes = '' } = Astro.props as Props;
 ---
 
-<label class="theme-switch">
+<label class={`theme-switch ${classes}`}>
   <input
     id={THEME_SWITCH_ID}
     type="checkbox"
