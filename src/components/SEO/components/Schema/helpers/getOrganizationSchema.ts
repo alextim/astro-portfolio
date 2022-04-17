@@ -12,11 +12,11 @@ const weekDays: Record<string, string> = {
 
 const trim = (el: string) => el.trim();
 
-const validateDow = (d: string): string => {
+const getDow = (d: string): string => {
   if (!weekDays[d]) {
-    throw new Error(`Not valid Day of Week ${d}`);
+    throw new Error(`getDow: Not valid Day of Week ${d}`);
   }
-  return weekDays[d]!;
+  return weekDays[d];
 };
 
 const parseDow = (s: string): string | string[] | null => {
@@ -35,12 +35,12 @@ const parseDow = (s: string): string | string[] | null => {
     Object.keys(weekDays).forEach((d) => {
       if (d === d1) {
         first = true;
-        result.push(validateDow(d));
+        result.push(getDow(d));
       } else if (d === d2) {
         last = true;
-        result.push(validateDow(d));
+        result.push(getDow(d));
       } else if (first && !last) {
-        result.push(validateDow(d));
+        result.push(getDow(d));
       }
     });
     return result;
@@ -49,11 +49,11 @@ const parseDow = (s: string): string | string[] | null => {
   // check for list
   dow = s.split(',').map(trim);
   if (dow.length > 1) {
-    return dow.map((d) => validateDow(d));
+    return dow.map((d) => getDow(d));
   }
 
   // one day only
-  return validateDow(s.trim());
+  return getDow(s.trim());
 };
 
 const getOpeningHoursSpecification = (openingHours: OpeningHours) =>
@@ -164,7 +164,7 @@ const getOrganizationSchema = ({
   }
 
   if (socialLinks) {
-    schema.sameAs = Object.keys(socialLinks).map((key) => socialLinks[key]!.to);
+    schema.sameAs = Object.values(socialLinks).map(({ to }) => to);
   }
 
   if (currenciesAccepted) {

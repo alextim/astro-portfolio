@@ -17,8 +17,9 @@ import { getSection } from '@/cms/section';
 
 const { locale } = Astro.props as Props;
 
-const fetchedSections = await Astro.glob('/content/sections/*.??.md');
-const sections = fetchedSections.map(getSection).filter((section) => section.locale === locale);
+const sections = (await Astro.glob('/content/sections/*.??.md'))
+  .map(getSection)
+  .filter((section) => section.locale === locale);
 
 const findSectionById = (id: string) => {
   const section = sections.find((item) => item.id === id);
@@ -34,12 +35,14 @@ const gallery = await findSectionById('gallery');
 const testimonials = await findSectionById('testimonials');
 const contacts = await findSectionById('contacts');
 
-const fetchedPages = await Astro.glob('/content/pages/home.??.md');
-const mappedPages = fetchedPages.map(getPage);
-const pages = mappedPages.filter((page) => page.locale === locale);
-const home = pages.find(({ slug }) => slug === '/');
+const home = (await Astro.glob('/content/pages/home.??.md'))
+  .map(getPage)
+  .find((p) => p.locale === locale && p.slug === '/');
+if (!home) {
+  throw new Error(`Home page for ${locale} is required`);
+}
 
-const { title, headline, metaTitle, metaDescription, noindex, nofollow } = home || {};
+const { title, headline, metaTitle, metaDescription, noindex, nofollow } = home;
 
 const seo = {
   title: metaTitle || title,
@@ -48,7 +51,6 @@ const seo = {
   noindex,
   nofollow,
 };
-//   <Hero locale={locale} />
 ---
 
 <Layout seo={seo}>

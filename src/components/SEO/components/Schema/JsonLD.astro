@@ -7,5 +7,4 @@ const { value } = Astro.props as Props;
 const space = process.env.NODE_ENV === 'development' ? 2 : undefined;
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(value, null, space)} />
-
+<script type="application/ld+json" set:html={JSON.stringify(value, null, space)}></script>
