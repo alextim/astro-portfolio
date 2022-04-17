@@ -5,7 +5,6 @@ export interface Props {
 
 const { value } = Astro.props as Props;
 const space = process.env.NODE_ENV === 'development' ? 2 : undefined;
-console.log(process.env.NODE_ENV);
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(value, null, space)}></script>
