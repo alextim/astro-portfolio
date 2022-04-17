@@ -32,22 +32,12 @@ export default defineConfig({
     }),
   ],
   vite: {
-    /*
-    optimizeDeps: {
-      exclude: ['path', 'fs', 'os', 'perf_hooks', 'util', 'url', 'module', 'astro-imagetools'],
-    },
-*/
-    /*
-    optimizeDeps: {
-      exclude: ['astro-eleventy-img'],
-    },
-    */
     /**
      * Due to an issue in the current version of Vite used by Astro, you need to add the following to your astro project config file:
      *
      */
     ssr: {
-      external: ['svgo', '@11ty/eleventy-img'],
+      external: ['svgo'],
     },
     plugins: [astroImagePlugin],
   },

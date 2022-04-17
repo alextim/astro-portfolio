@@ -40,8 +40,7 @@
       "@/lib/*": ["src/lib/*"],
       "@/helpers/*": ["src/helpers/*"],
       "@/layouts/*": ["src/layouts/*"],
-      "@/vendor/*": ["src/vendor/*"],
-      "@/astro-eleventy-img": ["src/astro-eleventy-img/index.ts"]
+      "@/vendor/*": ["src/vendor/*"]
     },
     // "rootDirs": [],           /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],          /* Specify multiple folders that act like `./node_modules/@types`. */

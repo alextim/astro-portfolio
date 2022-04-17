@@ -4,16 +4,12 @@ export interface Props {
 }
 
 import Image from 'astro-imagetools';
-// import Image from '@/components/images/Image.astro';
 import getImagePath from '@/helpers/getImagePath';
 import getImageFormats from '@/helpers/getImageFormats';
 
 const {
   item: { title, subtitle, content, image },
 } = Astro.props as Props;
-
-//     <Image src={getImagePath(image.src)} alt={image?.alt || title || content} classes="mb-3" imgClasses="w-56 h-56 mx-auto border-round" caption={image.caption} />
-
 ---
 
 <li class="testimonial-item">

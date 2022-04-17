@@ -4,7 +4,6 @@ export interface Props {
 }
 
 import Image from 'astro-imagetools';
-// import Image from '@/components/images/Image.astro';
 
 import getImagePath from '@/helpers/getImagePath';
 import getImageFormats from '@/helpers/getImageFormats';
@@ -14,15 +13,6 @@ const {
   section: { id, title, subtitle, image, Content },
 } = Astro.props as Props;
 
-/*
-      <Image
-        src={getImagePath(image.src)}
-        alt={image.alt}
-        classes="mx-auto mb-3"
-        imgClasses="w-60 h-60 border-round"
-        caption={image.caption}
-      />
-*/
 ---
 <PageSection id={id} title={title} subtitle={subtitle} classes="bg-light dark:bg-gray-900">
   <div class="about grid gap-12 lg:grid-cols-3">

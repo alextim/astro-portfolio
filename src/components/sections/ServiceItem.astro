@@ -4,13 +4,10 @@ export interface Props {
 }
 
 import Image from 'astro-imagetools';
-// import Image from '@/components/images/Image.astro';
 import getImagePath from '@/helpers/getImagePath';
 import getImageFormats from '@/helpers/getImageFormats';
 
 const { item: { title, content, image } } = Astro.props as Props;
-//    <Image src={getImagePath(image.src)} alt={image.alt} classes="mb-4" imgClasses="w-full h-full max-w-full object-cover" caption={image.caption} />
-
 ---
 
 <li class="service-item">
