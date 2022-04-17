@@ -5,6 +5,7 @@ export interface Props {
 
 import Image from 'astro-imagetools';
 import getImagePath from '@/helpers/getImagePath';
+import getImageFormats from '@/helpers/getImageFormats';
 // import ArtImage from '@/components/images/ArtImage.astro';
 import Button from './Button.astro';
 
@@ -31,54 +32,57 @@ const { title = '', headline = '' } = page;
 
 const { items } = page as unknown as Section;
 if (!items) {
-  throw new Error('items not found in frontmatter');
+  throw new Error('items not found in frontmatter for hero');
+}
+if (items.length !== 3) {
+  throw new Error('expected 3 items in frontmatter for hero');
 }
 
-const { title: buttonCaption } = items.find(({ image }) => !image) || {};
+const buttonCaption = items.find(({ image }) => !image)?.title;
+if (!buttonCaption) {
+  throw new Error('expected 1 item in frontmatter for button caption in hero');
+}
 
-const images = items.filter(({ image }) => image).map(({image}) => image);
-const sources = images.map(({ src, media }) => {
-  if (!src) {
-    throw new Error('ArtImage: Image src required');
-  }
-
-  return { src: getImagePath(src), media };
-});
-
-const alt = images[0]?.src || '';
+const sources = items.filter(({ image }) => image?.src)
+  .map(({ image: { alt, src, media } }) => (
+    { src: getImagePath(src), media, alt }
+  ));
+if (sources.length !== 2) {
+  throw new Error('expected 2 items in frontmatter for hero image');
+}
 
 ---
 <div class="hero">
-  {sources && (
-    <Image
-      src={'/' + sources[0].src}
-      alt={alt}
+  {<Image
+      src={sources[0].src}
+      alt={sources[0].alt}
       placeholder="none"
       layout="fullWidth"
-      loading="eager"
+      preload={true}
+      format={getImageFormats() as unknown as []}
       artDirectives={[
         {
-          src: '/' + sources[1].src,
+          src: sources[1].src,
           media: sources[1].media,
         },
       ]}
     />
-  )}
+  }
   <div class="col-start-1 row-start-1 px-4 text-center flex flex-col-reverse justify-center items-center">
     <Button tag="a" to="#services">{buttonCaption}</Button>
-    <h1 class="txt uppercase font-bold text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>
-    {headline && <div class="txt mb-8 text-2xl italic">{headline}</div>}
+    <h1 class="hero-txt uppercase text-3xl md:mb-6 md:text-4xl lg:text-6xl">{title}</h1>
+    {headline && <div class="hero-txt mb-8 text-2xl italic">{headline}</div>}
   </div>
 </div>
 
-<style>
-  :global(.hero) {
+<style is:global>
+  .hero {
     @apply grid;
   }
-  :global(.hero > .astro-imagetools-picture) {
+  .hero > .astro-imagetools-picture {
     @apply col-start-1 row-start-1;
   }
-  .txt {
+  .hero-txt {
     color: white;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
   }

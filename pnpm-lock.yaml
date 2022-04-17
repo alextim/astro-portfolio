@@ -3,18 +3,18 @@ lockfileVersion: 5.3
 specifiers:
   '@11ty/eleventy-img': ^2.0.0
   '@alextim/utils': ^0.1.24
-  '@astrojs/tailwind': ^0.1.2
+  '@astrojs/tailwind': ^0.2.0
   '@babel/core': ^7.17.9
   '@babel/eslint-parser': ^7.17.0
   '@types/eslint': ^8.4.1
-  '@types/node': ^17.0.23
+  '@types/node': ^17.0.24
   '@types/prettier': ^2.6.0
   '@typescript-eslint/eslint-plugin': ^5.19.0
   '@typescript-eslint/parser': ^5.19.0
   animate.css: ^4.1.1
-  astro: ^1.0.0-beta.9
+  astro: ^1.0.0-beta.12
   astro-icon: ^0.7.1
-  astro-imagetools: ^0.5.1
+  astro-imagetools: ^0.5.3
   autoprefixer: ^10.4.4
   cssnano: ^5.1.7
   datauri: ^4.1.0
@@ -37,18 +37,18 @@ specifiers:
 devDependencies:
   '@11ty/eleventy-img': 2.0.0
   '@alextim/utils': 0.1.24
-  '@astrojs/tailwind': 0.1.2
+  '@astrojs/tailwind': 0.2.0
   '@babel/core': 7.17.9
   '@babel/eslint-parser': 7.17.0_@babel+core@7.17.9+eslint@8.13.0
   '@types/eslint': 8.4.1
-  '@types/node': 17.0.23
+  '@types/node': 17.0.24
   '@types/prettier': 2.6.0
   '@typescript-eslint/eslint-plugin': 5.19.0_f34adc8488d2e4f014fe61432d70cbf2
   '@typescript-eslint/parser': 5.19.0_eslint@8.13.0+typescript@4.6.3
   animate.css: 4.1.1
-  astro: 1.0.0-beta.9
+  astro: 1.0.0-beta.12
   astro-icon: 0.7.1
-  astro-imagetools: 0.5.1_astro@1.0.0-beta.9
+  astro-imagetools: 0.5.3_astro@1.0.0-beta.12
   autoprefixer: 10.4.4_postcss@8.4.12
   cssnano: 5.1.7_postcss@8.4.12
   datauri: 4.1.0
@@ -184,8 +184,8 @@ packages:
       - typescript
     dev: true
 
-  /@astrojs/tailwind/0.1.2:
-    resolution: {integrity: sha512-u7phch7CqukCsi6DWB4EuiZ8GyLcu10waafcQw8CZ88pkzbXl+5ubiGqXqd75I1R05f+eXlYX0uwrRetGlELCw==}
+  /@astrojs/tailwind/0.2.0:
+    resolution: {integrity: sha512-ceHW5Wz7S773Sw3U0ImkCsjRvGe9uNfzpFFMGdSktUthJnPlsic0pP+1BV/clHRWA5PvwrbFvFApRZAioHGfJQ==}
     dependencies:
       '@proload/core': 0.2.2
       autoprefixer: 10.4.4_postcss@8.4.12
@@ -195,8 +195,8 @@ packages:
       - ts-node
     dev: true
 
-  /@astrojs/webapi/0.11.0:
-    resolution: {integrity: sha512-hzltX2kPjAX0zEKymU7ceDLCqkZN0ztgucqAzyvM62TJdznv/HRniJz850qKcqAcoTqDXBH5j/5FCO0GXSQLbw==}
+  /@astrojs/webapi/0.11.1:
+    resolution: {integrity: sha512-pZXhYWz1C4dOAznnO1Qst58O+iZfkzn5QypiH4xHVl5GU9gkbq/mAJ/wZ34127GayF4AnCZO37DMlTOLR4fBAQ==}
     dev: true
 
   /@astropub/codecs/0.4.4:
@@ -941,7 +941,7 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 3.0.5
-      '@types/node': 17.0.23
+      '@types/node': 17.0.24
     dev: true
 
   /@types/hast/2.3.4:
@@ -998,8 +998,8 @@ packages:
     resolution: {integrity: sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==}
     dev: true
 
-  /@types/node/17.0.23:
-    resolution: {integrity: sha512-UxDxWn7dl97rKVeVS61vErvw086aCYhDLyvRQZ5Rk65rZKepaFdm53GeqXaKBuOhED4e9uWq34IC3TdSdJJ2Gw==}
+  /@types/node/17.0.24:
+    resolution: {integrity: sha512-aveCYRQbgTH9Pssp1voEP7HiuWlD2jW2BO56w+bVrJn04i61yh6mRfoKO6hEYQD9vF+W8Chkwc6j1M36uPkx4g==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1356,13 +1356,13 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /astro-imagetools/0.5.1_astro@1.0.0-beta.9:
-    resolution: {integrity: sha512-Cgq5yVdmOLr1sz+iI0+RaBQRiSQHIQ65OnfL335ovaPIbmbU83c8bqOgvCfFG+23w+4eJTWhWuLXg4aeCpBR8Q==}
+  /astro-imagetools/0.5.3_astro@1.0.0-beta.12:
+    resolution: {integrity: sha512-t9RKBB+YTe3xsQU80lx5DvCqhk8TMZ+2Pm2MAtEGCbJtw7DCl5fXor3eMxbX7Cc3zwqI7anY1ZH5yxm1iTHMCg==}
     peerDependencies:
       astro: '>=0.26 || >=1.0.0-beta'
     dependencies:
       '@astropub/codecs': 0.4.4
-      astro: 1.0.0-beta.9
+      astro: 1.0.0-beta.12
       file-type: 17.1.1
       find-cache-dir: 3.3.2
       object-hash: 3.0.0
@@ -1371,8 +1371,8 @@ packages:
       imagetools-core: 3.0.2
     dev: true
 
-  /astro/1.0.0-beta.9:
-    resolution: {integrity: sha512-u5x5V5IyKp63JAjVKRIVmN2Hjel6oHH2Ju8EjqUwsNPrd9Se2EbVXf/+h7ZjsgNZBS4quy5CWyNK8tAlzuMW0Q==}
+  /astro/1.0.0-beta.12:
+    resolution: {integrity: sha512-uPhajXwa3mPltoiTETUb1dvfPCkKtQluhprdOC5ZkByVa82SuZasMDgcCCSr/bvErMg3X1Yhkuihzl37IsBWDg==}
     engines: {node: ^14.15.0 || >=16.0.0, npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -1380,7 +1380,7 @@ packages:
       '@astrojs/language-server': 0.13.4
       '@astrojs/markdown-remark': 0.9.0
       '@astrojs/prism': 0.4.1
-      '@astrojs/webapi': 0.11.0
+      '@astrojs/webapi': 0.11.1
       '@babel/core': 7.17.9
       '@babel/generator': 7.17.9
       '@babel/parser': 7.17.9

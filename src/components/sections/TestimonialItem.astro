@@ -3,22 +3,39 @@ export interface Props {
   item: SectionItem;
 }
 
+import Image from 'astro-imagetools';
+// import Image from '@/components/images/Image.astro';
 import getImagePath from '@/helpers/getImagePath';
-import Image from '@/components/images/Image.astro';
+import getImageFormats from '@/helpers/getImageFormats';
 
 const {
   item: { title, subtitle, content, image },
 } = Astro.props as Props;
 
-const src = getImagePath(image.src);
-const alt = image?.alt || title || content;
+//     <Image src={getImagePath(image.src)} alt={image?.alt || title || content} classes="mb-3" imgClasses="w-56 h-56 mx-auto border-round" caption={image.caption} />
+
 ---
 
-<li class="text-center mb-12">
-  {image?.src && <Image src={src} alt={alt} classes="mb-3" imgClasses="w-56 h-56 mx-auto border-round" caption={image.caption} />}
+<li class="testimonial-item">
+  {image?.src && (
+    <Image src={getImagePath(image.src)} alt={image?.alt || title || content} caption={image.caption} format={getImageFormats() as unknown as []}/>
+  )}
   <p>{content}</p>
   <div class="mt-4 text-sm before:content-['-']">
     {title}{subtitle && <cite>{`, ${subtitle}`}</cite>}
   </div>
 </li>
 
+<style is:global>
+  .testimonial-item {
+    @apply text-center;
+
+    .astro-imagetools-picture {
+      @apply mb-3;
+
+      img {
+        @apply w-56 h-56 mx-auto border-round;
+      }
+    }
+  }
+</style>

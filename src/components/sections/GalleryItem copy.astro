@@ -1,0 +1,72 @@
+---
+export interface Props {
+  item: SectionItem;
+}
+
+import getImagePath from '@/helpers/getImagePath';
+import escapeHTML from '@/lib/escapeHTML';
+import getImageFormats from '@/helpers/getImageFormats';
+import { getMetadata, getSrcset } from '@/helpers/image-utils';
+
+const { item: { title, subtitle, image } } = Astro.props as Props;
+
+const src = getImagePath(image?.src || '');
+const quality = 90;
+
+const sizes = '';
+const imgClasses = 'block w-full h-full object-cover';
+
+const opts = {
+  widths: [null],
+  formats: getImageFormats(),
+  sharpWebpOptions: {
+    quality,
+  },
+  sharpAvifOptions: {
+    quality,
+  },
+};
+
+const { metadata, lowsrc, highsrc } = getMetadata(src, opts);
+---
+<a role="button" tabIndex={-1} class="gallery-box" href={highsrc.url}
+  data-pswp-width={highsrc.width}
+  data-pswp-height={highsrc.height}
+  target="_blank"
+>
+  <picture>
+    {Object.values(metadata).map((imageFormat) => (
+      <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />
+    ))}
+    <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(image?.alt)} loading="lazy" decoding="async" class={imgClasses}/>
+  </picture>
+
+  <div class="gallery-box-caption">
+    <div class="project-category">{subtitle}</div>
+    <div class="project-name">{title}</div>
+  </div>
+</a>
+
+<style>
+.gallery-box {
+  @apply block relative bg-transparent hover:text-[#d6370c];
+}
+
+.gallery-box-caption {
+  @apply flex flex-col items-center justify-center
+  w-full h-full
+  absolute bottom-0
+  text-center
+  text-white bg-[rgba(244,98,58,.9)]
+  opacity-0 transition-opacity
+  hover:opacity-100;
+}
+
+.project-category {
+  @apply text-sm font-semibold uppercase text-gray-50;
+}
+
+.project-name {
+  @apply text-lg;
+}
+</style>

@@ -3,19 +3,18 @@ export interface Props {
   section: Section;
 }
 
-import getImagePath from '@/helpers/getImagePath';
+import Image from 'astro-imagetools';
+// import Image from '@/components/images/Image.astro';
 
+import getImagePath from '@/helpers/getImagePath';
+import getImageFormats from '@/helpers/getImageFormats';
 import PageSection from '../PageSection.astro';
-import Image from '@/components/images/Image.astro';
 
 const {
   section: { id, title, subtitle, image, Content },
 } = Astro.props as Props;
 
----
-<PageSection id={id} title={title} subtitle={subtitle} classes="bg-light dark:bg-gray-900">
-  <div class="grid gap-12 lg:grid-cols-3">
-    {image?.src && (
+/*
       <Image
         src={getImagePath(image.src)}
         alt={image.alt}
@@ -23,11 +22,30 @@ const {
         imgClasses="w-60 h-60 border-round"
         caption={image.caption}
       />
+*/
+---
+<PageSection id={id} title={title} subtitle={subtitle} classes="bg-light dark:bg-gray-900">
+  <div class="about grid gap-12 lg:grid-cols-3">
+    {image?.src && (
+      <Image
+        src={getImagePath(image.src)}
+        alt={image.alt}
+        loading="lazy"
+        format={getImageFormats() as unknown as []}
+      />
     )}
-    {Content && (
-      <div class="text-justify lg:col-span-2">
-        <Content />
-      </div>
-    )}
+
+    <div class="text-justify lg:col-span-2">
+      <Content />
+    </div>
   </div>
 </PageSection>
+
+<style is:global>
+  .about .astro-imagetools-picture {
+    @apply mx-auto mb-3;
+    img {
+      @apply w-60 h-60 border-round;
+    }
+  }
+</style>

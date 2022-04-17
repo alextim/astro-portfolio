@@ -7,19 +7,18 @@ import '@/vendor/photoswipe/photoswipe.css';
 import PageSection from '../PageSection.astro';
 import GalleryItem from './GalleryItem.astro';
 
-const GALLERY_ID = 'gallery--simple';
-
 const {
   section: { id, title, subtitle, Content, items },
 } = Astro.props as Props;
 ---
-<PageSection id={id} title={title} subtitle={subtitle} Content={Content} classes="text-center">
-  <div id={GALLERY_ID} class="pswp-gallery grid gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+<PageSection id={id} title={title} subtitle={subtitle} classes="text-center">
+  <Content />
+  <div id="gallery--simple" class="pswp-gallery grid gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
     {items?.filter(({image}) => image?.src).map((item) => <GalleryItem item={item} />)}
   </div>
 </PageSection>
 
-<script define:vars={{ GALLERY_ID }}>
+<script>
   import PhotoSwipeLightbox from '@/vendor/photoswipe/photoswipe-lightbox.esm.js';
   // import DOMPurify from 'dompurify';
   /**
@@ -37,7 +36,7 @@ const {
   */
 
   const lightbox = new PhotoSwipeLightbox({
-    gallery: `#${GALLERY_ID}`,
+    gallery: '#gallery--simple',
     children: 'a',
     pswpModule: () => import('@/vendor/photoswipe/photoswipe.esm.js'),
   });

@@ -7,6 +7,7 @@ export interface Props {
 import getWebPageSchema from './helpers/getWebPageSchema';
 import getWebSiteSchema from './helpers/getWebSiteSchema';
 import getOrganizationSchema from './helpers/getOrganizationSchema';
+import JsonLD from './JsonLD.astro';
 
 const { props } = Astro;
 const { pathname } = props as BaseSEO;
@@ -20,6 +21,6 @@ const isRoot = pathname === '/';
 const schemaOrg = isRoot ? getOrganizationSchema(props) : null;
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schemaWeSite)}></script>
-<script type="application/ld+json" set:html={JSON.stringify(schemaWebPage)}></script>
-{isRoot && <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />}
+<JsonLD value={schemaWeSite} />
+<JsonLD value={schemaWebPage} />
+{schemaOrg && <JsonLD value={schemaOrg} />}

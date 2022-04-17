@@ -6,15 +6,15 @@ import astroImagePlugin from 'astro-imagetools/plugin';
 export default defineConfig({
   logLevel: 'info',
 
-  root: '.',
+  // root: '.',
 
-  srcDir: './src',
-  publicDir: './public',
-  outDir: './dist',
+  // srcDir: './src',
+  // publicDir: './public',
+  // outDir: './dist',
 
   site: 'https://climbing-in-turkey-astro.netlify.app',
   base: '/',
-  trailingSlash: 'always',
+  // trailingSlash: 'always',
 
   // build: {},
   // devOptions: {
@@ -25,8 +25,8 @@ export default defineConfig({
   integrations: [
     tailwind({
       config: {
-        path: './tailwind.config.cjs',
-        applyAstroPreset: false,
+        // path: './tailwind.config.cjs',
+        // applyAstroPreset: false,
         applyBaseStyles: false,
       },
     }),

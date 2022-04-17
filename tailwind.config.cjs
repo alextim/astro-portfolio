@@ -71,6 +71,7 @@ module.exports = {
       spacing: {
         header: '3.5rem',
         'header-xl': '4.5rem',
+        18: '4.5rem',
       },
       content: {
         empty: '""',

@@ -15,17 +15,19 @@ const {
 
 const contacts = await fetchContacts();
 const {
-  phones,
-  voice: { whatsapp, telegram },
-  emails,
+  phones: [phone] = [],
+  voice: { whatsapp, telegram } = {},
+  emails: [email],
 } = contacts;
+
 ---
 
-<PageSection id={id} title={title} subtitle={subtitle} Content={Content}>
-  <ul class="grid gap-6 text-sm md:grid-cols-2 lg:grid-cols-4">
-    {phones && <ContactItem icon="phone" to={utils.phoneUrl(phones[0])} title="Phone" text={utils.formatPhone(phones[0])} />}
-    <ContactItem icon="whatsapp" to={utils.whatsappUrl(whatsapp)} title="WhatsApp" text={utils.formatPhone(whatsapp)} />
-    <ContactItem icon="telegram" to={utils.telegramUrl(telegram)} title="Telegram" text={telegram} />
-    <ContactItem icon="envelope" to={`mailto:${emails[0]}`} title="E-mail" text={emails[0]} />
+<PageSection id={id} title={title} subtitle={subtitle}>
+  <Content />
+  <ul class="mt-18 grid gap-6 text-sm md:grid-cols-2 lg:grid-cols-4">
+    {phone && <ContactItem icon="phone" to={utils.phoneUrl(phone)} title="Phone" text={utils.formatPhone(phone)} />}
+    {whatsapp && <ContactItem icon="whatsapp" to={utils.whatsappUrl(whatsapp)} title="WhatsApp" text={utils.formatPhone(whatsapp)} />}
+    {telegram && <ContactItem icon="telegram" to={utils.telegramUrl(telegram)} title="Telegram" text={telegram} />}
+    {email && <ContactItem icon="envelope" to={`mailto:${email}`} title="E-mail" text={email} />}
   </ul>
 </PageSection>

@@ -3,43 +3,47 @@ export interface Props {
   item: SectionItem;
 }
 
+import { renderPicture  } from 'astro-imagetools/api';
+import type { PictureHTMLData } from 'astro-imagetools';
 import getImagePath from '@/helpers/getImagePath';
 import escapeHTML from '@/lib/escapeHTML';
 import getImageFormats from '@/helpers/getImageFormats';
-import { getMetadata, getSrcset } from '@/helpers/image-utils';
 
 const { item: { title, subtitle, image } } = Astro.props as Props;
 
 const src = getImagePath(image?.src || '');
-const quality = 90;
 
-const sizes = '';
-const imgClasses = 'block w-full h-full object-cover';
+const { link, style, picture }: PictureHTMLData = await renderPicture({
+  src,
+  alt: escapeHTML(image?.alt),
+  layout: 'fullWidth',
+  format: getImageFormats() as unknown as [],
+});
 
-const opts = {
-  widths: [null],
-  formats: getImageFormats(),
-  sharpWebpOptions: {
-    quality,
-  },
-  sharpAvifOptions: {
-    quality,
-  },
+
+let n = picture.indexOf('<img');
+let img = picture.substring(n);
+n = img.indexOf('>');
+img = img.substring(0, n);
+
+const getVal = (tag: string, src: string) => {
+  let n = src.indexOf(`${tag}="`);
+  let s = src.substring(n + tag.length + 2);
+  n = s.indexOf('"');
+  const result = s.substring(0, n);
+  return result;
 };
 
-const { metadata, lowsrc, highsrc } = getMetadata(src, opts);
+const imgWidth = getVal('width', img);
+const imgHeight = getVal('height', img);
+const imgSrc = getVal('src', img);
 ---
-<a role="button" tabIndex={-1} class="gallery-box" href={highsrc.url}
-  data-pswp-width={highsrc.width}
-  data-pswp-height={highsrc.height}
+<a role="button" tabindex={-1} class="gallery-box" href={imgSrc}
+  data-pswp-width={imgWidth}
+  data-pswp-height={imgHeight}
   target="_blank"
 >
-  <picture>
-    {Object.values(metadata).map((imageFormat) => (
-      <source type={imageFormat[0].sourceType} srcset={getSrcset(imageFormat)} sizes={sizes} />
-    ))}
-    <img src={lowsrc.url} width={highsrc.width} height={highsrc.height} alt={escapeHTML(image?.alt)} loading="lazy" decoding="async" class={imgClasses}/>
-  </picture>
+  <Fragment set:html={link + style + picture} />
 
   <div class="gallery-box-caption">
     <div class="project-category">{subtitle}</div>
@@ -48,25 +52,29 @@ const { metadata, lowsrc, highsrc } = getMetadata(src, opts);
 </a>
 
 <style>
-.gallery-box {
-  @apply block relative bg-transparent hover:text-[#d6370c];
-}
+  .gallery-box {
+    @apply block relative bg-transparent hover:text-[#d6370c];
+    .astro-imagetools-picture img {
+      @apply block w-full h-full object-cover;
+    }
+  }
 
-.gallery-box-caption {
-  @apply flex flex-col items-center justify-center
-  w-full h-full
-  absolute bottom-0
-  text-center
-  text-white bg-[rgba(244,98,58,.9)]
-  opacity-0 transition-opacity
-  hover:opacity-100;
-}
+  .gallery-box-caption {
+    @apply flex flex-col items-center justify-center
+    w-full h-full
+    absolute bottom-0
+    text-center
+    text-white bg-[rgba(244,98,58,.9)]
+    opacity-0 transition-opacity
+    hover:opacity-100;
+  }
 
-.project-category {
-  @apply text-sm font-semibold uppercase text-gray-50;
-}
+  .project-category {
+    @apply text-sm font-semibold uppercase text-gray-50;
+  }
 
-.project-name {
-  @apply text-lg;
-}
+  .project-name {
+    @apply text-lg;
+  }
+
 </style>

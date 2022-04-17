@@ -11,8 +11,9 @@ const {
 } = Astro.props as Props;
 ---
 
-<PageSection id={id} title={title} subtitle={subtitle} Content={Content} classes="text-center">
-  <div class="grid gap-12 lg:grid-cols-3">
+<PageSection id={id} title={title} subtitle={subtitle} classes="text-center">
+  <Content />
+  <ul class="mt-18 grid gap-12 lg:grid-cols-3">
     {items?.map((item) => <ServiceItem item={item} />)}
-  </div>
+  </ul>
 </PageSection>

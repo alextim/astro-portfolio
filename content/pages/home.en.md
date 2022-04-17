@@ -12,5 +12,5 @@ items:
   - image:
       src: assets/images/top/sarkit-xl-15.jpg
       alt: alt sm
-      media: '(min-width: 480px)'
+      media: '(min-width: 1024px)'
 ---
