@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-// import 'animate.css';
+import 'aos/dist/aos.css';
 
 import i18n from '@/config/i18n';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
@@ -45,6 +45,6 @@ if (!currentLocale) {
 </html>
 
 <script>
-  // import WOW from 'wow.js';
-  // new WOW().init();
+  import AOS from 'aos';
+  AOS.init();
 </script>

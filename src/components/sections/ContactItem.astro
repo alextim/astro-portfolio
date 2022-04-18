@@ -9,7 +9,7 @@ import { Icon } from 'astro-icon';
 const { icon, to, title, text } = Astro.props as Props;
 ---
 
-<li class="block wow zoomIn rollIn" data-wow-delay="5s">
+<li class="block" data-aos="fade-up">
   <a href={to} target="_blank" rel="noindex noopener noreferrer" class="flex flex-col items-center">
     <Icon name={icon} class="h-12 w-12 mb-4 body-text__color" />
     <div>

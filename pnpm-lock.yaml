@@ -10,7 +10,7 @@ specifiers:
   '@types/prettier': ^2.6.0
   '@typescript-eslint/eslint-plugin': ^5.20.0
   '@typescript-eslint/parser': ^5.20.0
-  animate.css: ^4.1.1
+  aos: ^3.0.0-beta.6
   astro: ^1.0.0-beta.12
   astro-icon: ^0.7.1
   astro-imagetools: ^0.5.3
@@ -30,7 +30,6 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.1.8
   tailwindcss: ^3.0.24
   typescript: ^4.6.3
-  wow.js: ^1.2.2
 
 devDependencies:
   '@alextim/utils': 0.1.24
@@ -42,7 +41,7 @@ devDependencies:
   '@types/prettier': 2.6.0
   '@typescript-eslint/eslint-plugin': 5.20.0_b9ac9b5656ce5dffade639fcf5e491bf
   '@typescript-eslint/parser': 5.20.0_eslint@8.13.0+typescript@4.6.3
-  animate.css: 4.1.1
+  aos: 3.0.0-beta.6
   astro: 1.0.0-beta.12
   astro-icon: 0.7.1
   astro-imagetools: 0.5.3_astro@1.0.0-beta.12
@@ -62,7 +61,6 @@ devDependencies:
   prettier-plugin-tailwindcss: 0.1.8_prettier@2.6.2
   tailwindcss: 3.0.24
   typescript: 4.6.3
-  wow.js: 1.2.2
 
 packages:
 
@@ -1187,10 +1185,6 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /animate.css/4.1.1:
-    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
-    dev: true
-
   /ansi-align/3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
     dependencies:
@@ -1242,6 +1236,14 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+    dev: true
+
+  /aos/3.0.0-beta.6:
+    resolution: {integrity: sha512-VLWrpq8bfAWcetynVHMMrqdC+89Qq/Ym6UBJbHB4crIwp3RR8uq1dNGgsFzoDl03S43rlVMK+na3r5+oUCZsYw==}
+    dependencies:
+      classlist-polyfill: 1.2.0
+      lodash.debounce: 4.0.8
+      lodash.throttle: 4.1.1
     dev: true
 
   /aproba/1.2.0:
@@ -1653,6 +1655,10 @@ packages:
 
   /ci-info/3.3.0:
     resolution: {integrity: sha512-riT/3vI5YpVH6/qomlDnJow6TBee2PBKSEpx3O32EGPYbWGIRsIlGRms3Sm74wYE1JMo8RnO04Hb12+v1J5ICw==}
+    dev: true
+
+  /classlist-polyfill/1.2.0:
+    resolution: {integrity: sha1-k1vC39lFiodrJ5YXUUY4vKqWSi4=}
     dev: true
 
   /clean-stack/2.2.0:
@@ -3656,12 +3662,20 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash.debounce/4.0.8:
+    resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
+    dev: true
+
   /lodash.memoize/4.1.2:
     resolution: {integrity: sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=}
     dev: true
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: true
+
+  /lodash.throttle/4.1.1:
+    resolution: {integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=}
     dev: true
 
   /lodash.uniq/4.5.0:
@@ -6442,11 +6456,6 @@ packages:
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /wow.js/1.2.2:
-    resolution: {integrity: sha1-JHUZsKNCMZsaY+Iq6prOwanqV/U=}
-    deprecated: deprecated in favour of aos (Animate On Scroll)
     dev: true
 
   /wrap-ansi/8.0.1:
