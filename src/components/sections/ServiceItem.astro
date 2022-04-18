@@ -3,7 +3,7 @@ export interface Props {
   item: SectionItem;
 }
 
-import Image from 'astro-imagetools';
+import { Picture } from 'astro-imagetools/components';
 import getImagePath from '@/helpers/getImagePath';
 import getImageFormats from '@/helpers/getImageFormats';
 
@@ -12,7 +12,7 @@ const { item: { title, content, image } } = Astro.props as Props;
 
 <li class="service-item">
   {image?.src && (
-    <Image
+    <Picture
       src={getImagePath(image.src)}
       alt={image.alt}
       layout="fullWidth"
@@ -24,11 +24,11 @@ const { item: { title, content, image } } = Astro.props as Props;
   <p>{content}</p>
 </li>
 
-<style is:global>
+<style>
   .service-item {
     @apply text-center;
 
-    .astro-imagetools-picture {
+    :global(.astro-imagetools-picture) {
       @apply mb-4;
     }
   }

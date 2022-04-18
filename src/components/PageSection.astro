@@ -12,7 +12,6 @@ const SECTION_ITEM_CLASS = 'section-item';
 
 const { id, title, subtitle, classes = '' } = Astro.props as Props;
 ---
-
 <section id={id} class={`${SECTION_ITEM_CLASS} scroll-mt-4 py-24 lg:py-36 text-center ${classes}`}>
   <Container>
     {(title || subtitle) && (

@@ -1,4 +1,4 @@
-const escapeHTML = (s: string | undefined): string => {
+const escapeHTML = (s: string | undefined) => {
   if (!s) {
     return '';
   }

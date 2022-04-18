@@ -1,11 +1,6 @@
 const KEY_NAME = 'locale';
-const isServer = () => typeof window === "undefined";
 
 function getSavedLocale() {
-  if (isServer()) {
-    return false;
-  }
-
   const { localStorage } = window;
 
   // test browser support
@@ -23,10 +18,6 @@ function getSavedLocale() {
 }
 
 export function saveLocale(locale: string) {
-  if (isServer()) {
-    return;
-  }
-
   const { localStorage } = window;
 
   // test browser support
@@ -69,9 +60,9 @@ function getLocaleByBrowser() {
   return languages;
 }
 
-export function getLocale(availableLocales: string[]) {
+export function getLocale(availableLocales: string[]): string {
   const methods = [getSavedLocale, getLocaleByBrowser];
-  let locale;
+  let locale = '';
 
   methods.some((method) => {
     const preferredLocales = method();

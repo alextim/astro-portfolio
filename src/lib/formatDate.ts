@@ -1,4 +1,4 @@
-const formatDate = (d: string, locale: string /* , format = '' */): string => {
+const formatDate = (d: string, locale: string /* , format = '' */) => {
   if (!d) {
     return '';
   }

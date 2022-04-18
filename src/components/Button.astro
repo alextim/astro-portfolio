@@ -5,10 +5,10 @@ export interface Props {
   classes?: string;
   tag?: string;
 }
+
 import Link from './LocalizedLink.astro';
 
 const { to = '', target = '', classes = '', tag = 'button' } = Astro.props as Props;
-
 ---
 {tag === 'link' && <Link class={`btn ${classes}`} to={to}><slot /></Link>}
 

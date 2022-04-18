@@ -4,9 +4,11 @@ export const isValidLocale = (locale: string): boolean => {
   if (!locale) {
     return false;
   }
+
   if (locale.length !== 2) {
     return false;
   }
+
   return !!i18n.locales[locale];
 };
 
@@ -22,9 +24,11 @@ export const localize = (s: string | string[], locale: string): string => {
     }
     return ['', locale, ''].join('/');
   }
+
   if (isDefaultLocale(locale)) {
     return ['', ...a, ''].join('/');
   }
+
   return ['', locale, ...a, ''].join('/');
 };
 
@@ -36,9 +40,11 @@ export const localizePath = (pathname: string, locale: string): string => {
   if (isDefaultLocale(locale)) {
     return addSlashes(pathname);
   }
+
   if (pathname === '/') {
     return `/${locale}/`;
   }
+
   return `/${locale}${addSlashes(pathname)}`;
 };
 
@@ -46,14 +52,17 @@ export const getPurePathname = (pathname: string): string => {
   if (pathname === '/') {
     return '/';
   }
+
   const a = pathname.split('/');
   if (!pathname.endsWith('/')) {
     a.push('');
   }
+
   const [, locale] = a;
   if (!locale) {
     throw new Error(`No locale in ${pathname}`);
   }
+
   const isLocalized = !!i18n.locales[locale];
   if (isLocalized) {
     const n = a.length;
@@ -65,7 +74,9 @@ export const getPurePathname = (pathname: string): string => {
       .slice(2)
       .join('/');
   }
+
   a.shift();
   a.pop();
+
   return a.join('/');
 };
