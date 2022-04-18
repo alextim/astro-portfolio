@@ -1,23 +1,32 @@
 const KEY_NAME = 'locale';
+const isServer = () => typeof window === "undefined";
 
 function getSavedLocale() {
+  if (isServer()) {
+    return false;
+  }
+
   const { localStorage } = window;
 
   // test browser support
   if (!localStorage) {
-    return null;
+    return false;
   }
 
   const locale = localStorage.getItem(KEY_NAME);
 
   if (!locale) {
-    return null;
+    return false;
   }
 
   return [locale];
 }
 
 export function saveLocale(locale: string) {
+  if (isServer()) {
+    return;
+  }
+
   const { localStorage } = window;
 
   // test browser support
@@ -29,9 +38,8 @@ export function saveLocale(locale: string) {
 }
 
 function getLocaleByBrowser() {
-  let languages;
+  let languages: string[];
   const { navigator } = window;
-  let primaryLanguage;
 
   if (Array.isArray(navigator.languages)) {
     // Prefer experimental NavigatorLanguage.languages property if available.
@@ -49,7 +57,7 @@ function getLocaleByBrowser() {
 
   if (languages.length === 1) {
     // add primary language if the only available one is a combined language code
-    [primaryLanguage] = languages[0].split('-');
+    const [primaryLanguage] = languages[0].split('-');
     if (primaryLanguage !== languages[0]) {
       languages.push(primaryLanguage);
     }
@@ -61,7 +69,7 @@ function getLocaleByBrowser() {
   return languages;
 }
 
-export function getLocale(availableLocales) {
+export function getLocale(availableLocales: string[]) {
   const methods = [getSavedLocale, getLocaleByBrowser];
   let locale;
 
