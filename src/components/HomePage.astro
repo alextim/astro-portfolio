@@ -42,11 +42,12 @@ if (!home) {
   throw new Error(`Home page for ${locale} is required`);
 }
 
-const { title, headline, metaTitle, metaDescription, noindex, nofollow } = home;
+const { title, headline, metaTitle, metaDescription, keywords, noindex, nofollow } = home;
 
 const seo = {
   title: metaTitle || title,
   description: metaDescription || headline,
+  keywords,
   headline,
   noindex,
   nofollow,
