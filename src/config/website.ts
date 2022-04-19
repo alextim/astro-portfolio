@@ -14,6 +14,7 @@ const config: Record<string, string> = {
   // meta name="theme-color"
   themeColor: '#3498DB',
   backgroundColor: '#2e3246',
+  display: 'standalone',
 } as const;
 
 export default config;

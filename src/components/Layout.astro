@@ -1,13 +1,13 @@
 ---
 import 'aos/dist/aos.css';
 import '../styles/global.css';
-import Favicon from '../assets/logo.png?w=64&format=ico';
 
 import i18n from '@/config/i18n';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import { fetchContacts, fetchSocialLinks, fetchAddress } from '@/api/yamls';
 
 import SEO from './SEO/SEO.astro';
+import Favicons from './Favicons.astro';
 import Header from './header/Header.astro';
 import Footer from './footer/Footer.astro';
 
@@ -32,8 +32,10 @@ if (!currentLocale) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <SEO seo={{ ...seo, contacts, socialLinks, address }} />
-    <link rel="icon" type="image/x-icon" href={Favicon} />
-    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <Favicons />
+
   </head>
   <body>
     <div class="flex flex-col min-h-screen">

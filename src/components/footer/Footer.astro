@@ -1,8 +1,8 @@
 ---
 export interface Props {
   contacts: Contacts;
-  socialLinks: SocialLinks;
-  address: Address;
+  socialLinks?: SocialLinks;
+  address?: Address;
 }
 
 import Container from '../Container.astro';
@@ -24,7 +24,7 @@ const {
       </div>
     )}
     <div class="inline-flex items-center justify-center w-full lg:justify-start">
-      <LegalInfo foundingDate={foundingDate} name={address?.name} />
+      <LegalInfo foundingDate={foundingDate} name={address?.name || ''} />
     </div>
   </Container>
 </footer>
