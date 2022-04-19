@@ -1,6 +1,7 @@
 ---
-import '../styles/global.css';
 import 'aos/dist/aos.css';
+import '../styles/global.css';
+import Favicon from '../assets/logo.png?w=64&format=ico';
 
 import i18n from '@/config/i18n';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
@@ -31,7 +32,8 @@ if (!currentLocale) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <SEO seo={{ ...seo, contacts, socialLinks, address }} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href={Favicon} />
+    <link rel="manifest" href="manifest.webmanifest" />
   </head>
   <body>
     <div class="flex flex-col min-h-screen">

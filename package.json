@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "dev": "astro dev --experimental-static-build",
+    "build": "astro build --experimental-static-build",
     "preview": "astro preview",
     "format": "prettier -w  --plugin-search-dir=. .",
     "lint": "eslint . --ext .ts,.js",
