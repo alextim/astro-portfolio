@@ -14,7 +14,7 @@ specifiers:
   aos: ^3.0.0-beta.6
   astro: ^1.0.0-beta.14
   astro-icon: ^0.7.1
-  astro-imagetools: ^0.5.4
+  astro-imagetools: ^0.5.5
   autoprefixer: ^10.4.4
   cssnano: ^5.1.7
   eslint: ^8.13.0
@@ -29,7 +29,7 @@ specifiers:
   postcss: ^8.4.12
   prettier: ^2.6.2
   prettier-plugin-astro: ^0.0.12
-  prettier-plugin-tailwindcss: ^0.1.9
+  prettier-plugin-tailwindcss: ^0.1.10
   tailwindcss: ^3.0.24
   typescript: ^4.6.3
 
@@ -47,7 +47,7 @@ devDependencies:
   aos: 3.0.0-beta.6
   astro: 1.0.0-beta.14
   astro-icon: 0.7.1
-  astro-imagetools: 0.5.4_astro@1.0.0-beta.14
+  astro-imagetools: 0.5.5_astro@1.0.0-beta.14
   autoprefixer: 10.4.4_postcss@8.4.12
   cssnano: 5.1.7_postcss@8.4.12
   eslint: 8.13.0
@@ -62,7 +62,7 @@ devDependencies:
   postcss: 8.4.12
   prettier: 2.6.2
   prettier-plugin-astro: 0.0.12
-  prettier-plugin-tailwindcss: 0.1.9_prettier@2.6.2
+  prettier-plugin-tailwindcss: 0.1.10_prettier@2.6.2
   tailwindcss: 3.0.24
   typescript: 4.6.3
 
@@ -1338,8 +1338,8 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /astro-imagetools/0.5.4_astro@1.0.0-beta.14:
-    resolution: {integrity: sha512-+zwlZVqRM9IdHR2eKxY/QJVtnu3WZpq+oVRXY0P5vANay3wcKuJHD3wmBJHrgSKNAjpjabx2PUSpK2xYI/i8gA==}
+  /astro-imagetools/0.5.5_astro@1.0.0-beta.14:
+    resolution: {integrity: sha512-YfxVAqZrLQJMUirRuJIJeDHtS3pMe5RCo06S2JhsqZuQNAGdEYLoIJJVplr7KhwTjuDNTW53hArLA0K/TQugeg==}
     peerDependencies:
       astro: '>=0.26 || >=1.0.0-beta'
     dependencies:
@@ -5144,8 +5144,8 @@ packages:
       sass-formatter: 0.7.3
     dev: true
 
-  /prettier-plugin-tailwindcss/0.1.9_prettier@2.6.2:
-    resolution: {integrity: sha512-xqoDNnFfYhz3PxaptKO5lXwVU/MAfT6PTZPxiKKutKTgaLeQBjxts6j7BLbkI0FezDrGDUZQjDZpmnF9dv2hdg==}
+  /prettier-plugin-tailwindcss/0.1.10_prettier@2.6.2:
+    resolution: {integrity: sha512-ooDGNuXUjgCXfShliVYQ6+0iXqUFXn+zdNInPe0WZN9qINt9srbLGFGY5jeVL4MXtY20/4S8JaBcd8l6N6NfCQ==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       prettier: '>=2.2.0'
