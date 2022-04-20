@@ -1,18 +1,13 @@
-const siteUrl = 'https://climbing-in-turkey-astro.netlify.app';
 
-if (!siteUrl) {
-  throw new Error('siteUrl is required');
-}
+import siteUrl from './siteUrl.mjs';
 
-const config: Record<string, string> = {
+const config: Record<string, string | boolean> = {
   siteUrl,
   siteLogo: `${siteUrl}/assets/logo.svg`,
 
-  /**
-   * webmanifest
-   *  */
-  // meta name="theme-color"
+  // webmanifest and head:meta name="theme-color"
   themeColor: '#3498DB',
+  // webmanifest
   backgroundColor: '#2e3246',
   display: 'standalone',
 } as const;

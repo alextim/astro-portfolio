@@ -1,21 +1,22 @@
+// @ts-check
+
+/** @type {import('astro')} */
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 import astroImagePlugin from 'astro-imagetools/plugin';
+
+import siteUrl from './src/config/siteUrl.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  logLevel: 'info',
-
   // root: '.',
-
   // srcDir: './src',
   // publicDir: './public',
   // outDir: './dist',
-
-  site: 'https://climbing-in-turkey-astro.netlify.app',
+  site: siteUrl,
   base: '/',
   // trailingSlash: 'always',
-
   // build: {},
   // devOptions: {
   //  hostname: 'localhost',  // The hostname to run the dev server on.
@@ -23,13 +24,8 @@ export default defineConfig({
   //  trailingSlash: 'always',
   // },
   integrations: [
-    tailwind({
-      config: {
-        // path: './tailwind.config.cjs',
-        // applyAstroPreset: false,
-        applyBaseStyles: false,
-      },
-    }),
+    tailwind({ config: { applyBaseStyles: false } }),
+    sitemap(),
   ],
   vite: {
     /**
@@ -40,5 +36,5 @@ export default defineConfig({
       external: ['svgo'],
     },
     plugins: [astroImagePlugin],
-  },
+  }
 });

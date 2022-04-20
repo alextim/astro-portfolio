@@ -1,8 +1,8 @@
-import config from './website';
-
-const { siteUrl } = config;
+import siteUrl from './siteUrl.mjs';
 
 const seoConfig: Record<string, any> = {
+  disableIndexing: true,
+
   organization: {
     /**
      * Schema org

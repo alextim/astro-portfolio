@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /
+Sitemap: https://climbing-in-turkey-astro.netlify.app/sitemap.xml

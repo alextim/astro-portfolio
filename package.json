@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "astro dev --experimental-static-build",
-    "build": "astro build --experimental-static-build",
+    "build": "astro build",
+    "build:ex": "astro build --experimental-static-build",
     "preview": "astro preview",
     "format": "prettier -w  --plugin-search-dir=. .",
     "lint": "eslint . --ext .ts,.js",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@alextim/utils": "^0.1.24",
+    "@astrojs/sitemap": "^0.1.0",
     "@astrojs/tailwind": "^0.2.0",
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
@@ -25,7 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "aos": "^3.0.0-beta.6",
-    "astro": "^1.0.0-beta.12",
+    "astro": "^1.0.0-beta.14",
     "astro-icon": "^0.7.1",
     "astro-imagetools": "^0.5.4",
     "autoprefixer": "^10.4.4",

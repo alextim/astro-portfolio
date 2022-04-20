@@ -1,11 +1,89 @@
-# Astro with Tailwind
+# Climbing in Turkey
 
+## Images
+
+### Logo
+
+Two logo files are needed.
+
+- _public/logo.svg_
+- _src/assets/logo.png_
+
+:bulb: Use 512x512 resolution for logo.png.
+
+### Images
+
+Place images to _src/assets/images_ folder.
+## Production
+
+### Site Url
+
+**File: _src/config/siteUrl.mjs_**
+
+change
+
+```js
+const siteUrl = 'https://climbing-in-turkey-astro.netlify.app';
 ```
-npm init astro -- --template with-tailwindcss
+
+to
+
+```js
+const siteUrl = 'https://YOURS-SITE-DOMAIN';
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
+:bulb: No trailing slash!
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+**File: _public/robots.txt_**
 
-For complete setup instructions, please see our [Styling Guide](https://docs.astro.build/guides/styling#-tailwind).
+change
+
+```text
+Sitemap: https://climbing-in-turkey-astro.netlify.app/sitemap.xml
+```
+
+to
+
+```text
+Sitemap: https://YOURS-SITE-DOMAIN/sitemap.xml
+```
+
+### Enable Indexing
+
+**File: _netlify.toml_**
+
+```toml
+    X-Robots-Tag = "noindex, nofollow"
+```
+
+```toml
+    X-Robots-Tag = "index, follow"
+```
+
+**File: _src/config/seoConfig.ts_**
+
+change
+
+```js
+disableIndexing: true,
+```
+
+to
+
+```js
+disableIndexing: false,
+```
+  
+**File: _public/robots.txt_**
+
+change
+
+```text
+Disallow: /
+```
+
+to
+
+```text
+Disallow:
+```
