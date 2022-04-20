@@ -1,0 +1,29 @@
+---
+export interface Props {
+  locale: string;
+}
+
+import ThemeSwitch from '../ThemeSwitch.astro';
+import LanguageSwitch from '../LanguageSwitch.astro';
+
+const { locale } = Astro.props as Props;
+---
+
+<nav id="main-nav" class="main-nav">
+  <slot />
+
+  <div class="flex justify-center items-center">
+    <LanguageSwitch locale={locale} classes="nav-item" />
+    <ThemeSwitch classes="nav-item" />
+  </div>
+</nav>
+
+<style is:global>
+  .main-nav {
+    @apply hidden grow basis-full items-center py-4 lg:!flex lg:!flex-row lg:basis-auto lg:py-0;
+  }
+
+  .main-nav.open {
+    @apply !flex flex-col;
+  }
+</style>

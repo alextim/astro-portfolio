@@ -37,15 +37,16 @@ const addTrailingSlash = (s: string) => (s.endsWith('/') ? s : `${s}/`);
 const addSlashes = (s: string) => addStartSlash(addTrailingSlash(s));
 
 export const localizePath = (pathname: string, locale: string): string => {
+  const samePage = pathname.indexOf('#') !== -1;
   if (isDefaultLocale(locale)) {
-    return addSlashes(pathname);
+    return samePage ? addStartSlash(pathname) : addSlashes(pathname);
   }
 
   if (pathname === '/') {
     return `/${locale}/`;
   }
 
-  return `/${locale}${addSlashes(pathname)}`;
+  return `/${locale}${samePage ? addStartSlash(pathname) : addSlashes(pathname)}`;
 };
 
 export const getPurePathname = (pathname: string): string => {

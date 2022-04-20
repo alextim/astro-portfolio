@@ -1,22 +1,31 @@
 ---
 export interface Props {
   locale: string;
+  scrollSpy?: boolean;
 }
 
 import Containter from '../Container.astro';
 
 import Logo from './components/Logo.astro';
 import Hamburger from './components/Hamburger.astro';
+import MainNav from './components/menu/MainNav.astro';
 import Menu from './components/menu/Menu.astro';
+import MenuSimple from './components/menu/MenuSimple.astro';
 
-const { locale } = Astro.props as Props;
+const {
+  locale,
+  scrollSpy = true,
+} = Astro.props as Props;
 ---
 
 <header id="header" role="navigation" class="header">
   <Containter classes="flex flex-wrap items-center justify-between font-sans lg:flex-nowrap">
     <Logo />
     <Hamburger />
-    <Menu locale={locale} />
+    <MainNav locale={locale}>
+      {scrollSpy && <Menu locale={locale} />}
+      {!scrollSpy && <MenuSimple locale={locale} />}
+    </MainNav>
   </Containter>
 </header>
 

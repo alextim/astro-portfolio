@@ -3,6 +3,7 @@ export interface Props {
   locale: string;
 }
 
+import { localizePath } from '@/helpers/i18n-utils';
 import { getSection } from '@/cms/section';
 import NavItem from './NavItem.astro';
 
@@ -12,24 +13,11 @@ const navItems = (await Astro.glob('/content/sections/*.??.md'))
   .map(getSection)
   .filter((section) => section.locale === locale)
   .sort((a, b) => a.sortOrder - b.sortOrder)
-  .map(({ id, title }) => ({ to: `#${id}`, title }));
+  .map(({ id, title }) => ({ to: localizePath(`#${id}`, locale), title }));
 ---
 <ul id="main-menu" class="main-menu" aria-label="Main menu">
   {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
 </ul>
-
-
-<script>
-  import scrollSpy from '@/vendor/gumshoe/gumshoe.js';
-
-  scrollSpy('#main-menu a', {
-    offset() {
-      const rect = header.getBoundingClientRect();
-      return rect.height;
-    },
-    reflow: true,
-  });
-</script>
 
 <style>
   .main-menu {

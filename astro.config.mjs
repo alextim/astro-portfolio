@@ -3,7 +3,8 @@
 /** @type {import('astro')} */
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
+import sitemap from './src/lib/siteMap.mjs';
+// import sitemap from '@astrojs/sitemap';
 import astroImagePlugin from 'astro-imagetools/plugin';
 
 import siteUrl from './src/config/siteUrl.mjs';

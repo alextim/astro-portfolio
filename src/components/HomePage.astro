@@ -35,14 +35,14 @@ const gallery = await findSectionById('gallery');
 const testimonials = await findSectionById('testimonials');
 const contacts = await findSectionById('contacts');
 
-const home = (await Astro.glob('/content/pages/home.??.md'))
+const page = (await Astro.glob('/content/pages/home.??.md'))
   .map(getPage)
   .find((p) => p.locale === locale && p.slug === '/');
-if (!home) {
+if (!page) {
   throw new Error(`Home page for ${locale} is required`);
 }
 
-const { title, headline, metaTitle, metaDescription, keywords, noindex, nofollow } = home;
+const { title, headline, metaTitle, metaDescription, keywords, noindex, nofollow } = page;
 
 const seo = {
   title: metaTitle || title,
@@ -54,7 +54,7 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-  <Hero page={home} />
+  <Hero page={page} />
   <Services section={services} />
   <About section={about} />
   <Gallery section={gallery} />

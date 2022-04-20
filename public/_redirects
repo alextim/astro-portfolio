@@ -1,0 +1,4 @@
+# System: all not found pages in secondary languages (English & Turkish)
+# Keep it!!!!
+/en/*      /en/404      404
+/tr/*      /tr/404      404
