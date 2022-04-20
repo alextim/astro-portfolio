@@ -62,7 +62,7 @@ interface Section extends SectionFrontmatter {
 }
 
 interface BaseObject extends FrontmatterBase {
-  Content: any;
+  html: string;
 
   slug: string;
   to: string;

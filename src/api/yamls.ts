@@ -21,3 +21,11 @@ export async function fetchAddress(locale: string): Promise<Address | undefined>
   }
   return allAddress && allAddress[locale];
 }
+
+let allTranslations: any;
+export async function fetchTranslations(locale: string): Promise<Translations | undefined>  {
+  if (!allTranslations) {
+    allTranslations = await getYamlsByLocale('content/data/locales/translations/translations.??.yaml');
+  }
+  return allTranslations && allTranslations[locale];
+}

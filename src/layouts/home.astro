@@ -1,9 +1,6 @@
 ---
-export interface Props {
-  locale: string;
-}
-
 import { getPage } from '@/cms/page';
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 import Layout from '@/components/Layout.astro';
 
@@ -15,7 +12,8 @@ import Testimonials from '@/components/sections/Testimonials.astro';
 import Contacts from '@/components/sections/Contacts.astro';
 import { getSection } from '@/cms/section';
 
-const { locale } = Astro.props as Props;
+const { pathname } = Astro.canonicalURL;
+const locale = getLocaleFromUrlPathname(pathname);
 
 const sections = (await Astro.glob('/content/sections/*.??.md'))
   .map(getSection)
@@ -35,13 +33,8 @@ const gallery = await findSectionById('gallery');
 const testimonials = await findSectionById('testimonials');
 const contacts = await findSectionById('contacts');
 
-const page = (await Astro.glob('/content/pages/home.??.md'))
-  .map(getPage)
-  .find((p) => p.locale === locale && p.slug === '/');
-if (!page) {
-  throw new Error(`Home page for ${locale} is required`);
-}
-
+const { content } = Astro.props;
+const page = getPage(content, pathname);
 const { title, headline, metaTitle, metaDescription, keywords, noindex, nofollow } = page;
 
 const seo = {

@@ -1,0 +1,26 @@
+---
+import { getPage } from '@/cms/page';
+import Layout from '@/components/LayoutSimple.astro';
+
+const { pathname } = Astro.canonicalURL;
+const { content } = Astro.props;
+
+const { title, headline, metaTitle, metaDescription, keywords, nofollow, html } = getPage(content, pathname);
+
+const seo = {
+  title: metaTitle || title,
+  description: metaDescription || headline,
+  keywords,
+  headline,
+  noindex: true,
+  nofollow,
+};
+---
+<Layout seo={seo}>
+  <div class="self-center text-center w-full">
+    <div>
+      <h1 class="text-6xl font-mono">{title}</h1>
+      {html && <div set:html={html} />}
+    </div>
+  </div>
+</Layout>

@@ -143,7 +143,7 @@
 - key: footer.inquiry.button_title
   value: ОТПРАВИТЬ ЗАПРОС
 - key: footer.privacyPolicy
-  value: Конфиденциальность
+  value: Политика конфиденциальности
 - key: contacts.title
   value: Контакты
 - key: contacts.wait_you_on_address

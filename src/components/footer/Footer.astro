@@ -5,6 +5,11 @@ export interface Props {
   address?: Address;
 }
 
+import translate from '@/lib/translate';
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
+import { fetchTranslations } from '@/api/yamls';
+
+import LocalizedLink from '../LocalizedLink.astro';
 import Container from '../Container.astro';
 import LegalInfo from './components/LegalInfo.astro';
 import Social from './components/Social.astro';
@@ -14,6 +19,13 @@ const {
   socialLinks,
   address,
 } = Astro.props as Props;
+
+const locale = getLocaleFromUrlPathname(Astro.canonicalURL.pathname);
+const translations = await fetchTranslations(locale);
+if (!translations) {
+  throw new Error(`translations for locale ${locale} not found`);
+}
+const t = (key: string, params?: Record<string, string>) => translate(key, translations, params);
 ---
 
 <footer class="py-4 text-sm bg-light  dark:bg-black">
@@ -23,8 +35,9 @@ const {
         <Social socialLinks={socialLinks} />
       </div>
     )}
-    <div class="inline-flex items-center justify-center w-full lg:justify-start">
+    <div class="flex flex-col items-center justify-center w-full lg:flex-row lg:justify-between">
       <LegalInfo foundingDate={foundingDate} name={address?.name || ''} />
+      <LocalizedLink to="/privacy" class="body-text__color">{t('footer.privacyPolicy')}</LocalizedLink>
     </div>
   </Container>
 </footer>
