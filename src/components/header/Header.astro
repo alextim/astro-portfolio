@@ -16,9 +16,25 @@ const {
   locale,
   scrollSpy = true,
 } = Astro.props as Props;
+/*
+  .header {
+    @apply fixed top-0 left-0 right-0
+      flex flex-wrap items-center justify-between
+      py-3 px-4
+      text-sm
+      bg-blue-600
+      z-30
+      lg:flex-nowrap lg:justify-start
+      lg:py-4
+      lg:bg-transparent;
+
+    &.shrink {
+      @apply lg:bg-blue-600 lg:py-1;
+    }
+    */
 ---
 
-<header id="header" role="navigation" class="header">
+<header id="header" role="navigation" class:list={['header', { 'no-scrollspy': !scrollSpy }]}>
   <Containter classes="flex flex-wrap items-center justify-between font-sans lg:flex-nowrap">
     <Logo />
     <Hamburger />
@@ -58,19 +74,23 @@ const {
   menuToggle.addEventListener('click', menuToggleHandler, false);
 </script>
 
-<style>
+<style is:global>
   .header {
     @apply fixed top-0 left-0 right-0
-      z-30 flex flex-wrap items-center
-      justify-between bg-blue-600
-      py-3
-      px-4
+      flex flex-wrap items-center justify-between
+      py-3 px-4
       text-sm
+      bg-transparent
+      z-30
       lg:flex-nowrap lg:justify-start
-      lg:bg-transparent lg:py-4;
+      lg:py-4;
 
     &.shrink {
-      @apply lg:bg-blue-600 lg:py-1;
+      @apply lg:bg-blue-500 lg:py-1;
+    }
+    &.no-scrollspy {
+      @apply lg:bg-blue-500;
     }
   }
+
 </style>

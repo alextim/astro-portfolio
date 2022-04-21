@@ -1,6 +1,8 @@
 ---
 import { getPage } from '@/cms/page';
 import Layout from '@/components/LayoutSimple.astro';
+import Container from '@/components/Container.astro';
+import PageHeader from '@/components/PageHeader.astro';
 
 const { pathname } = Astro.canonicalURL;
 const { content } = Astro.props;
@@ -17,8 +19,8 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-  <div class="w-full">
-    <h1 class="text-6xl text-center">{title}</h1>
-    {html && <div set:html={html} />}
-  </div>
+  <Container>
+    <PageHeader title={title} headline={headline} />
+    {html && <div class="markdown-body" set:html={html} />}
+  </Container>
 </Layout>

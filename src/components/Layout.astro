@@ -25,6 +25,7 @@ const currentLocale = i18n.locales[locale];
 if (!currentLocale) {
   throw new Error(`Unknown locale ${locale}`);
 }
+//       <main class="w-full flex-auto mt-header pb-header lg:mt-0 lg:pb-header-xl">
 ---
 <!DOCTYPE html>
 <html lang={currentLocale.htmlLang}>
@@ -40,7 +41,7 @@ if (!currentLocale) {
   <body>
     <div class="flex flex-col min-h-screen">
       <Header locale={locale} />
-      <main class="w-full flex-auto mt-header pb-header lg:mt-0 lg:pb-header-xl">
+      <main class="w-full flex-auto pb-header lg:pb-header-xl">
         <slot />
       </main>
       <Footer contacts={contacts} socialLinks={socialLinks} address={address} />

@@ -1,0 +1,12 @@
+---
+export interface Props {
+  title: string;
+  headline?: string;
+}
+
+const { title, headline } = Astro.props as Props;
+---
+<div class="mb-18 text-center">
+  <h1 class="text-6xl uppercase font-bold heading divider">{title}</h1>
+  {headline && <div class="mt-8 text-lg uppercase">{headline}</div>}
+</div>

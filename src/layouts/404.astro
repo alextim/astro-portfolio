@@ -1,6 +1,7 @@
 ---
 import { getPage } from '@/cms/page';
 import Layout from '@/components/LayoutSimple.astro';
+import Container from '@/components/Container.astro';
 
 const { pathname } = Astro.canonicalURL;
 const { content } = Astro.props;
@@ -17,10 +18,8 @@ const seo = {
 };
 ---
 <Layout seo={seo}>
-  <div class="self-center text-center w-full">
-    <div>
-      <h1 class="text-6xl font-mono">{title}</h1>
-      {html && <div set:html={html} />}
-    </div>
-  </div>
+  <Container classes="self-center text-center">
+    <h1 class="text-8xl font-mono">{title}</h1>
+    {html && <div class="markdown-body" set:html={html} />}
+  </Container>
 </Layout>

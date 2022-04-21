@@ -39,7 +39,7 @@ if (!currentLocale) {
   <body>
     <div class="flex flex-col min-h-screen">
       <Header locale={locale} scrollSpy={false} />
-      <main class="w-full flex-auto mt-header pb-header lg:mt-0 lg:pb-header-xl flex">
+      <main class="flex w-full flex-auto mt-header py-header lg:mt-header-xl lg:py-header-xl">
         <slot />
       </main>
       <Footer contacts={contacts} socialLinks={socialLinks} address={address} />
