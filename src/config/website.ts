@@ -1,4 +1,3 @@
-
 import siteUrl from './siteUrl.mjs';
 
 const config: Record<string, string | boolean> = {

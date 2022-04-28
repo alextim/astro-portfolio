@@ -14,6 +14,7 @@ Two logo files are needed.
 ### Images
 
 Place images to _src/assets/images_ folder.
+
 ## Production
 
 ### Site Url
@@ -60,7 +61,7 @@ Sitemap: https://YOURS-SITE-DOMAIN/sitemap.xml
     X-Robots-Tag = "index, follow"
 ```
 
-**File: _src/config/seoConfig.ts_**
+**File: _src/config/seo.config.mjs_**
 
 change
 
@@ -73,7 +74,7 @@ to
 ```js
 disableIndexing: false,
 ```
-  
+
 **File: _public/robots.txt_**
 
 change

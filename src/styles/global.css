@@ -22,11 +22,18 @@
     @apply text-muted dark:text-gray-50;
   }
   .markdown-body {
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       line-height: 1.2;
       margin: 0 0 1rem;
     }
-    h2:not(:first-child), h3:not(:first-child), h4:not(:first-child) {
+    h2:not(:first-child),
+    h3:not(:first-child),
+    h4:not(:first-child) {
       margin-top: 3rem;
     }
     h2 {
@@ -38,7 +45,11 @@
     h3 {
       font-size: 1.8rem;
     }
-    blockquote, ol, p, table, ul {
+    blockquote,
+    ol,
+    p,
+    table,
+    ul {
       /* color: var(--font-color); */
       font-size: 1.1rem;
       margin: 0 0 2rem;
@@ -47,7 +58,8 @@
       list-style-type: disc;
       padding-inline-start: 40px;
     }
-    ol li, ul li {
+    ol li,
+    ul li {
       margin-bottom: 0.5rem;
     }
   }

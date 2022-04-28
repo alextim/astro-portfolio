@@ -25,6 +25,7 @@ if (!currentLocale) {
   throw new Error(`Unknown locale ${locale}`);
 }
 ---
+
 <!DOCTYPE html>
 <html lang={currentLocale.htmlLang}>
   <head>
@@ -34,7 +35,6 @@ if (!currentLocale) {
     <link rel="manifest" href="/manifest.webmanifest" />
 
     <Favicons />
-
   </head>
   <body>
     <div class="flex flex-col min-h-screen">

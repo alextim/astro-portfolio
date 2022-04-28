@@ -7,7 +7,7 @@ export async function fetchContacts(): Promise<Contacts> {
 }
 
 let allSocialLinks: any;
-export async function fetchSocialLinks(locale: string): Promise<SocialLinks | undefined>  {
+export async function fetchSocialLinks(locale: string): Promise<SocialLinks | undefined> {
   if (!allSocialLinks) {
     allSocialLinks = await getYamlsByLocale('content/data/locales/social-links/social-links.??.yaml');
   }
@@ -23,7 +23,7 @@ export async function fetchAddress(locale: string): Promise<Address | undefined>
 }
 
 let allTranslations: any;
-export async function fetchTranslations(locale: string): Promise<Translations | undefined>  {
+export async function fetchTranslations(locale: string): Promise<Translations | undefined> {
   if (!allTranslations) {
     allTranslations = await getYamlsByLocale('content/data/locales/translations/translations.??.yaml');
   }

@@ -7,4 +7,5 @@ const pathname = new URL(Astro.request.url).pathname;
 const locale = getLocaleFromUrlPathname(pathname);
 const path = localizePath(to, locale);
 ---
+
 <a href={path} {...rest}><slot /></a>

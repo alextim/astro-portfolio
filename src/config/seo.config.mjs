@@ -1,6 +1,6 @@
 import siteUrl from './siteUrl.mjs';
 
-const seoConfig: Record<string, any> = {
+const seoConfig = {
   disableIndexing: true,
 
   organization: {
@@ -31,7 +31,7 @@ const seoConfig: Record<string, any> = {
       src: `${siteUrl}/assets/images/og/banner-`,
       width: 1200,
       height: 630,
-    } as SeoImage,
+    },
 
     /**
      * In order to use Facebook Insights you must add the app ID to your page.
@@ -58,7 +58,7 @@ const seoConfig: Record<string, any> = {
       src: `${siteUrl}/assets/images/twitter/2x1/banner-`,
       width: 600,
       height: 300,
-    } as SeoImage,
+    },
     /**
      * Twitter URL
      *
@@ -74,6 +74,6 @@ const seoConfig: Record<string, any> = {
   },
 
   googleAnalyticsID: 'UA-24264154-1',
-} as const;
+};
 
 export default seoConfig;

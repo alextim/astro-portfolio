@@ -39,6 +39,7 @@ const imgWidth = getVal('width', img);
 const imgHeight = getVal('height', img);
 const imgSrc = getVal('src', img);
 ---
+
 <a role="button" tabindex={-1} class="gallery-box" href={imgSrc} data-pswp-width={imgWidth} data-pswp-height={imgHeight} target="_blank">
   <Fragment set:html={link + style + picture} />
 
@@ -59,12 +60,12 @@ const imgSrc = getVal('src', img);
 
   .gallery-box-caption {
     @apply absolute bottom-0
-    flex flex-col items-center justify-center
-    h-full w-full
+    flex h-full w-full flex-col
+    items-center justify-center
 
     bg-[rgba(244,98,58,.9)]
     text-center text-white
-    opacity-0 transition-opacity
+    opacity-0 transition-opacity;
   }
 
   .project-category {

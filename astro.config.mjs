@@ -3,11 +3,14 @@
 /** @type {import('astro')} */
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import sitemap from './src/lib/siteMap.mjs';
+// import sitemap from './src/lib/siteMap.mjs';
+import robotsTxt from 'astro-robots-txt';
 // import sitemap from '@astrojs/sitemap';
 import astroImagePlugin from 'astro-imagetools/plugin';
 
 import siteUrl from './src/config/siteUrl.mjs';
+import seoConfig from './src/config/seo.config.mjs';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,7 +29,15 @@ export default defineConfig({
   // },
   integrations: [
     tailwind({ config: { applyBaseStyles: false } }),
-    sitemap(),
+    // sitemap(),
+    robotsTxt({
+      policy: [
+        {
+          userAgent: '*',
+          disallow: seoConfig.disableIndexing ? '/' : '',
+        },
+      ],
+    }),
   ],
   vite: {
     /**
@@ -37,5 +48,5 @@ export default defineConfig({
       external: ['svgo'],
     },
     plugins: [astroImagePlugin],
-  }
+  },
 });

@@ -1,9 +1,12 @@
-import seoConfig from '@/config/website';
+import seoConfig from '@/config/seo.config.mjs';
 import { getPurePathname } from '@/helpers/i18n-utils';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 const { disableIndexing } = seoConfig;
-export function getPage({ astro: {html},  title, headline, metaTitle, metaDescription, noindex, nofollow, ...rest }: Record<string, any>, pathname: string): Page {
+export function getPage(
+  { astro: { html }, title, headline, metaTitle, metaDescription, noindex, nofollow, ...rest }: Record<string, any>,
+  pathname: string,
+): Page {
   const locale = getLocaleFromUrlPathname(pathname);
   const slug = getPurePathname(pathname);
   return {
