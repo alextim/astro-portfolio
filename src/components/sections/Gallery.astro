@@ -3,7 +3,7 @@ export interface Props {
   section: Section;
 }
 
-import '@/vendor/photoswipe/photoswipe.css';
+import 'photoswipe/style.css';
 import PageSection from '../PageSection.astro';
 import GalleryItem from './GalleryItem.astro';
 
@@ -19,7 +19,8 @@ const {
 </PageSection>
 
 <script>
-  import PhotoSwipeLightbox from '@/vendor/photoswipe/photoswipe-lightbox.esm.js';
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
   // import DOMPurify from 'dompurify';
   /**
    * https://stackoverflow.com/questions/62081028/this-document-requires-trustedscripturl-assignment
@@ -38,7 +39,7 @@ const {
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery--simple',
     children: 'a',
-    pswpModule: () => import('@/vendor/photoswipe/photoswipe.esm.js'),
+    pswpModule: () => import('photoswipe'),
   });
   lightbox.init();
 </script>

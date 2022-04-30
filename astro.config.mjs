@@ -27,6 +27,9 @@ export default defineConfig({
   //  port: 3000,             // The port to run the dev server on.
   //  trailingSlash: 'always',
   // },
+  experimental: {
+    integrations: true,
+  },
   integrations: [
     tailwind({ config: { applyBaseStyles: false } }),
     // sitemap(),
