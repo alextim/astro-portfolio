@@ -26,7 +26,7 @@
     "aos": "^3.0.0-beta.6",
     "astro": "^1.0.0-beta.20",
     "astro-icon": "^0.7.1",
-    "astro-imagetools": "^0.5.8",
+    "astro-imagetools": "^0.6.3",
     "astro-robots-txt": "^0.1.10",
     "autoprefixer": "^10.4.5",
     "cssnano": "^5.1.7",
