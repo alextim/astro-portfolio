@@ -28,7 +28,7 @@
     "astro-icon": "^0.7.1",
     "astro-imagetools": "^0.5.8",
     "astro-robots-txt": "^0.1.10",
-    "autoprefixer": "^10.4.5",
+    "autoprefixer": "^10.4.7",
     "cssnano": "^5.1.7",
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
