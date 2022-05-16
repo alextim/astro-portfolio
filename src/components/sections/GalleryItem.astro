@@ -13,7 +13,7 @@ const {
   item: { title, subtitle, image },
 } = Astro.props as Props;
 
-const src = getImagePath(image?.src || '');
+const src = getImagePath(image?.src!);
 
 const { link, style, picture }: PictureHTMLData = await renderPicture({
   src,
@@ -21,7 +21,7 @@ const { link, style, picture }: PictureHTMLData = await renderPicture({
   layout: 'fill',
   format: getImageFormats() as unknown as [],
 });
-
+// console.log(picture);
 let n = picture.indexOf('<img');
 let img = picture.substring(n);
 n = img.indexOf('>');
@@ -42,7 +42,6 @@ const imgSrc = getVal('src', img);
 
 <a role="button" tabindex={-1} class="gallery-box" href={imgSrc} data-pswp-width={imgWidth} data-pswp-height={imgHeight} target="_blank">
   <Fragment set:html={link + style + picture} />
-
   <div class="gallery-box-caption">
     <div class="project-category">{subtitle}</div>
     <div class="project-name">{title}</div>
@@ -60,12 +59,13 @@ const imgSrc = getVal('src', img);
 
   .gallery-box-caption {
     @apply absolute bottom-0
-    flex h-full w-full flex-col
-    items-center justify-center
+    z-10 flex h-full w-full
+    flex-col items-center
 
-    bg-[rgba(244,98,58,.9)]
-    text-center text-white
-    opacity-0 transition-opacity;
+    justify-center
+    bg-[rgba(244,98,58,.9)] text-center
+    text-white opacity-0
+    transition-opacity;
   }
 
   .project-category {

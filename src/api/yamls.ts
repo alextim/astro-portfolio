@@ -3,7 +3,8 @@ import getYamlsByLocale from './utils/getYamlsByLocale';
 
 let contacts: any;
 export async function fetchContacts(): Promise<Contacts> {
-  return contacts || (contacts = await getYaml('content/data/contacts.yaml'));
+  const result = contacts || (contacts = await getYaml('content/data/contacts.yaml'));
+  return result;
 }
 
 let allSocialLinks: any;

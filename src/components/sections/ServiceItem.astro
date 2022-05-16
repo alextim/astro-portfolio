@@ -1,35 +1,28 @@
 ---
 export interface Props {
   item: SectionItem;
+  index: number;
 }
 
-import { Picture } from 'astro-imagetools/components';
-import getImagePath from '@/helpers/getImagePath';
-import getImageFormats from '@/helpers/getImageFormats';
+import Picture from '@/components/Picture.astro';
 
-const { item: { title, content, image } } = Astro.props as Props;
+const { item: { title, content, image }, index } = Astro.props as Props;
+let aos: string;
+if (index % 3 === 0) {
+  aos = 'fade-up';
+} else if (index -1 % 3 === 0) {
+  aos = 'fade-up';
+} else {
+    aos = 'fade-up';
+}
 ---
 
-<li class="service-item">
+<li class="text-center">
   {image?.src && (
-    <Picture
-      src={getImagePath(image.src)}
-      alt={image.alt}
-      layout="fullWidth"
-      loading="lazy"
-      format={getImageFormats() as unknown as []}
-    />
-   )}
-  <h3 class="mb-4">{title}</h3>
-  <p>{content}</p>
+    <div class="mb-4" data-aos={aos}>
+      <Picture src={image.src} alt={image.alt}  />
+    </div>
+  )}
+  <h3 class="mb-4" data-aos={aos}>{title}</h3>
+  <p data-aos={aos}>{content}</p>
 </li>
-
-<style>
-  .service-item {
-    @apply text-center;
-
-    :global(.astro-imagetools-picture) {
-      @apply mb-4;
-    }
-  }
-</style>

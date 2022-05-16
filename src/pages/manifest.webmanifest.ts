@@ -1,6 +1,7 @@
 import config from '@/config/website';
 import i18n from '@/config/i18n';
-
+/* eslint-disable import/no-duplicates */
+/* eslint-disable @typescript-eslint/naming-convention */
 import Icon48 from '../assets/logo.png?w=48&format=png';
 import Icon72 from '../assets/logo.png?w=72&format=png';
 import Icon96 from '../assets/logo.png?w=96&format=png';

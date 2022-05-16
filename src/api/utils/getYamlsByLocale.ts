@@ -8,11 +8,11 @@ const getYamlsByLocale = async (pattern: string) => {
     return undefined;
   }
   const result: Record<string, any> = {};
-  for (const p of entries) {
+  entries.forEach(async (p) => {
     const { name } = path.parse(p);
     const [, locale] = name.split('.');
     result[locale] = await getYaml(p);
-  }
+  });
   return result;
 };
 

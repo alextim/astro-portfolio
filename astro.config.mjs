@@ -6,11 +6,12 @@ import tailwind from '@astrojs/tailwind';
 // import sitemap from './src/lib/siteMap.mjs';
 import robotsTxt from 'astro-robots-txt';
 // import sitemap from '@astrojs/sitemap';
+// import { astroImageTools } from 'astro-imagetools';
+// @ts-ignore
 import astroImagePlugin from 'astro-imagetools/plugin';
 
 import siteUrl from './src/config/siteUrl.mjs';
 import seoConfig from './src/config/seo.config.mjs';
-
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,6 +32,7 @@ export default defineConfig({
     integrations: true,
   },
   integrations: [
+    // astroImageTools,
     tailwind({ config: { applyBaseStyles: false } }),
     // sitemap(),
     robotsTxt({
@@ -51,5 +53,16 @@ export default defineConfig({
       external: ['svgo'],
     },
     plugins: [astroImagePlugin],
+    /*
+    plugins: [
+      {
+        name: "import.meta.url-transformer",
+        transform: (code, id) => {
+          if (id.endsWith(".astro"))
+            return code.replace(/import.meta.url/g, `"${id}"`);
+        },
+      },
+    ],
+    */
   },
 });

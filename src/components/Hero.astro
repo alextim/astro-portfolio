@@ -3,8 +3,7 @@ export interface Props {
   page: Page;
 }
 
-import { Picture } from 'astro-imagetools/components';
-import getImagePath from '@/helpers/getImagePath';
+import Picture from '@/components/Picture.astro';
 import Button from './Button.astro';
 
 const { page } = Astro.props as Props;
@@ -25,9 +24,7 @@ if (!buttonCaption) {
 }
 
 const sources = items.filter(({ image }) => image?.src)
-  .map(({ image: { alt, src, media } }) => (
-    { src: getImagePath(src), media, alt }
-  ));
+  .map(({ image: { alt, src, media } }) => ({ src, media, alt }));
 
 if (sources.length !== 2) {
   throw new Error('expected 2 items in frontmatter for hero image');
@@ -42,7 +39,6 @@ if (!sources[1].media) {
     src={sources[0].src}
     alt={sources[0].alt}
     placeholder="none"
-    layout="fullWidth"
     preload="webp"
     loading="eager"
     format={['webp', 'jpeg']}

@@ -8,9 +8,9 @@ function generateSitemap(pages) {
   const urls = [...pages].filter((url) => !STATUS_CODE_PAGE_REGEXP.test(url));
   urls.sort((a, b) => a.localeCompare(b, 'en', { numeric: true })); // sort alphabetically so sitemap is same each time
   let sitemap = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-  for (const url of urls) {
-    sitemap += '<url><loc>${url}</loc></url>';
-  }
+  urls.forEach((url) => {
+    sitemap += `<url><loc>${url}</loc></url>`;
+  });
   sitemap += '</urlset>\n';
   return sitemap;
 }
@@ -26,7 +26,9 @@ export default function createPlugin({ filter, canonicalURL } = {}) {
       'astro:build:done': async ({ pages, dir }) => {
         const finalSiteUrl = canonicalURL || config.site;
         if (!finalSiteUrl) {
-          console.warn('The Sitemap integration requires either the `site` astro.config option or `canonicalURL` integration option. Skipping.');
+          console.warn(
+            'The Sitemap integration requires either the `site` astro.config option or `canonicalURL` integration option. Skipping.',
+          );
           return;
         }
 

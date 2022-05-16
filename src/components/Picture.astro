@@ -1,0 +1,29 @@
+---
+import type { PictureConfigOptions } from 'astro-imagetools';
+export interface Props extends PictureConfigOptions {}
+
+import { Picture } from 'astro-imagetools/components';
+import getImagePath from '@/helpers/getImagePath';
+import escapeHTML from '@/lib/escapeHTML';
+import getImageFormats from '@/helpers/getImageFormats';
+
+const {
+  src,
+  alt,
+  layout = 'fullWidth',
+  loading = 'lazy',
+  format = getImageFormats() as unknown as [],
+  artDirectives,
+  ...rest
+} = Astro.props as PictureConfigOptions;
+---
+
+<Picture
+  src={getImagePath(src)}
+  alt={escapeHTML(alt)}
+  layout={layout}
+  loading={loading}
+  format={format}
+  artDirectives={artDirectives ? artDirectives.map(({ src, media }) => ({ src: getImagePath(src), media })) : undefined}
+  {...rest}
+/>

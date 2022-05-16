@@ -10,6 +10,7 @@ import GalleryItem from './GalleryItem.astro';
 const {
   section: { id, title, subtitle, Content, items },
 } = Astro.props as Props;
+//     {items?.filter(({image}) => image?.src).map((item) => <GalleryItem item={item} />)}
 ---
 <PageSection id={id} title={title} subtitle={subtitle} classes="text-center">
   <Content />
@@ -19,7 +20,8 @@ const {
 </PageSection>
 
 <script>
-  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import Lightbox from 'photoswipe/lightbox';
+  import PhotoSwipe from 'photoswipe';
 
   // import DOMPurify from 'dompurify';
   /**
@@ -36,10 +38,11 @@ const {
   }
   */
 
-  const lightbox = new PhotoSwipeLightbox({
+  const lightbox = new Lightbox({
     gallery: '#gallery--simple',
     children: 'a',
-    pswpModule: () => import('photoswipe'),
+    // pswpModule: () => import('photoswipe'),
+    pswpModule: PhotoSwipe,
   });
   lightbox.init();
 </script>

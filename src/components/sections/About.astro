@@ -3,29 +3,21 @@ export interface Props {
   section: Section;
 }
 
-import { Picture } from 'astro-imagetools/components';
-
-import getImagePath from '@/helpers/getImagePath';
-import getImageFormats from '@/helpers/getImageFormats';
+import Picture from '@/components/Picture.astro';
 import PageSection from '../PageSection.astro';
 
 const {
   section: { id, title, subtitle, image, Content },
 } = Astro.props as Props;
-
 ---
 <PageSection id={id} title={title} subtitle={subtitle} classes="bg-light dark:bg-gray-900">
   <div class="about">
     {image?.src && (
-      <Picture
-        src={getImagePath(image.src)}
-        alt={image.alt}
-        loading="lazy"
-        format={getImageFormats() as unknown as []}
-      />
+      <div class="mx-auto w-[20rem] h-[20rem]" data-aos="fade-up">
+        <Picture src={image.src} alt={image.alt} />
+      </div>
     )}
-
-    <div class="text-justify lg:col-span-2">
+    <div class="text-justify lg:col-span-2" data-aos="fade-up">
       <Content />
     </div>
   </div>
@@ -35,12 +27,8 @@ const {
   .about {
     @apply grid gap-12 lg:grid-cols-3;
 
-    > :global(.astro-imagetools-picture) {
-      @apply mx-auto mb-3;
-
-      :global(img) {
-        @apply w-60 h-60 border-round;
-      }
+    :global(.astro-imagetools-picture img) {
+      @apply border-round;
     }
   }
 </style>

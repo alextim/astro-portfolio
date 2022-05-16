@@ -3,9 +3,7 @@ export interface Props {
   item: SectionItem;
 }
 
-import { Picture } from 'astro-imagetools/components';
-import getImagePath from '@/helpers/getImagePath';
-import getImageFormats from '@/helpers/getImageFormats';
+import Picture from '@/components/Picture.astro';
 
 const {
   item: { title, subtitle, content, image },
@@ -14,10 +12,12 @@ const {
 
 <li class="testimonial-item">
   {image?.src && (
-    <Picture src={getImagePath(image.src)} alt={image?.alt || title || content || ''} format={getImageFormats() as unknown as []}/>
+    <div class="w-56 h-56 mx-auto mb-3" data-aos="fade-up">
+      <Picture src={image.src} alt={image?.alt || title || content || ''} />
+    </div>
   )}
-  <p>{content}</p>
-  <div class="mt-4 text-sm before:content-['-']">
+  <p data-aos="fade-up">{content}</p>
+  <div class="mt-4 text-sm before:content-['-']" data-aos="fade-up">
     {title}{subtitle && <cite>{`, ${subtitle}`}</cite>}
   </div>
 </li>
@@ -25,13 +25,8 @@ const {
 <style>
   .testimonial-item {
     @apply text-center;
-
-    :global(.astro-imagetools-picture) {
-      @apply mb-3;
-
-      :global(img) {
-        @apply w-56 h-56 mx-auto border-round;
-      }
+    :global(.astro-imagetools-picture img) {
+      @apply border-round;
     }
   }
 </style>
