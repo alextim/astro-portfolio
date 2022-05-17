@@ -5,14 +5,15 @@ import getYaml from './getYaml';
 const getYamlsByLocale = async (pattern: string) => {
   const entries = await fg(pattern, { dot: true });
   if (entries.length === 0) {
+    console.warn(`getYamlsByLocale: no matches for "${pattern}"`);
     return undefined;
   }
   const result: Record<string, any> = {};
-  entries.forEach(async (p) => {
+  for (const p of entries) {
     const { name } = path.parse(p);
     const [, locale] = name.split('.');
     result[locale] = await getYaml(p);
-  });
+  }
   return result;
 };
 

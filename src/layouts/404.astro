@@ -1,9 +1,11 @@
 ---
 import { getPage } from '@/cms/page';
+import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import Layout from '@/components/LayoutSimple.astro';
 import Container from '@/components/Container.astro';
 
 const { pathname } = Astro.canonicalURL;
+const locale = getLocaleFromUrlPathname(pathname);
 const { content } = Astro.props;
 
 const { title, headline, metaTitle, metaDescription, keywords, nofollow, html } = getPage(content, pathname);
@@ -15,6 +17,8 @@ const seo = {
   headline,
   noindex: true,
   nofollow,
+  pathname,
+  locale,
 };
 ---
 <Layout seo={seo}>

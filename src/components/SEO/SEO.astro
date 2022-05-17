@@ -6,7 +6,6 @@ export interface Props {
 import i18n from '@/config/i18n';
 import seoConfig from '@/config/seo.config.mjs';
 import config from '@/config/website';
-import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 import SeoBase from './SeoBase.astro';
 
 const { seo } = Astro.props as Props;
@@ -24,9 +23,6 @@ if (!seo.link) {
 }
 seo.link.push({ rel: 'author', type: 'text/plain', href: `${siteUrl}/humans.txt` });
 
-const pathname = new URL(Astro.request.url).pathname;
-const locale = getLocaleFromUrlPathname(pathname);
-
 //   const homeUrl = `${siteUrl}${localizePath('/', locale)}`;
 
 let imgUrl;
@@ -35,4 +31,4 @@ if (seo.cover?.src) {
 }
 ---
 
-<SeoBase {...{ siteUrl, siteLogo, i18n, pathname, locale, imgUrl, ...seo, ...seoConfig }} />
+<SeoBase {...{ siteUrl, siteLogo, i18n, imgUrl, ...seo, ...seoConfig }} />

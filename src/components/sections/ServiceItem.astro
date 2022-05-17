@@ -1,20 +1,12 @@
 ---
 export interface Props {
   item: SectionItem;
-  index: number;
 }
 
 import Picture from '@/components/Picture.astro';
 
-const { item: { title, content, image }, index } = Astro.props as Props;
-let aos: string;
-if (index % 3 === 0) {
-  aos = 'fade-up';
-} else if (index -1 % 3 === 0) {
-  aos = 'fade-up';
-} else {
-    aos = 'fade-up';
-}
+const { item: { title, content, image } } = Astro.props as Props;
+const aos = "fade-up";
 ---
 
 <li class="text-center">
