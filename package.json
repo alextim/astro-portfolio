@@ -28,7 +28,7 @@
     "@typescript-eslint/eslint-plugin": "^5.24.0",
     "@typescript-eslint/parser": "^5.24.0",
     "aos": "^3.0.0-beta.6",
-    "astro": "^1.0.0-beta.27",
+    "astro": "^1.0.0-beta.40",
     "astro-icon": "^0.7.1",
     "astro-imagetools": "0.5.8",
     "astro-robots-txt": "^0.1.15",
