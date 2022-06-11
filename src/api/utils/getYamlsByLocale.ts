@@ -9,9 +9,11 @@ const getYamlsByLocale = async (pattern: string) => {
     return undefined;
   }
   const result: Record<string, any> = {};
+  /* eslint-disable-next-line no-restricted-syntax */
   for (const p of entries) {
     const { name } = path.parse(p);
     const [, locale] = name.split('.');
+    /* eslint-disable-next-line no-await-in-loop */
     result[locale] = await getYaml(p);
   }
   return result;

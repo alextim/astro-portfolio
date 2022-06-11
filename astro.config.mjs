@@ -8,7 +8,7 @@ import robotsTxt from 'astro-robots-txt';
 // import sitemap from '@astrojs/sitemap';
 // import { astroImageTools } from 'astro-imagetools';
 // @ts-ignore
-import astroImagePlugin from 'astro-imagetools/plugin';
+import { astroImageTools } from 'astro-imagetools';
 
 import siteUrl from './src/config/siteUrl.mjs';
 import seoConfig from './src/config/seo.config.mjs';
@@ -20,7 +20,7 @@ export default defineConfig({
   // publicDir: './public',
   // outDir: './dist',
   site: siteUrl,
-  base: '/',
+  // base: '/',
   // trailingSlash: 'always',
   // build: {},
   // devOptions: {
@@ -32,7 +32,7 @@ export default defineConfig({
     integrations: true,
   },
   integrations: [
-    // astroImageTools,
+    astroImageTools,
     tailwind({ config: { applyBaseStyles: false } }),
     // sitemap(),
     robotsTxt({
@@ -52,8 +52,6 @@ export default defineConfig({
     ssr: {
       external: ['svgo'],
     },
-    plugins: [astroImagePlugin],
-    /*
     plugins: [
       {
         name: "import.meta.url-transformer",
@@ -63,6 +61,5 @@ export default defineConfig({
         },
       },
     ],
-    */
   },
 });
