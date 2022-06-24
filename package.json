@@ -31,7 +31,7 @@
     "astro": "^1.0.0-beta.44",
     "astro-icon": "^0.7.1",
     "astro-imagetools": "0.6.10",
-    "astro-robots-txt": "^0.3.2",
+    "astro-robots-txt": "^0.3.6",
     "autoprefixer": "^10.4.7",
     "cssnano": "^5.1.11",
     "eslint": "^8.17.0",
