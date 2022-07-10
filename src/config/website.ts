@@ -1,6 +1,6 @@
 import siteUrl from './siteUrl.mjs';
 
-const config: Record<string, string | boolean> = {
+const config: Record<string, string> = {
   siteUrl,
   siteLogo: `${siteUrl}/assets/logo.svg`,
 

@@ -52,6 +52,7 @@ export default defineConfig({
     ssr: {
       external: ['svgo'],
     },
+    /*
     plugins: [
       {
         name: "import.meta.url-transformer",
@@ -61,5 +62,6 @@ export default defineConfig({
         },
       },
     ],
+    */
   },
 });
