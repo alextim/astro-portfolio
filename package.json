@@ -17,7 +17,7 @@
   "devDependencies": {
     "@alextim/utils": "^0.1.24",
     "@astrojs/sitemap": "^0.2.2",
-    "@astrojs/tailwind": "^0.2.1",
+    "@astrojs/tailwind": "^0.2.4",
     "@babel/core": "^7.18.5",
     "@babel/eslint-parser": "^7.18.2",
     "@changesets/cli": "^2.23.0",
