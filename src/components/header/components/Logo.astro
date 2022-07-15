@@ -1,15 +1,15 @@
 ---
-import i18n from '@/config/i18n';
+import i18n from '@/config/i18n.mjs';
 import { localizePath } from '@/helpers/i18n-utils';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
 
 const pathname = new URL(Astro.request.url).pathname;
 const locale = getLocaleFromUrlPathname(pathname);
 
-const { siteTitle } = i18n.locales[locale]!;
+const { siteTitle } = (i18n.locales as Record<string, any>)[locale]!;
 const localizedRoot = localizePath('/', locale);
 ---
 
-<a href={localizedRoot} class="inline-block mr-4 at-a at-a-undecorated">
-  <img src="/assets/logo.svg" alt={siteTitle} height="48" width="48" class="h-12 w-12 lg:h-14 lg:w-14" />
+<a href={localizedRoot} class='inline-block mr-4 at-a at-a-undecorated'>
+  <img src='/assets/logo.svg' alt={siteTitle} height='48' width='48' class='h-12 w-12 lg:h-14 lg:w-14' />
 </a>

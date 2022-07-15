@@ -1,18 +1,19 @@
 ---
+import PageSection from '../PageSection.astro';
+import ServiceItem from './ServiceItem.astro';
+
 export interface Props {
   section: Section;
 }
-
-import PageSection from '../PageSection.astro';
-import ServiceItem from './ServiceItem.astro';
 
 const {
   section: { id, title, subtitle, Content, items },
 } = Astro.props as Props;
 ---
-<PageSection id={id} title={title} subtitle={subtitle} classes="text-center">
+
+<PageSection id={id} title={title} subtitle={subtitle} classes='text-center'>
   <Content />
-  <ul class="mt-18 grid gap-12 lg:grid-cols-3">
+  <ul class='mt-18 grid gap-12 lg:grid-cols-3'>
     {items?.map((item) => <ServiceItem item={item} />)}
   </ul>
 </PageSection>

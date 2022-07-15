@@ -4,7 +4,7 @@
  * datePublished - PostInfo.jsx:     formatLocale
  * Site Title    - Logo.jsx:         siteShortName
  */
-const i18n: Required<I18n> = {
+const i18n = {
   locales: {
     ru: {
       htmlLang: 'ru',
@@ -61,6 +61,6 @@ const i18n: Required<I18n> = {
     },
   },
   defaultLocale: 'ru',
-} as const;
+};
 
 export default i18n;

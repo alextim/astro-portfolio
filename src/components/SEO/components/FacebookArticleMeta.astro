@@ -5,7 +5,7 @@ export interface Props {
     dateModified?: string;
     authors?: Author[];
     tags?: Link[];
-  }
+  };
 }
 
 const { datePublished, dateModified, authors, tags } = (Astro.props as Props).articleMeta;

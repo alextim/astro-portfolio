@@ -1,4 +1,4 @@
-import i18n from '@/config/i18n';
+import i18n from '@/config/i18n.mjs';
 
 export const isValidLocale = (locale: string): boolean => {
   if (!locale) {
@@ -9,7 +9,7 @@ export const isValidLocale = (locale: string): boolean => {
     return false;
   }
 
-  return !!i18n.locales[locale];
+  return !!(i18n.locales as Record<string, any>)[locale];
 };
 
 export const isDefaultLocale = (locale: string): boolean => i18n.defaultLocale === locale;
@@ -64,7 +64,7 @@ export const getPurePathname = (pathname: string): string => {
     throw new Error(`No locale in ${pathname}`);
   }
 
-  const isLocalized = !!i18n.locales[locale];
+  const isLocalized = !!(i18n.locales as Record<string, any>)[locale];
   if (isLocalized) {
     const n = a.length;
     if (n < 4) {

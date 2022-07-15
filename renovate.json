@@ -1,11 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base",
-    ":automergeMinor",
-    ":combinePatchMinorReleases",
-    ":rebaseStalePrs"
-  ],
+  "extends": ["config:base", ":automergeMinor", ":combinePatchMinorReleases", ":rebaseStalePrs"],
 
   "ignorePaths": ["**/node_modules/**", "**/__tests__/**", "**/test/**"],
 

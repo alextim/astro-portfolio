@@ -1,13 +1,26 @@
 ---
+import type { PictureHTMLData } from 'astro-imagetools';
+import { renderPicture } from 'astro-imagetools/api';
+
+import escapeHTML from '@/lib/escapeHTML';
+import getImagePath from '@/helpers/getImagePath';
+import getImageFormats from '@/helpers/getImageFormats';
+
 export interface Props {
   item: SectionItem;
 }
 
-import { renderPicture } from 'astro-imagetools/api';
-import type { PictureHTMLData } from 'astro-imagetools';
-import getImagePath from '@/helpers/getImagePath';
-import escapeHTML from '@/lib/escapeHTML';
-import getImageFormats from '@/helpers/getImageFormats';
+function getImgHTML(s: string) {
+  const n1 = s.indexOf('<img');
+  const n2 = s.indexOf('>', n1);
+  return s.substring(n1, n2);
+}
+
+function getVal(tag: string, s: string) {
+  const n1 = s.indexOf(`${tag}="`) + tag.length + 2;
+  const n2 = s.indexOf('"', n1);
+  return s.substring(n1, n2);
+}
 
 const {
   item: { title, subtitle, image },
@@ -21,43 +34,32 @@ const { link, style, picture }: PictureHTMLData = await renderPicture({
   layout: 'fill',
   format: getImageFormats() as unknown as [],
 });
-// console.log(picture);
-let n = picture.indexOf('<img');
-let img = picture.substring(n);
-n = img.indexOf('>');
-img = img.substring(0, n);
 
-const getVal = (tag: string, src: string) => {
-  let n = src.indexOf(`${tag}="`);
-  let s = src.substring(n + tag.length + 2);
-  n = s.indexOf('"');
-  const result = s.substring(0, n);
-  return result;
-};
+const imgHTML = getImgHTML(picture);
 
-const imgWidth = getVal('width', img);
-const imgHeight = getVal('height', img);
-const imgSrc = getVal('src', img);
+const w = getVal('width', imgHTML);
+const h = getVal('height', imgHTML);
+const href = getVal('src', imgHTML);
 ---
 
-<a role="button" tabindex={-1} class="gallery-box" href={imgSrc} data-pswp-width={imgWidth} data-pswp-height={imgHeight} target="_blank">
+<a role='button' tabindex={-1} class='gallery-item' href={href} data-pswp-width={w} data-pswp-height={h} target='_blank'>
   <Fragment set:html={link + style + picture} />
-  <div class="gallery-box-caption">
-    <div class="project-category">{subtitle}</div>
-    <div class="project-name">{title}</div>
+  <div class='gallery-item_caption'>
+    <div class='gallery-item_category'>{subtitle}</div>
+    <div class='gallery-item_name'>{title}</div>
   </div>
 </a>
 
 <style>
-  .gallery-box {
+  .gallery-item {
     @apply relative block bg-transparent;
 
-    &:hover > .gallery-box-caption {
+    &:hover > .gallery-item__caption {
       @apply opacity-100;
     }
   }
 
-  .gallery-box-caption {
+  .gallery-item_caption {
     @apply absolute bottom-0
     z-10 flex h-full w-full
     flex-col items-center
@@ -68,11 +70,11 @@ const imgSrc = getVal('src', img);
     transition-opacity;
   }
 
-  .project-category {
+  .gallery-item_category {
     @apply text-sm font-semibold uppercase text-gray-50;
   }
 
-  .project-name {
+  .gallery-item_name {
     @apply text-lg;
   }
 </style>

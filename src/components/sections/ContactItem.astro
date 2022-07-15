@@ -1,19 +1,19 @@
 ---
+import { Icon } from 'astro-icon';
+
 export interface Props extends Link {
   icon: string;
   text: string;
 }
 
-import { Icon } from 'astro-icon';
-
 const { icon, to, title, text } = Astro.props as Props;
 ---
 
-<li class="block" data-aos="fade-up">
-  <a href={to} target="_blank" rel="noindex noopener noreferrer" class="flex flex-col items-center">
-    <Icon name={icon} class="h-12 w-12 mb-4 body-text__color" />
+<li class='block' data-aos='fade-up'>
+  <a href={to} target='_blank' rel='noindex noopener noreferrer' class='flex flex-col items-center'>
+    <Icon name={icon} class='h-12 w-12 mb-4 body-text__color' />
     <div>
-      {title && <span class="mr-1 body-text__color">{title}:</span>}
+      {title && <span class="body-text__color mr-1">{title}:</span>}
       {text}
     </div>
   </a>

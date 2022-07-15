@@ -24,8 +24,8 @@ const propsBase: BaseSEO = {
 {description && <meta name="description" content={description} />}
 
 {keywords && <meta name="keywords" content={keywords} />}
-<meta name="robots" content={`${noindex ? 'no' : ''}index, ${nofollow ? 'no' : ''}follow`} />
-<link rel="canonical" href={pageUrl} />
+<meta name='robots' content={`${noindex ? 'no' : ''}index, ${nofollow ? 'no' : ''}follow`} />
+<link rel='canonical' href={pageUrl} />
 
 {has_i18n && <I18nMeta {...propsBase} />}
 

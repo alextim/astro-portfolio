@@ -1,4 +1,6 @@
+// import { promises as fs } from 'fs';
 import yaml from 'js-yaml';
+import fs from 'node:fs/promises';
 /*
 import { fileURLToPath } from 'url';1
 import { dirname } from 'path';
@@ -6,10 +8,7 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 */
-
 import path from 'path';
-// import fs from 'node:fs/promises';
-import { promises as fs } from 'fs';
 
 async function getYaml(fileName: string) {
   const pathname = path.join(process.cwd(), fileName);

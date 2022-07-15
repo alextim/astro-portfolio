@@ -21,9 +21,10 @@ const seo = {
   locale,
 };
 ---
+
 <Layout seo={seo}>
-  <Container classes="self-center text-center">
-    <h1 class="text-8xl font-mono">{title}</h1>
+  <Container classes='self-center text-center'>
+    <h1 class='text-8xl font-mono'>{title}</h1>
     {html && <div class="markdown-body" set:html={html} />}
   </Container>
 </Layout>

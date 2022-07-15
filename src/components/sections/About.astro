@@ -1,34 +1,33 @@
 ---
+import Picture from '@/components/Picture.astro';
+import PageSection from '../PageSection.astro';
+
 export interface Props {
   section: Section;
 }
-
-import Picture from '@/components/Picture.astro';
-import PageSection from '../PageSection.astro';
 
 const {
   section: { id, title, subtitle, image, Content },
 } = Astro.props as Props;
 ---
-<PageSection id={id} title={title} subtitle={subtitle} classes="bg-light dark:bg-gray-900">
-  <div class="about">
+
+<PageSection id={id} title={title} subtitle={subtitle} classes='bg-light dark:bg-gray-900'>
+  <div class='grid gap-12 lg:grid-cols-3'>
     {image?.src && (
-      <div class="mx-auto w-[20rem] h-[20rem]" data-aos="fade-up">
-        <Picture src={image.src} alt={image.alt} />
-      </div>
+      <Picture
+        src={image.src}
+        alt={image.alt}
+        layout="fixed"
+        w={320}
+        h={320}
+        attributes={{
+          picture: { class: 'mx-auto', 'data-aos': 'fade-up' },
+          img: { class: 'border-round' },
+        }}
+      />
     )}
-    <div class="text-justify lg:col-span-2" data-aos="fade-up">
+    <div class='text-justify lg:col-span-2' data-aos='fade-up'>
       <Content />
     </div>
   </div>
 </PageSection>
-
-<style>
-  .about {
-    @apply grid gap-12 lg:grid-cols-3;
-
-    :global(.astro-imagetools-picture img) {
-      @apply border-round;
-    }
-  }
-</style>

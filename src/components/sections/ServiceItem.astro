@@ -1,20 +1,18 @@
 ---
+import Picture from '@/components/Picture.astro';
+
 export interface Props {
   item: SectionItem;
 }
 
-import Picture from '@/components/Picture.astro';
-
-const { item: { title, content, image } } = Astro.props as Props;
-const aos = "fade-up";
+const {
+  item: { title, content, image },
+} = Astro.props as Props;
+const aos = 'fade-up';
 ---
 
-<li class="text-center">
-  {image?.src && (
-    <div class="mb-4" data-aos={aos}>
-      <Picture src={image.src} alt={image.alt}  />
-    </div>
-  )}
-  <h3 class="mb-4" data-aos={aos}>{title}</h3>
+<li class='text-center'>
+  {image?.src && <Picture src={image.src} alt={image.alt} attributes={{ picture: { class: 'mb-4', 'data-aos': aos } }} />}
+  <h3 class='mb-4' data-aos={aos}>{title}</h3>
   <p data-aos={aos}>{content}</p>
 </li>

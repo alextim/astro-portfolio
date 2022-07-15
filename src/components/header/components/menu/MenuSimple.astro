@@ -15,12 +15,13 @@ const navItems = (await Astro.glob('/content/sections/*.??.md'))
   .sort((a, b) => a.sortOrder - b.sortOrder)
   .map(({ id, title }) => ({ to: localizePath(`#${id}`, locale), title }));
 ---
-<ul id="main-menu" class="main-menu" aria-label="Main menu">
+
+<ul id='main-menu' class='main-menu' aria-label='Main menu'>
   {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
 </ul>
 
 <style>
   .main-menu {
-    @apply flex flex-col self-start lg:flex-row lg:self-auto lg:ml-auto;
+    @apply flex flex-col self-start lg:ml-auto lg:flex-row lg:self-auto;
   }
 </style>

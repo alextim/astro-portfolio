@@ -1,12 +1,12 @@
 ---
+import Link from './LocalizedLink.astro';
+
 export interface Props {
   to?: string;
   target?: string;
   classes?: string;
   tag?: string;
 }
-
-import Link from './LocalizedLink.astro';
 
 const { to = '', target = '', classes = '', tag = 'button' } = Astro.props as Props;
 ---

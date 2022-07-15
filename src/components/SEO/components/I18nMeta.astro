@@ -13,8 +13,8 @@ const pathname = new URL(Astro.request.url).pathname;
 const purePath = getPurePathname(pathname);
 ---
 
-{Object.entries(i18n.locales).map(([code, {htmlLang}]) => (
+{Object.entries(i18n.locales).map(([code, { htmlLang }]) => (
   <link rel="alternate" hreflang={htmlLang} href={`${siteUrl}${localizePath(purePath, code)}`} />
 ))}
 
-<link rel="alternate" hreflang="x-default" href={`${siteUrl}${purePath}`} />
+<link rel='alternate' hreflang='x-default' href={`${siteUrl}${purePath}`} />

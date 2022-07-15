@@ -28,16 +28,16 @@ if (!translations) {
 const t = (key: string, params?: Record<string, string>) => translate(key, translations, params);
 ---
 
-<footer class="py-4 text-sm bg-light  dark:bg-black">
+<footer class='py-4 text-sm bg-light  dark:bg-black'>
   <Container>
     {socialLinks && (
-      <div class="flex flex-wrap justify-center gap-8 my-12 w-full">
+      <div class="my-12 flex w-full flex-wrap justify-center gap-8">
         <Social socialLinks={socialLinks} />
       </div>
     )}
-    <div class="flex flex-col items-center justify-center w-full lg:flex-row lg:justify-between">
+    <div class='flex flex-col items-center justify-center w-full lg:flex-row lg:justify-between'>
       <LegalInfo foundingDate={foundingDate} name={address?.name || ''} />
-      <LocalizedLink to="/privacy" class="body-text__color">{t('footer.privacyPolicy')}</LocalizedLink>
+      <LocalizedLink to='/privacy' class='body-text__color'>{t('footer.privacyPolicy')}</LocalizedLink>
     </div>
   </Container>
 </footer>

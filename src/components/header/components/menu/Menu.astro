@@ -1,10 +1,9 @@
 ---
+import { getSection } from '@/cms/section';
+import NavItem from './NavItem.astro';
 export interface Props {
   locale: string;
 }
-
-import { getSection } from '@/cms/section';
-import NavItem from './NavItem.astro';
 
 const { locale } = Astro.props as Props;
 
@@ -14,25 +13,13 @@ const navItems = (await Astro.glob('/content/sections/*.??.md'))
   .sort((a, b) => a.sortOrder - b.sortOrder)
   .map(({ id, title }) => ({ to: `#${id}`, title }));
 ---
-<ul id="main-menu" class="main-menu" aria-label="Main menu">
+
+<ul id='main-menu' class='main-menu' aria-label='Main menu'>
   {navItems.map(({ title, to }) => <NavItem to={to} title={title} />)}
 </ul>
 
-
-<script>
-  import scrollSpy from '@/vendor/gumshoe/gumshoe.js';
-
-  scrollSpy('#main-menu a', {
-    offset() {
-      const rect = header.getBoundingClientRect();
-      return rect.height;
-    },
-    reflow: true,
-  });
-</script>
-
 <style>
   .main-menu {
-    @apply flex flex-col self-start lg:flex-row lg:self-auto lg:ml-auto;
+    @apply flex flex-col self-start lg:ml-auto lg:flex-row lg:self-auto;
   }
 </style>

@@ -12,14 +12,15 @@ const SECTION_ITEM_CLASS = 'section-item';
 
 const { id, title, subtitle, classes = '' } = Astro.props as Props;
 ---
+
 <section id={id} class={`${SECTION_ITEM_CLASS} scroll-mt-4 py-24 lg:py-36 text-center ${classes}`}>
   <Container>
     {(title || subtitle) && (
       <div class="flex flex-col-reverse">
         {title && <h2 class="mb-18 text-lg italic">{subtitle}</h2>}
-        {subtitle && <div class="divider mb-8 text-4xl font-bold uppercase heading">{title}</div>}
+        {subtitle && <div class="heading divider mb-8 text-4xl font-bold uppercase">{title}</div>}
       </div>
     )}
-    <slot />
+    <slot></slot>
   </Container>
 </section>

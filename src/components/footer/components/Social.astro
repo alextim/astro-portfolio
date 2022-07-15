@@ -8,6 +8,4 @@ export interface Props {
 const { socialLinks } = Astro.props as Props;
 ---
 
-{Object.entries(socialLinks).map(([name, { to, title }]) => (
-  <SocialLink name={name} to={to} title={title} />
-))}
+{Object.entries(socialLinks).map(([name, { to, title }]) => <SocialLink name={name} to={to} title={title} />)}

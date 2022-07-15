@@ -1,5 +1,6 @@
-import path from 'path';
 import fg from 'fast-glob';
+import path from 'path';
+
 import getYaml from './getYaml';
 
 const getYamlsByLocale = async (pattern: string) => {

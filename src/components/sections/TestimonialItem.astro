@@ -1,32 +1,32 @@
 ---
+import Picture from '@/components/Picture.astro';
+
 export interface Props {
   item: SectionItem;
 }
 
-import Picture from '@/components/Picture.astro';
-
 const {
   item: { title, subtitle, content, image },
 } = Astro.props as Props;
+const aos = 'fade-up';
 ---
 
-<li class="testimonial-item">
+<li class='text-center'>
   {image?.src && (
-    <div class="w-56 h-56 mx-auto mb-3" data-aos="fade-up">
-      <Picture src={image.src} alt={image?.alt || title || content || ''} />
-    </div>
+    <Picture
+      src={image.src}
+      alt={image?.alt || title || content || ''}
+      layout="fixed"
+      w={224}
+      h={224}
+      attributes={{
+        picture: { class: 'mx-auto mb-3', 'data-aos': aos },
+        img: { class: 'border-round' },
+      }}
+    />
   )}
-  <p data-aos="fade-up">{content}</p>
-  <div class="mt-4 text-sm before:content-['-']" data-aos="fade-up">
+  <p data-aos={aos}>{content}</p>
+  <div class='mt-4 text-sm before:content-['-']' data-aos={aos}>
     {title}{subtitle && <cite>{`, ${subtitle}`}</cite>}
   </div>
 </li>
-
-<style>
-  .testimonial-item {
-    @apply text-center;
-    :global(.astro-imagetools-picture img) {
-      @apply border-round;
-    }
-  }
-</style>

@@ -1,9 +1,4 @@
 ---
-export interface Props {
-  locale: string;
-  scrollSpy?: boolean;
-}
-
 import Containter from '../Container.astro';
 
 import Logo from './components/Logo.astro';
@@ -12,10 +7,12 @@ import MainNav from './components/menu/MainNav.astro';
 import Menu from './components/menu/Menu.astro';
 import MenuSimple from './components/menu/MenuSimple.astro';
 
-const {
-  locale,
-  scrollSpy = true,
-} = Astro.props as Props;
+export interface Props {
+  locale: string;
+  scrollSpy?: boolean;
+}
+
+const { locale, scrollSpy = true } = Astro.props as Props;
 /*
   .header {
     @apply fixed top-0 left-0 right-0
@@ -34,8 +31,8 @@ const {
     */
 ---
 
-<header id="header" role="navigation" class:list={['header', { 'no-scrollspy': !scrollSpy }]}>
-  <Containter classes="flex flex-wrap items-center justify-between font-sans lg:flex-nowrap">
+<header id='header' role='navigation' class:list={['header', { 'no-scrollspy': !scrollSpy }]}>
+  <Containter classes='flex flex-wrap items-center justify-between font-sans lg:flex-nowrap'>
     <Logo />
     <Hamburger />
     <MainNav locale={locale}>
@@ -46,24 +43,39 @@ const {
 </header>
 
 <script>
-  const OFFSET = 50;
-  const SHRINK_CLASS = 'shrink';
+  import scrollSpy from '@/vendor/gumshoe/gumshoe.js';
 
   const header = document.getElementById('header');
 
+  /**
+   * shrink
+   */
   const scrollHandler = () => {
+    const OFFSET = 50;
+    const SHRINK_CLASS = 'shrink';
+
     const shrink = document.body.scrollTop > OFFSET || document.documentElement.scrollTop > OFFSET;
     header.classList.toggle(SHRINK_CLASS, shrink);
   };
-
   window.addEventListener('scroll', scrollHandler, false);
 
-  const mainNav = document.getElementById('main-nav');
+  /**
+   * scrollspy
+   */
+
+  scrollSpy('#main-menu a', {
+    offset() {
+      const h = header.getBoundingClientRect().height;
+
+      return h;
+    },
+    reflow: true,
+  });
 
   /**
    * Hamburger Toggle
-   *
    */
+  const mainNav = document.getElementById('main-nav');
   const menuToggle = document.getElementById('menu-toggle');
 
   const menuToggleHandler = () => {
@@ -77,11 +89,11 @@ const {
 <style is:global>
   .header {
     @apply fixed top-0 left-0 right-0
-      flex flex-wrap items-center justify-between
-      py-3 px-4
+      z-30 flex flex-wrap items-center
+      justify-between bg-transparent
+      py-3
+      px-4
       text-sm
-      bg-transparent
-      z-30
       lg:flex-nowrap lg:justify-start
       lg:py-4;
 
@@ -92,5 +104,4 @@ const {
       @apply lg:bg-blue-500;
     }
   }
-
 </style>

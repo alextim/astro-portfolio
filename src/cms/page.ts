@@ -1,6 +1,6 @@
 import seoConfig from '@/config/seo.config.mjs';
-import { getPurePathname } from '@/helpers/i18n-utils';
 import getLocaleFromUrlPathname from '@/helpers/getLocaleFromUrlPathname';
+import { getPurePathname } from '@/helpers/i18n-utils';
 
 const { disableIndexing } = seoConfig;
 export function getPage(

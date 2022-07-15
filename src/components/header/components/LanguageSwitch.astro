@@ -1,40 +1,40 @@
 ---
+import { Icon } from 'astro-icon';
+import i18n from '@/config/i18n.mjs';
+import { localizePath, getPurePathname } from '@/helpers/i18n-utils';
+
 export interface Props {
   classes?: string;
   locale: string;
 }
 
-import { Icon } from 'astro-icon';
-import i18n from '@/config/i18n';
-import { localizePath, getPurePathname } from '@/helpers/i18n-utils';
-
 const pathname = new URL(Astro.request.url).pathname;
 
 const { classes = '', locale } = Astro.props as Props;
-const currentLocaleEntry = i18n.locales[locale];
+const currentLocaleEntry = (i18n.locales as Record<string, any>)[locale];
 ---
 
-<div id="language-selector" class={`language-selector ${classes}`}>
-  <div class="dropdown-toggle">
-    <Icon class="w-4 h-4 mr-2" name="globe"/>{currentLocaleEntry.localName}
+<div id='language-selector' class={`language-selector ${classes}`}>
+  <div class='dropdown-toggle'>
+    <Icon class='w-4 h-4 mr-2' name='globe' />{currentLocaleEntry.localName}
   </div>
 
-  <div id="language-dropdown" class="dropdown">
+  <div id='language-dropdown' class='dropdown'>
     {Object.entries(i18n.locales).map(([code, { localName }]) => {
-      let classes;
-      let to;
+      let classes
+      let to
       if (locale === code) {
-        classes = 'active';
-        to = pathname;
+        classes = ' active'
+        to = pathname
       } else {
-        classes = '';
-        to = localizePath(getPurePathname(pathname), code);
+        classes = ''
+        to = localizePath(getPurePathname(pathname), code)
       }
       return (
-        <a class={`at-a at-a-undecorated dropdown-item ${classes}`} href={to} data-locale={code}>
+        <a class={`at-a at-a-undecorated dropdown-item${classes}`} href={to} data-locale={code}>
           {localName}
         </a>
-      );
+      )
     })}
   </div>
 </div>
@@ -60,7 +60,7 @@ const currentLocaleEntry = i18n.locales[locale];
       color: #fff;
 
       &:after {
-        content: "";
+        content: '';
         display: inline-block;
         margin-left: 0.255em;
         border-top: 0.3em;
@@ -93,7 +93,7 @@ const currentLocaleEntry = i18n.locales[locale];
       color: #212529;
       background-color: #fff;
       background-clip: padding-box;
-      border: 1px solid rgba(0, 0 , 0, .15);
+      border: 1px solid rgba(0, 0, 0, 0.15);
       border-radius: 0.25rem;
 
       float: left;
@@ -126,11 +126,11 @@ const currentLocaleEntry = i18n.locales[locale];
       position: absolute;
       color: white;
       right: 0;
-      content: "|";
+      content: '|';
     }
 
     &:last-of-type::after {
-      content: "";
+      content: '';
     }
 
     &.active {
@@ -142,7 +142,7 @@ const currentLocaleEntry = i18n.locales[locale];
       color: #212529;
 
       &::after {
-        content: "";
+        content: '';
       }
       &.active {
         color: theme('colors.white');
@@ -153,7 +153,7 @@ const currentLocaleEntry = i18n.locales[locale];
 </style>
 
 <script>
-  import i18n from '@/config/i18n';
+  import i18n from '@/config/i18n.mjs';
   import { getLocale, saveLocale } from '@/lib/locale-utils';
 
   const { defaultLocale, locales } = i18n;
@@ -169,10 +169,10 @@ const currentLocaleEntry = i18n.locales[locale];
   }
 
   const languageSelector = document.getElementById('language-selector');
-  const items = languageSelector.querySelectorAll('a');
+  const items = languageSelector!.querySelectorAll('a');
 
-  const onClick = (e) => {
-    const itemLocale = e.target.getAttribute('data-locale');
+  const onClick = (ev: any) => {
+    const itemLocale = ev.target.getAttribute('data-locale');
     saveLocale(itemLocale);
   };
 

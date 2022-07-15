@@ -9,12 +9,12 @@ import LanguageSwitch from '../LanguageSwitch.astro';
 const { locale } = Astro.props as Props;
 ---
 
-<nav id="main-nav" class="main-nav">
-  <slot />
+<nav id='main-nav' class='main-nav'>
+  <slot></slot>
 
-  <div class="flex justify-center items-center">
-    <LanguageSwitch locale={locale} classes="nav-item" />
-    <ThemeSwitch classes="nav-item" />
+  <div class='flex justify-center items-center'>
+    <LanguageSwitch locale={locale} classes='nav-item' />
+    <ThemeSwitch classes='nav-item' />
   </div>
 </nav>
 

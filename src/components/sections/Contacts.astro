@@ -1,12 +1,12 @@
 ---
-export interface Props {
-  section: Section;
-}
-
 import utils from '@alextim/utils';
 import PageSection from '../PageSection.astro';
 import ContactItem from './ContactItem.astro';
 import { fetchContacts } from '@/api/yamls';
+
+export interface Props {
+  section: Section;
+}
 
 const {
   section: { id, title, subtitle, Content },
@@ -18,11 +18,11 @@ const {
   voice: { whatsapp, telegram } = {},
   emails: [email],
 } = contacts;
-
 ---
+
 <PageSection id={id} title={title} subtitle={subtitle}>
   <Content />
-  <ul class="mt-18 grid gap-6 text-sm md:grid-cols-2 lg:grid-cols-4">
+  <ul class='mt-18 grid gap-6 text-sm md:grid-cols-2 lg:grid-cols-4'>
     {phone && <ContactItem icon="phone" to={utils.phoneUrl(phone)} title="Phone" text={utils.formatPhone(phone)} />}
     {whatsapp && <ContactItem icon="whatsapp" to={utils.whatsappUrl(whatsapp)} title="WhatsApp" text={utils.formatPhone(whatsapp)} />}
     {telegram && <ContactItem icon="telegram" to={utils.telegramUrl(telegram)} title="Telegram" text={telegram} />}
