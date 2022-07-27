@@ -12,7 +12,7 @@ import Testimonials from '@/components/sections/Testimonials.astro';
 import Contacts from '@/components/sections/Contacts.astro';
 import { getSection } from '@/cms/section';
 
-const { pathname } = Astro.canonicalURL;
+const { pathname } = Astro.url;
 const locale = getLocaleFromUrlPathname(pathname);
 
 const sections = (await Astro.glob('/content/sections/*.??.md')).map(getSection).filter((section) => section.locale === locale);

@@ -22,5 +22,6 @@
   "cSpell.words": ["Astro", "tailwindcss", "eleventy", "viber", "vite", "flexbox", "flexbugs", "favicons", "webp", "avif", "pnpm", "imagetools"],
   "cSpell.language": "en,ru",
   "prettier.documentSelectors": ["**/*.astro", "**/*.ts", "**/*.js"],
-  "css.customData": [".vscode/css_custom_data.json"]
+  "css.customData": [".vscode/css_custom_data.json"],
+  "typescript.inlayHints.parameterNames.enabled": "all"
 }

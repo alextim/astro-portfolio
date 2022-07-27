@@ -9,7 +9,7 @@ import Schema from './components/Schema/Schema.astro';
 
 const { title, description, keywords, canonical, noindex, nofollow, pageType, i18n, twitter, facebook } = Astro.props;
 
-const pageUrl = canonical || Astro.canonicalURL.href;
+const pageUrl = canonical || Astro.url.href;
 
 const has_i18n = Object.keys(i18n.locales).length > 1;
 

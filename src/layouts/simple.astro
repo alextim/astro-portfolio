@@ -5,7 +5,7 @@ import Layout from '@/components/LayoutSimple.astro';
 import Container from '@/components/Container.astro';
 import PageHeader from '@/components/PageHeader.astro';
 
-const { pathname } = Astro.canonicalURL;
+const { pathname } = Astro.url;
 const locale = getLocaleFromUrlPathname(pathname);
 const { content } = Astro.props;
 

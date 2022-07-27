@@ -10,7 +10,7 @@ import SEO from './SEO/SEO.astro';
 import Header from './header/Header.astro';
 import Footer from './footer/Footer.astro';
 
-const { pathname } = Astro.canonicalURL;
+const { pathname } = Astro.url;
 const locale = getLocaleFromUrlPathname(pathname);
 
 const contacts = await fetchContacts();

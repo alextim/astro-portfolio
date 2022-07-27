@@ -20,7 +20,7 @@ const {
   address,
 } = Astro.props as Props;
 
-const locale = getLocaleFromUrlPathname(Astro.canonicalURL.pathname);
+const locale = getLocaleFromUrlPathname(Astro.url.pathname);
 const translations = await fetchTranslations(locale);
 if (!translations) {
   throw new Error(`translations for locale ${locale} not found`);
